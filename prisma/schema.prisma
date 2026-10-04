@@ -1,0 +1,163 @@
+// Prisma Schema for Online Test & Automatic Certificate Platform
+// Supports PostgreSQL in production and relational data modeling
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  password  String   // Hashed password
+  role      String   @default("ADMIN")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id           String        @id @default(uuid())
+  name         String
+  email        String        @unique
+  phone        String?
+  organization String?
+  attempts     TestAttempt[]
+  certificates Certificate[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model Test {
+  id                String        @id @default(uuid())
+  title             String
+  slug              String        @unique
+  description       String
+  durationMinutes   Int           @default(20)
+  passingPercentage Int           @default(60)
+  isPublished       Boolean       @default(true)
+  certificateTitle  String        @default("Certificate of Achievement")
+  organizationName  String        @default("SkillCert Global Institute")
+  questions         Question[]
+  attempts          TestAttempt[]
+  certificates      Certificate[]
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE
+  TRUE_FALSE
+}
+
+model Question {
+  id            String           @id @default(uuid())
+  testId        String
+  test          Test             @relation(fields: [testId], references: [id], onDelete: Cascade)
+  text          String
+  type          QuestionType     @default(MULTIPLE_CHOICE)
+  marks         Int              @default(1)
+  order         Int              @default(0)
+  category      String           @default("General")
+  explanation   String?
+  options       QuestionOption[]
+  answers       Answer[]
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+}
+
+model QuestionOption {
+  id         String   @id @default(uuid())
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  text       String
+  isCorrect  Boolean  @default(false)
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+enum AttemptStatus {
+  IN_PROGRESS
+  COMPLETED
+  TIMED_OUT
+}
+
+model TestAttempt {
+  id                 String        @id @default(uuid())
+  testId             String
+  test               Test          @relation(fields: [testId], references: [id], onDelete: Cascade)
+  userId             String
+  user               User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status             AttemptStatus @default(IN_PROGRESS)
+  startedAt          DateTime      @default(now())
+  submittedAt        DateTime?
+  timeSpentSeconds   Int           @default(0)
+  tabSwitchCount     Int           @default(0)
+  totalQuestions     Int           @default(0)
+  correctAnswers     Int           @default(0)
+  incorrectAnswers   Int           @default(0)
+  unanswered         Int           @default(0)
+  score              Float         @default(0)
+  maxScore           Float         @default(0)
+  percentage         Float         @default(0)
+  isPassed           Boolean       @default(false)
+  answers            Answer[]
+  certificate        Certificate?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+}
+
+model Answer {
+  id             String         @id @default(uuid())
+  attemptId      String
+  attempt        TestAttempt    @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  questionId     String
+  question       Question       @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  selectedOptionId String?
+  isMarkedForReview Boolean     @default(false)
+  isCorrect      Boolean        @default(false)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  @@unique([attemptId, questionId])
+}
+
+model Certificate {
+  id              String      @id @default(uuid())
+  certificateId   String      @unique // e.g. CERT-2026-8F42K9
+  attemptId       String      @unique
+  attempt         TestAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  userId          String
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  testId          String
+  test            Test        @relation(fields: [testId], references: [id], onDelete: Cascade)
+  participantName String
+  participantEmail String
+  testTitle       String
+  score           Float
+  percentage      Float
+  issueDate       DateTime    @default(now())
+  verificationUrl String
+  emailSent       Boolean     @default(false)
+  emailSentAt     DateTime?
+  emailLogs       EmailLog[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+model EmailLog {
+  id            String       @id @default(uuid())
+  certificateId String?
+  certificate   Certificate? @relation(fields: [certificateId], references: [id], onDelete: SetNull)
+  recipient     String
+  emailType     String       @default("CERTIFICATE_DELIVERY")
+  status        String       // DELIVERED, SENT, SIMULATED, FAILED
+  providerId    String?
+  errorMessage  String?
+  timestamp     DateTime     @default(now())
+}
