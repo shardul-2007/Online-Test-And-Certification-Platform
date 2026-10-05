@@ -27,7 +27,7 @@ export async function sendCertificateEmail(params: SendCertificateEmailParams): 
 
   const downloadUrl = `${appUrl}/api/certificates/${certificateId}/download`;
   const verifyUrl = `${appUrl}/verify/${certificateId}`;
-  const orgName = process.env.ORGANIZATION_NAME || 'SkillCert Global Institute';
+  const orgName = process.env.ORGANIZATION_NAME || 'Department of Information Technology, NMIET (in association with ISTE)';
 
   const htmlBody = `
 <!DOCTYPE html>
@@ -35,17 +35,17 @@ export async function sendCertificateEmail(params: SendCertificateEmailParams): 
 <head>
   <meta charset="utf-8">
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #070B14; color: #E2E8F0; margin: 0; padding: 24px; }
-    .card { max-width: 600px; margin: 0 auto; background: #0E1626; border: 1px solid #1E293B; border-radius: 12px; padding: 36px; }
-    .header { text-align: center; margin-bottom: 24px; }
-    .title { color: #00F5C8; font-size: 22px; font-weight: 700; margin: 0 0 8px 0; }
-    .subtitle { color: #94A3B8; font-size: 14px; margin: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #060912; color: #E2E8F0; margin: 0; padding: 24px; }
+    .card { max-width: 600px; margin: 0 auto; background: #0E1626; border: 1px solid #1E293B; border-radius: 14px; padding: 36px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+    .header { text-align: center; margin-bottom: 24px; border-bottom: 1px solid #1E293B; padding-bottom: 20px; }
+    .title { color: #F5D061; font-size: 20px; font-weight: 700; margin: 0 0 6px 0; }
+    .subtitle { color: #94A3B8; font-size: 13px; margin: 0; line-height: 1.5; }
     .content { font-size: 15px; line-height: 1.6; color: #CBD5E1; margin: 24px 0; }
-    .cert-box { background: #070B14; border: 1px dashed #00F5C8; border-radius: 8px; padding: 18px; text-align: center; margin: 24px 0; }
-    .cert-id { font-family: monospace; font-size: 18px; color: #F5D061; font-weight: bold; letter-spacing: 1px; }
+    .cert-box { background: #070B14; border: 1px dashed #F5D061; border-radius: 10px; padding: 18px; text-align: center; margin: 24px 0; }
+    .cert-id { font-family: monospace; font-size: 20px; color: #F5D061; font-weight: bold; letter-spacing: 1px; }
     .btn-container { text-align: center; margin: 30px 0; }
-    .btn { display: inline-block; padding: 12px 24px; margin: 0 8px 10px 8px; border-radius: 6px; font-weight: 600; text-decoration: none; font-size: 14px; }
-    .btn-primary { background: #00F5C8; color: #070B14; }
+    .btn { display: inline-block; padding: 12px 24px; margin: 0 8px 10px 8px; border-radius: 8px; font-weight: 600; text-decoration: none; font-size: 14px; }
+    .btn-primary { background: #F5D061; color: #070B14; }
     .btn-secondary { background: #1E293B; color: #E2E8F0; border: 1px solid #334155; }
     .footer { text-align: center; font-size: 12px; color: #64748B; border-top: 1px solid #1E293B; padding-top: 20px; margin-top: 32px; }
   </style>
@@ -53,14 +53,14 @@ export async function sendCertificateEmail(params: SendCertificateEmailParams): 
 <body>
   <div class="card">
     <div class="header">
-      <h1 class="title">SkillCert Global Institute</h1>
-      <p class="subtitle">Official Academic & Industry Certification</p>
+      <h1 class="title">Nutan Maharashtra Institute of Engineering & Technology</h1>
+      <p class="subtitle">Department of Information Technology · In Association with ISTE<br>Faculty Development Programme (5th to 9th Oct, 2026)</p>
     </div>
 
     <div class="content">
       <p>Hi <strong>${recipientName}</strong>,</p>
-      <p>Congratulations on successfully completing <strong>${testTitle}</strong>!</p>
-      <p>Your performance has been evaluated and your official, cryptographically verifiable certificate has been generated.</p>
+      <p>Congratulations on completing the assessment for the Faculty Development Programme on <strong>“Recent advances in cyber security and blockchain for secure digital transformation”</strong> held on 5th to 9th Oct, 2026.</p>
+      <p>Your official <strong>Certificate of Participation</strong> has been generated successfully and is attached directly to this email.</p>
     </div>
 
     <div class="cert-box">
@@ -70,17 +70,17 @@ export async function sendCertificateEmail(params: SendCertificateEmailParams): 
 
     <div class="btn-container">
       <a href="${downloadUrl}" class="btn btn-primary">Download Certificate (PDF)</a>
-      <a href="${verifyUrl}" class="btn btn-secondary">Verify Certificate</a>
+      <a href="${verifyUrl}" class="btn btn-secondary">Verify Certificate Online</a>
     </div>
 
     <div class="content">
-      <p>A copy of your PDF certificate is also attached to this email for your permanent records and LinkedIn credential sharing.</p>
-      <p>Regards,<br><strong>${orgName}</strong></p>
+      <p>A printable, high-resolution PDF copy of your Certificate of Participation is also attached below for your records and professional portfolios.</p>
+      <p>Regards,<br><strong>Department of Information Technology</strong><br>Nutan Maharashtra Institute of Engineering and Technology (NMIET), Talegaon, Pune</p>
     </div>
 
     <div class="footer">
-      <p>© ${new Date().getFullYear()} ${orgName}. All rights reserved.</p>
-      <p>This is an automated transactional message. Verification URL: ${verifyUrl}</p>
+      <p>© 2026 NMIET & ISTE. All rights reserved.</p>
+      <p>Public Verification Link: ${verifyUrl}</p>
     </div>
   </div>
 </body>
@@ -90,9 +90,9 @@ export async function sendCertificateEmail(params: SendCertificateEmailParams): 
   const textBody = `
 Hi ${recipientName},
 
-Congratulations on successfully completing ${testTitle}.
+Congratulations on completing the assessment for the Faculty Development Programme on “Recent advances in cyber security and blockchain for secure digital transformation” held on 5th to 9th Oct, 2026 organized by Department of Information Technology, NMIET in association with ISTE.
 
-Your certificate has been generated successfully.
+Your Certificate of Participation has been generated successfully.
 
 Certificate ID:
 ${certificateId}
@@ -105,8 +105,10 @@ ${downloadUrl}
 Verify Certificate:
 ${verifyUrl}
 
+Attached is your official PDF certificate.
+
 Regards,
-${orgName}
+Department of Information Technology, NMIET (in association with ISTE)
   `.trim();
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -117,9 +119,9 @@ ${orgName}
       const fromEmail = process.env.RESEND_FROM_EMAIL || 'certificates@resend.dev';
 
       const response = await resend.emails.send({
-        from: `${orgName} <${fromEmail}>`,
+        from: `NMIET FDP <${fromEmail}>`,
         to: recipientEmail,
-        subject: 'Congratulations! Your Certificate is Ready',
+        subject: 'Congratulations! Your FDP Certificate of Participation is Ready',
         text: textBody,
         html: htmlBody,
         attachments: [

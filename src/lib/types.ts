@@ -98,6 +98,7 @@ export interface Certificate {
   testId: string;
   participantName: string;
   participantEmail: string;
+  participantOrganization?: string | null;
   testTitle: string;
   score: number;
   percentage: number;

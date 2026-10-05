@@ -2,28 +2,29 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import confetti from 'canvas-confetti';
 import {
   Award,
   CheckCircle2,
-  XCircle,
   Clock,
   Download,
   ShieldCheck,
   Mail,
   ArrowRight,
-  RotateCcw,
   ExternalLink,
-  ChevronDown,
   Loader2,
-  Share2,
   AlertCircle,
+  Building,
+  Layers,
+  ChevronDown,
 } from 'lucide-react';
 
 interface ResultData {
   attemptId: string;
   participantName: string;
   participantEmail: string;
+  participantOrganization?: string | null;
   testTitle: string;
   passingPercentage: number;
   totalQuestions: number;
@@ -39,6 +40,8 @@ interface ResultData {
     certificateId: string;
     issueDate: string;
     verificationUrl: string;
+    participantName?: string;
+    participantOrganization?: string | null;
   } | null;
   emailStatus?: {
     success: boolean;
@@ -70,7 +73,7 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
     async function loadResult() {
       try {
         setLoading(true);
-        // Call submit endpoint which acts authoritatively and returns the completed attempt
+        // Call submit endpoint which evaluates authoritatively and returns the result
         const res = await fetch('/api/test/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -86,16 +89,17 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
           attemptId: data.attempt.id,
           participantName: data.attempt.user?.name || 'Participant',
           participantEmail: data.attempt.user?.email || '',
-          testTitle: data.attempt.test?.title || 'Assessment',
-          passingPercentage: data.attempt.test?.passingPercentage || 60,
-          totalQuestions: data.attempt.totalQuestions,
-          correctAnswers: data.attempt.correctAnswers,
-          incorrectAnswers: data.attempt.incorrectAnswers,
-          unanswered: data.attempt.unanswered,
-          score: data.attempt.score,
-          maxScore: data.attempt.maxScore,
-          percentage: data.attempt.percentage,
-          isPassed: data.attempt.isPassed,
+          participantOrganization: data.attempt.user?.organization || null,
+          testTitle: data.attempt.test?.title || 'FDP Assessment',
+          passingPercentage: 0,
+          totalQuestions: data.attempt.totalQuestions || 50,
+          correctAnswers: data.attempt.correctAnswers || 0,
+          incorrectAnswers: data.attempt.incorrectAnswers || 0,
+          unanswered: data.attempt.unanswered || 0,
+          score: data.attempt.score || 0,
+          maxScore: data.attempt.maxScore || 50,
+          percentage: data.attempt.percentage || 0,
+          isPassed: true,
           certificate: data.certificate,
           emailStatus: { success: true, status: 'DELIVERED' },
           questionReviews: [],
@@ -103,15 +107,13 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
 
         setResult(resData);
 
-        // Trigger celebratory confetti on passing
-        if (resData.isPassed) {
-          confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 },
-            colors: ['#00F5C8', '#F5D061', '#38BDF8', '#FFFFFF'],
-          });
-        }
+        // Trigger celebratory confetti for Certificate of Participation
+        confetti({
+          particleCount: 110,
+          spread: 80,
+          origin: { y: 0.6 },
+          colors: ['#F5D061', '#EAB308', '#00F5C8', '#FFFFFF', '#38BDF8'],
+        });
       } catch (err: any) {
         console.error('Error loading result:', err);
         setError(err.message || 'Failed to load results');
@@ -143,8 +145,10 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
   if (loading) {
     return (
       <div className="min-h-screen bg-[#060810] flex flex-col items-center justify-center text-white space-y-4">
-        <Loader2 className="w-8 h-8 text-cyan-400 animate-spin" />
-        <p className="text-sm font-medium text-slate-300">Calculating authoritative score & verifying criteria...</p>
+        <Loader2 className="w-8 h-8 text-amber-400 animate-spin" />
+        <p className="text-sm font-medium text-slate-300">
+          Evaluating FDP responses &amp; generating your official Certificate of Participation...
+        </p>
       </div>
     );
   }
@@ -173,48 +177,37 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
     <div className="min-h-screen bg-[#06080F] text-slate-100 py-12 md:py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* ── STATUS BANNER ── */}
-        <div
-          className={`p-6 sm:p-8 rounded-2xl border backdrop-blur-md relative overflow-hidden ${
-            result.isPassed
-              ? 'bg-gradient-to-r from-emerald-950/40 via-cyan-950/40 to-slate-900/60 border-cyan-500/30'
-              : 'bg-gradient-to-r from-rose-950/40 via-slate-900/60 to-slate-900/60 border-rose-500/30'
-          }`}
-        >
+        <div className="p-6 sm:p-8 rounded-2xl border border-amber-500/30 bg-gradient-to-r from-amber-950/40 via-yellow-950/20 to-slate-900/80 backdrop-blur-md relative overflow-hidden shadow-2xl">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                {result.isPassed ? (
-                  <span className="px-3 py-1 rounded-full text-xs font-bold font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> PASSED ASSESSMENT
-                  </span>
-                ) : (
-                  <span className="px-3 py-1 rounded-full text-xs font-bold font-mono bg-rose-500/20 text-rose-300 border border-rose-500/40 flex items-center gap-1.5">
-                    <XCircle className="w-3.5 h-3.5 text-rose-400" /> CRITERIA NOT MET
-                  </span>
-                )}
-                <span className="text-xs text-slate-400">Official Evaluation</span>
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="px-3 py-1 rounded-full text-xs font-bold font-mono bg-amber-400/20 text-amber-300 border border-amber-400/40 flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" /> CERTIFICATE OF PARTICIPATION ISSUED
+                </span>
+                <span className="text-xs text-slate-400">NMIET &amp; ISTE FDP (5th - 9th Oct, 2026)</span>
               </div>
 
               <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                {result.isPassed
-                  ? `Congratulations, ${result.participantName}!`
-                  : `Assessment Completed, ${result.participantName}`}
+                Congratulations, {result.participantName}!
               </h1>
 
               <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
-                {result.isPassed
-                  ? `You have achieved a passing score on ${result.testTitle}. Your accredited digital certificate has been generated and issued.`
-                  : `Your score of ${result.percentage}% is below the mandatory passing requirement (${result.passingPercentage}%). Review the question analysis below to improve your skills.`}
+                You have successfully completed the 50 compulsory questions for the Faculty Development Programme on{' '}
+                <strong className="text-white">“Recent advances in cyber security and blockchain for secure digital transformation”</strong>.
+                Your official Certificate of Participation is generated below and has been sent to your email.
               </p>
             </div>
 
-            {/* Score Ring / Pill */}
-            <div className="shrink-0 text-center sm:text-right">
-              <div className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight font-mono">
-                {result.percentage}%
+            {/* Score Ring */}
+            <div className="shrink-0 text-center sm:text-right bg-slate-900/60 border border-slate-800 p-4 rounded-xl">
+              <div className="text-3xl sm:text-4xl font-extrabold text-amber-300 font-mono">
+                {result.score} / {result.maxScore}
               </div>
-              <div className="text-xs font-medium text-slate-400 mt-1">
-                Score: {result.score} / {result.maxScore} marks
+              <div className="text-xs font-semibold text-slate-300 mt-0.5">
+                {result.percentage}% Correct
+              </div>
+              <div className="text-[10px] text-emerald-400 mt-1 font-mono uppercase tracking-wider">
+                ✓ Certified Participant
               </div>
             </div>
           </div>
@@ -225,98 +218,96 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
           <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
             <span className="text-[11px] font-medium text-slate-400">Total Questions</span>
             <div className="text-2xl font-bold text-white mt-1">{result.totalQuestions}</div>
-            <span className="text-[10px] text-slate-500">Evaluated server-side</span>
+            <span className="text-[10px] text-slate-500">All Compulsory</span>
           </div>
 
           <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
             <span className="text-[11px] font-medium text-emerald-400">Correct Answers</span>
             <div className="text-2xl font-bold text-emerald-300 mt-1">{result.correctAnswers}</div>
-            <span className="text-[10px] text-slate-500">+{result.correctAnswers} points awarded</span>
+            <span className="text-[10px] text-slate-500">+{result.correctAnswers} marks scored</span>
           </div>
 
           <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
             <span className="text-[11px] font-medium text-rose-400">Incorrect Answers</span>
             <div className="text-2xl font-bold text-rose-300 mt-1">{result.incorrectAnswers}</div>
-            <span className="text-[10px] text-slate-500">Zero penalty deduction</span>
+            <span className="text-[10px] text-slate-500">No negative marking</span>
           </div>
 
           <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-            <span className="text-[11px] font-medium text-amber-400">Required Passing</span>
-            <div className="text-2xl font-bold text-amber-300 mt-1">{result.passingPercentage}%</div>
-            <span className="text-[10px] text-slate-500">Minimum threshold</span>
+            <span className="text-[11px] font-medium text-amber-400">Certificate Status</span>
+            <div className="text-2xl font-bold text-amber-300 mt-1">ISSUED</div>
+            <span className="text-[10px] text-emerald-400">Participation Awarded</span>
           </div>
         </div>
 
-        {/* ── CERTIFICATE ACTION CARD (IF PASSED) ── */}
-        {result.isPassed && cert && (
-          <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-[#0D1528] to-[#070B14] border border-cyan-500/30 shadow-2xl space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+        {/* ── OFFICIAL CERTIFICATE SHOWCASE ── */}
+        {cert && (
+          <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-[#0D1528] to-[#070B14] border border-amber-500/30 shadow-2xl space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <Award className="w-5 h-5 text-amber-400" />
                   <span className="text-xs font-mono font-semibold uppercase tracking-wider text-amber-400">
-                    Official Certificate Generated
+                    Official Certificate of Participation
                   </span>
                 </div>
-                <h3 className="text-xl font-bold text-white">Certificate Credentials Ready</h3>
+                <h3 className="text-xl font-bold text-white">Your Certificate is Ready</h3>
                 <p className="text-xs text-slate-400">
                   Unique Certificate ID:{' '}
-                  <span className="font-mono text-cyan-300 font-bold">{cert.certificateId}</span>
+                  <span className="font-mono text-amber-300 font-bold">{cert.certificateId}</span>
                 </p>
               </div>
 
               {/* Email Status Indicator */}
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-950/60 border border-emerald-800/80 text-emerald-300 text-xs">
                 <Mail className="w-4 h-4 text-emerald-400" />
-                <span>Email Dispatched to {result.participantEmail}</span>
+                <span>Dispatched directly to {result.participantEmail}</span>
               </div>
             </div>
 
-            {/* LIVE DIGITAL CERTIFICATE VISUAL PREVIEW */}
-            <div className="p-6 sm:p-8 rounded-xl bg-[#050810] border-2 border-amber-500/40 relative shadow-inner text-center space-y-4 overflow-hidden">
-              {/* Corner Watermarks */}
-              <div className="absolute top-2 left-2 text-amber-400/30 font-serif text-lg">❖</div>
-              <div className="absolute top-2 right-2 text-amber-400/30 font-serif text-lg">❖</div>
-              <div className="absolute bottom-2 left-2 text-amber-400/30 font-serif text-lg">❖</div>
-              <div className="absolute bottom-2 right-2 text-amber-400/30 font-serif text-lg">❖</div>
+            {/* LIVE DIGITAL CERTIFICATE VISUAL CARD (Using official template design) */}
+            <div className="rounded-xl overflow-hidden border-2 border-amber-500/40 relative shadow-2xl bg-white text-slate-950">
+              <div className="relative w-full aspect-[1024/707]">
+                {/* Background image of the template */}
+                <Image
+                  src="/certificate-template-clean.jpg"
+                  alt="NMIET & ISTE Certificate of Participation"
+                  fill
+                  className="object-cover"
+                  priority
+                />
 
-              <div className="space-y-1">
-                <div className="text-[11px] font-mono tracking-widest text-amber-400 uppercase">
-                  SkillCert Global Institute
+                {/* Overlaid participant name right on top of the template line! */}
+                <div
+                  className="absolute inset-x-0 flex items-center justify-center font-serif font-bold text-slate-900 tracking-wide select-none"
+                  style={{
+                    top: '43.5%',
+                    fontSize: 'clamp(14px, 2.5vw, 24px)',
+                  }}
+                >
+                  {result.participantName.toUpperCase()}
                 </div>
-                <div className="text-[9px] font-mono text-slate-500 uppercase tracking-widest">
-                  International Accreditation Board
-                </div>
-              </div>
 
-              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-wide">
-                Certificate of Achievement
-              </h2>
+                {/* Overlaid organization name right after FROM */}
+                {result.participantOrganization && (
+                  <div
+                    className="absolute font-sans font-semibold text-slate-900 select-none line-clamp-1"
+                    style={{
+                      top: '55.2%',
+                      left: '20%',
+                      right: '12%',
+                      fontSize: 'clamp(9px, 1.3vw, 13px)',
+                    }}
+                  >
+                    {result.participantOrganization}
+                  </div>
+                )}
 
-              <p className="text-xs font-serif italic text-slate-400">This certifies that</p>
-
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-amber-200 tracking-tight">
-                {result.participantName}
-              </div>
-
-              <p className="text-xs text-slate-300 max-w-md mx-auto">
-                has successfully passed the accredited professional examination in{' '}
-                <strong className="text-white">{result.testTitle}</strong> with a score of{' '}
-                <strong className="text-cyan-400">{result.percentage}%</strong>.
-              </p>
-
-              <div className="pt-4 flex flex-wrap items-center justify-between text-[11px] font-mono text-slate-400 border-t border-slate-800 max-w-lg mx-auto">
-                <div>
-                  <span className="block text-[9px] text-slate-500 uppercase">Certificate ID</span>
-                  <span className="text-cyan-300 font-bold">{cert.certificateId}</span>
-                </div>
-                <div>
-                  <span className="block text-[9px] text-slate-500 uppercase">Conferred Date</span>
-                  <span>{new Date(cert.issueDate).toLocaleDateString()}</span>
-                </div>
-                <div>
-                  <span className="block text-[9px] text-slate-500 uppercase">Verification Status</span>
-                  <span className="text-emerald-400 font-semibold">✓ Verified Authenticated</span>
+                {/* Certificate ID Watermark badge in bottom corner */}
+                <div
+                  className="absolute bottom-2 left-4 font-mono font-bold text-[9px] text-slate-600 bg-white/80 px-2 py-0.5 rounded border border-slate-300 select-none"
+                >
+                  ID: {cert.certificateId} · Verified
                 </div>
               </div>
             </div>
@@ -326,26 +317,26 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
               <button
                 onClick={() => handleDownloadPdf(cert.certificateId)}
                 disabled={downloading}
-                className="w-full sm:w-auto flex-1 flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-bold text-sm text-slate-950 bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 shadow-lg shadow-cyan-500/20 transition cursor-pointer"
+                className="w-full sm:w-auto flex-1 flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-bold text-sm text-slate-950 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-yellow-300 shadow-lg shadow-amber-500/20 transition cursor-pointer"
               >
                 {downloading ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Preparing PDF...</span>
+                    <span>Generating High-Res PDF...</span>
                   </>
                 ) : (
                   <>
                     <Download className="w-4 h-4" />
-                    <span>Download Certificate (PDF)</span>
+                    <span>Download Official Certificate (PDF)</span>
                   </>
                 )}
               </button>
 
               <Link
                 href={`/verify/${cert.certificateId}`}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-sm text-slate-200 hover:text-white bg-slate-900 border border-slate-700/80 hover:bg-slate-800 transition"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-semibold text-sm text-slate-200 hover:text-white bg-slate-900 border border-slate-700/80 hover:bg-slate-800 transition"
               >
-                <ShieldCheck className="w-4 h-4 text-cyan-400" />
+                <ShieldCheck className="w-4 h-4 text-amber-400" />
                 <span>Verify Credential Online</span>
                 <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
               </Link>
@@ -353,116 +344,102 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
           </div>
         )}
 
-        {/* ── RETAKE CARD (IF FAILED) ── */}
-        {!result.isPassed && (
-          <div className="p-6 sm:p-8 rounded-2xl bg-slate-900/60 border border-slate-800 text-center space-y-4">
-            <h3 className="text-lg font-bold text-white">Need to Retake the Test?</h3>
-            <p className="text-xs text-slate-400 max-w-lg mx-auto">
-              Our certification platform allows candidates to study the provided explanations and retake the assessment when ready.
-            </p>
-            <Link
-              href="/#tests"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-semibold text-slate-950 bg-cyan-400 hover:bg-cyan-300 transition"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-              <span>Retake Assessment</span>
-            </Link>
-          </div>
-        )}
-
-        {/* ── QUESTION-BY-QUESTION REVIEW ACCORDION ── */}
-        {result.questionReviews && result.questionReviews.length > 0 && (
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <h3 className="text-base font-bold text-white tracking-tight">Question Analysis & Explanations</h3>
-              <button
-                onClick={() => setShowReview(!showReview)}
-                className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1"
-              >
-                <span>{showReview ? 'Collapse Review' : 'Expand All Explanations'}</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${showReview ? 'rotate-180' : ''}`} />
-              </button>
+        {/* ── SECTION QUESTION REVIEWS & EXPLANATIONS ACCORDION ── */}
+        <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-base font-bold text-white flex items-center gap-2">
+                <Layers className="w-4 h-4 text-amber-400" />
+                Comprehensive 50 Questions Review &amp; Explanations
+              </h3>
+              <p className="text-xs text-slate-400">
+                Detailed authoritative explanations for all 50 questions across Cyber Security, Blockchain, &amp; Digital Transformation.
+              </p>
             </div>
+            <button
+              onClick={() => setShowReview(!showReview)}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 transition cursor-pointer"
+            >
+              <span>{showReview ? 'Hide Analysis' : 'Show Detailed Analysis'}</span>
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${showReview ? 'rotate-180' : ''}`} />
+            </button>
+          </div>
 
-            {showReview && (
-              <div className="space-y-4 animate-fade-in">
-                {result.questionReviews.map((q, idx) => (
+          {showReview && (
+            <div className="space-y-4 pt-4 border-t border-slate-800">
+              {result.questionReviews && result.questionReviews.length > 0 ? (
+                result.questionReviews.map((q, idx) => (
                   <div
                     key={q.questionId}
-                    className={`p-5 rounded-xl border text-xs space-y-3 ${
+                    className={`p-4 rounded-xl border text-xs space-y-3 ${
                       q.isCorrect
-                        ? 'bg-slate-900/60 border-emerald-500/30'
-                        : 'bg-slate-900/60 border-rose-500/30'
+                        ? 'bg-emerald-950/20 border-emerald-800/40'
+                        : 'bg-rose-950/20 border-rose-800/40'
                     }`}
                   >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-slate-800 text-slate-300">
-                          Question {idx + 1} • {q.category}
-                        </span>
-                        <h4 className="text-sm font-semibold text-white pt-1">{q.text}</h4>
-                      </div>
-                      <div>
-                        {q.isCorrect ? (
-                          <span className="px-2 py-1 rounded bg-emerald-950 text-emerald-300 text-[10px] font-semibold flex items-center gap-1">
-                            <CheckCircle2 className="w-3 h-3 text-emerald-400" /> Correct
-                          </span>
-                        ) : (
-                          <span className="px-2 py-1 rounded bg-rose-950 text-rose-300 text-[10px] font-semibold flex items-center gap-1">
-                            <XCircle className="w-3 h-3 text-rose-400" /> Incorrect
-                          </span>
-                        )}
-                      </div>
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-mono font-bold text-slate-300">
+                        Q{idx + 1}. [{q.category}]
+                      </span>
+                      <span
+                        className={`font-semibold px-2 py-0.5 rounded-full text-[10px] ${
+                          q.isCorrect
+                            ? 'bg-emerald-500/20 text-emerald-300'
+                            : 'bg-rose-500/20 text-rose-300'
+                        }`}
+                      >
+                        {q.isCorrect ? '✓ Correct' : '✗ Incorrect'}
+                      </span>
                     </div>
 
-                    {/* Options list */}
-                    <div className="space-y-1.5 pt-1">
-                      {q.options.map((opt) => {
-                        const isChosen = q.selectedOptionId === opt.id;
-                        const isRight = opt.isCorrect;
+                    <p className="font-medium text-white text-sm">{q.text}</p>
 
-                        let optClass = 'bg-slate-950/60 border-slate-800 text-slate-400';
-                        if (isRight) {
-                          optClass = 'bg-emerald-950/40 border-emerald-500/60 text-emerald-200 font-medium';
-                        } else if (isChosen && !isRight) {
-                          optClass = 'bg-rose-950/40 border-rose-500/60 text-rose-200 line-through';
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {q.options.map((opt) => {
+                        const isUserChoice = q.selectedOptionId === opt.id;
+                        const isCorrectOption = opt.isCorrect;
+
+                        let optClass = 'bg-slate-900/60 border-slate-800 text-slate-400';
+                        if (isCorrectOption) {
+                          optClass = 'bg-emerald-950/60 border-emerald-500 text-emerald-200 font-semibold';
+                        } else if (isUserChoice && !isCorrectOption) {
+                          optClass = 'bg-rose-950/60 border-rose-500 text-rose-200';
                         }
 
                         return (
-                          <div
-                            key={opt.id}
-                            className={`p-2.5 rounded-lg border flex items-center justify-between ${optClass}`}
-                          >
+                          <div key={opt.id} className={`p-2.5 rounded-lg border flex items-center justify-between ${optClass}`}>
                             <span>{opt.text}</span>
-                            {isRight && <span className="text-[10px] text-emerald-400 font-bold">✓ Correct Answer</span>}
-                            {isChosen && !isRight && <span className="text-[10px] text-rose-400">Your Choice</span>}
+                            {isCorrectOption && <span className="text-[10px] text-emerald-400 font-bold">✓ Answer</span>}
+                            {isUserChoice && !isCorrectOption && <span className="text-[10px] text-rose-400 font-bold">Your Choice</span>}
                           </div>
                         );
                       })}
                     </div>
 
-                    {/* Explanation */}
                     {q.explanation && (
-                      <div className="p-3 rounded-lg bg-[#070B14] border border-slate-800 text-slate-300 text-[11px] leading-relaxed">
-                        <strong className="text-cyan-400 block mb-0.5">Explanation:</strong>
-                        {q.explanation}
+                      <div className="p-3 rounded-lg bg-slate-900 border border-slate-800 text-[11px] text-slate-300 space-y-1">
+                        <strong className="text-amber-300 block">Explanation:</strong>
+                        <p>{q.explanation}</p>
                       </div>
                     )}
                   </div>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+                ))
+              ) : (
+                <p className="text-xs text-slate-400">
+                  All 50 questions evaluated server-side. Click above or check your email for the detailed summary.
+                </p>
+              )}
+            </div>
+          )}
+        </div>
 
         {/* Back Link */}
         <div className="text-center pt-4">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-cyan-400 transition"
+            className="text-xs text-slate-400 hover:text-amber-400 transition inline-flex items-center gap-1.5"
           >
-            <span>Return to SkillCert Homepage</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            ← Return to FDP Portal Homepage
           </Link>
         </div>
       </div>

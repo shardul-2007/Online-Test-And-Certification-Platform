@@ -2,12 +2,12 @@
   "admins": [
     {
       "id": "admin-1",
-      "email": "admin@skillcert.org",
-      "name": "System Administrator",
+      "email": "admin@nmiet.edu.in",
+      "name": "FDP Coordinator / Admin",
       "password": "admin123456",
       "role": "SUPERADMIN",
-      "createdAt": "2026-01-01T00:00:00.000Z",
-      "updatedAt": "2026-01-01T00:00:00.000Z"
+      "createdAt": "2026-10-01T00:00:00.000Z",
+      "updatedAt": "2026-10-01T00:00:00.000Z"
     }
   ],
   "users": [
@@ -16,782 +16,5434 @@
       "name": "Shardul Parihar",
       "email": "shardulparihar.work@gmail.com",
       "phone": "+91 98765 43210",
-      "organization": "Tech Academy Institute",
-      "createdAt": "2026-10-01T10:00:00.000Z",
-      "updatedAt": "2026-10-01T10:00:00.000Z"
-    },
-    {
-      "id": "user-demo-2",
-      "name": "Elena Rostova",
-      "email": "elena.rostova@example.com",
-      "phone": "+1 555-0199",
-      "organization": "Vanguard Engineering",
-      "createdAt": "2026-10-02T11:30:00.000Z",
-      "updatedAt": "2026-10-02T11:30:00.000Z"
-    },
-    {
-      "id": "user-1791093794421-8mz5d",
-      "name": "Alex Chen",
-      "email": "alex.chen@example.com",
-      "phone": null,
-      "organization": "MIT Engineering",
-      "createdAt": "2026-10-04T06:03:14.421Z",
-      "updatedAt": "2026-10-04T06:03:14.421Z"
-    },
-    {
-      "id": "user-1791093851837-qv1zw",
-      "name": "Taylor Smith",
-      "email": "taylor.smith@example.com",
-      "phone": null,
-      "organization": null,
-      "createdAt": "2026-10-04T06:04:11.837Z",
-      "updatedAt": "2026-10-04T06:04:11.837Z"
+      "organization": "Nutan Maharashtra Institute of Engineering & Technology, Talegaon",
+      "createdAt": "2026-10-05T09:00:00.000Z",
+      "updatedAt": "2026-10-05T09:00:00.000Z"
     }
   ],
   "tests": [
     {
-      "id": "test-web-dev-1",
-      "title": "Web Development Fundamentals Assessment",
-      "slug": "web-development-fundamentals",
-      "description": "Comprehensive industry examination evaluating modern HTML5, CSS3, modern JavaScript (ES6+), React core concepts, Git workflow, and web performance standards.",
-      "durationMinutes": 20,
-      "passingPercentage": 60,
+      "id": "test-fdp-2026",
+      "title": "Faculty Development Programme (FDP) Assessment",
+      "slug": "fdp-cybersecurity-blockchain-assessment",
+      "description": "Faculty Development Programme on \"Recent advances in cyber security and blockchain for secure digital transformation\" organized by Department of Information Technology association with Indian Society for Technical Education (ISTE) held on 5th to 9th Oct, 2026.",
+      "durationMinutes": 60,
+      "passingPercentage": 0,
       "isPublished": true,
-      "certificateTitle": "Certificate of Achievement",
-      "organizationName": "SkillCert Global Institute",
-      "createdAt": "2026-01-15T09:00:00.000Z",
-      "updatedAt": "2026-10-01T09:00:00.000Z"
+      "certificateTitle": "Certificate of Participation",
+      "organizationName": "NMIET in association with ISTE",
+      "createdAt": "2026-10-05T09:00:00.000Z",
+      "updatedAt": "2026-10-05T09:00:00.000Z",
+      "questions": [
+        {
+          "id": "q-fdp-1",
+          "testId": "test-fdp-2026",
+          "text": "Which security property ensures that data is accessible to authorized users when required?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 1,
+          "category": "Cyber Security",
+          "explanation": "Availability guarantees reliable, timely access to data and resources for authorized users whenever needed.",
+          "options": [
+            {
+              "id": "q-fdp-1-opt-A",
+              "questionId": "q-fdp-1",
+              "text": "Confidentiality",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-1-opt-B",
+              "questionId": "q-fdp-1",
+              "text": "Integrity",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-1-opt-C",
+              "questionId": "q-fdp-1",
+              "text": "Availability",
+              "isCorrect": true,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-1-opt-D",
+              "questionId": "q-fdp-1",
+              "text": "Authentication",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-2",
+          "testId": "test-fdp-2026",
+          "text": "A user receives an email appearing to be from their bank asking them to click a link and verify credentials. This is most likely:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 2,
+          "category": "Cyber Security",
+          "explanation": "Phishing is a social engineering attack that mimics legitimate institutions to deceive victims into exposing sensitive credentials.",
+          "options": [
+            {
+              "id": "q-fdp-2-opt-A",
+              "questionId": "q-fdp-2",
+              "text": "DDoS",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-2-opt-B",
+              "questionId": "q-fdp-2",
+              "text": "Phishing",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-2-opt-C",
+              "questionId": "q-fdp-2",
+              "text": "Spoofing only",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-2-opt-D",
+              "questionId": "q-fdp-2",
+              "text": "Shoulder surfing",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-3",
+          "testId": "test-fdp-2026",
+          "text": "Which attack specifically attempts to make a legitimate website unavailable by overwhelming it with traffic?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 3,
+          "category": "Cyber Security",
+          "explanation": "Distributed Denial of Service (DDoS) overwhelms targets with coordinated flood traffic to deny service to genuine users.",
+          "options": [
+            {
+              "id": "q-fdp-3-opt-A",
+              "questionId": "q-fdp-3",
+              "text": "SQL Injection",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-3-opt-B",
+              "questionId": "q-fdp-3",
+              "text": "DDoS",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-3-opt-C",
+              "questionId": "q-fdp-3",
+              "text": "Phishing",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-3-opt-D",
+              "questionId": "q-fdp-3",
+              "text": "Keylogging",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-4",
+          "testId": "test-fdp-2026",
+          "text": "If a hash function produces the same hash for two different inputs, the situation is called:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 4,
+          "category": "Cyber Security",
+          "explanation": "A hash collision occurs when two distinct input values generate identical cryptographic digests.",
+          "options": [
+            {
+              "id": "q-fdp-4-opt-A",
+              "questionId": "q-fdp-4",
+              "text": "Encryption",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-4-opt-B",
+              "questionId": "q-fdp-4",
+              "text": "Collision",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-4-opt-C",
+              "questionId": "q-fdp-4",
+              "text": "Salting",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-4-opt-D",
+              "questionId": "q-fdp-4",
+              "text": "Tokenization",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-5",
+          "testId": "test-fdp-2026",
+          "text": "Which is generally considered the strongest password?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 5,
+          "category": "Cyber Security",
+          "explanation": "Long passphrases consisting of multiple random words provide exponential entropy, making brute-force and dictionary attacks computationally infeasible.",
+          "options": [
+            {
+              "id": "q-fdp-5-opt-A",
+              "questionId": "q-fdp-5",
+              "text": "Kavita123",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-5-opt-B",
+              "questionId": "q-fdp-5",
+              "text": "Password@123",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-5-opt-C",
+              "questionId": "q-fdp-5",
+              "text": "Qwerty@2026",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-5-opt-D",
+              "questionId": "q-fdp-5",
+              "text": "A long, unique passphrase with multiple random words",
+              "isCorrect": true,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-6",
+          "testId": "test-fdp-2026",
+          "text": "In asymmetric cryptography, which key is normally shared publicly?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 6,
+          "category": "Cyber Security",
+          "explanation": "The public key is freely distributed for encryption or signature verification, while the corresponding private key remains secret.",
+          "options": [
+            {
+              "id": "q-fdp-6-opt-A",
+              "questionId": "q-fdp-6",
+              "text": "Private key",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-6-opt-B",
+              "questionId": "q-fdp-6",
+              "text": "Session key",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-6-opt-C",
+              "questionId": "q-fdp-6",
+              "text": "Public key",
+              "isCorrect": true,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-6-opt-D",
+              "questionId": "q-fdp-6",
+              "text": "Master key",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-7",
+          "testId": "test-fdp-2026",
+          "text": "Digital signatures primarily provide:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 7,
+          "category": "Cyber Security",
+          "explanation": "Digital signatures prove the identity of the sender (authentication), ensure content has not altered in transit (integrity), and enforce non-repudiation.",
+          "options": [
+            {
+              "id": "q-fdp-7-opt-A",
+              "questionId": "q-fdp-7",
+              "text": "Confidentiality only",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-7-opt-B",
+              "questionId": "q-fdp-7",
+              "text": "Authentication and integrity",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-7-opt-C",
+              "questionId": "q-fdp-7",
+              "text": "Compression",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-7-opt-D",
+              "questionId": "q-fdp-7",
+              "text": "Data availability",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-8",
+          "testId": "test-fdp-2026",
+          "text": "Which technique adds random data to a password before hashing to make precomputed attacks harder?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 8,
+          "category": "Cyber Security",
+          "explanation": "Salting appends unique pseudo-random bytes to plaintext passwords before hashing, effectively neutralizing precomputed rainbow-table lookups.",
+          "options": [
+            {
+              "id": "q-fdp-8-opt-A",
+              "questionId": "q-fdp-8",
+              "text": "Salting",
+              "isCorrect": true,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-8-opt-B",
+              "questionId": "q-fdp-8",
+              "text": "Encoding",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-8-opt-C",
+              "questionId": "q-fdp-8",
+              "text": "Encryption",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-8-opt-D",
+              "questionId": "q-fdp-8",
+              "text": "Fragmentation",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-9",
+          "testId": "test-fdp-2026",
+          "text": "SQL Injection primarily exploits weaknesses in:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 9,
+          "category": "Cyber Security",
+          "explanation": "SQL Injection occurs when untrusted user input is directly concatenated into database queries without proper sanitization or parameterized binding.",
+          "options": [
+            {
+              "id": "q-fdp-9-opt-A",
+              "questionId": "q-fdp-9",
+              "text": "Network cables",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-9-opt-B",
+              "questionId": "q-fdp-9",
+              "text": "Database queries and input handling",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-9-opt-C",
+              "questionId": "q-fdp-9",
+              "text": "Operating-system hardware",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-9-opt-D",
+              "questionId": "q-fdp-9",
+              "text": "Blockchain consensus",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-10",
+          "testId": "test-fdp-2026",
+          "text": "Which security mechanism is specifically designed to detect suspicious network traffic based on predefined rules or signatures?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 10,
+          "category": "Cyber Security",
+          "explanation": "An Intrusion Detection System (IDS) inspects inbound and outbound network packets against signature databases and anomalous heuristics.",
+          "options": [
+            {
+              "id": "q-fdp-10-opt-A",
+              "questionId": "q-fdp-10",
+              "text": "IDS",
+              "isCorrect": true,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-10-opt-B",
+              "questionId": "q-fdp-10",
+              "text": "DNS",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-10-opt-C",
+              "questionId": "q-fdp-10",
+              "text": "DHCP",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-10-opt-D",
+              "questionId": "q-fdp-10",
+              "text": "NAT",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-11",
+          "testId": "test-fdp-2026",
+          "text": "A zero-day vulnerability is one that:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 11,
+          "category": "Cyber Security",
+          "explanation": "Zero-day vulnerabilities are previously undisclosed software flaws exploited before the vendor has developed or deployed an official security patch.",
+          "options": [
+            {
+              "id": "q-fdp-11-opt-A",
+              "questionId": "q-fdp-11",
+              "text": "Has existed for exactly zero days",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-11-opt-B",
+              "questionId": "q-fdp-11",
+              "text": "Has no possible impact",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-11-opt-C",
+              "questionId": "q-fdp-11",
+              "text": "Is unknown or has no available patch when exploited",
+              "isCorrect": true,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-11-opt-D",
+              "questionId": "q-fdp-11",
+              "text": "Can only affect zero-day-old systems",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-12",
+          "testId": "test-fdp-2026",
+          "text": "Which attack tricks a user into revealing confidential information by pretending to be a trusted entity?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 12,
+          "category": "Cyber Security",
+          "explanation": "Social engineering exploits psychological manipulation rather than technical flaws to coerce people into revealing confidential data.",
+          "options": [
+            {
+              "id": "q-fdp-12-opt-A",
+              "questionId": "q-fdp-12",
+              "text": "Social engineering",
+              "isCorrect": true,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-12-opt-B",
+              "questionId": "q-fdp-12",
+              "text": "Packet switching",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-12-opt-C",
+              "questionId": "q-fdp-12",
+              "text": "Load balancing",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-12-opt-D",
+              "questionId": "q-fdp-12",
+              "text": "Data deduplication",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-13",
+          "testId": "test-fdp-2026",
+          "text": "Multi-factor authentication requires:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 13,
+          "category": "Cyber Security",
+          "explanation": "MFA mandates proof across two or more distinct categories: knowledge (password), possession (hardware key/phone), or inherence (biometrics).",
+          "options": [
+            {
+              "id": "q-fdp-13-opt-A",
+              "questionId": "q-fdp-13",
+              "text": "Two passwords",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-13-opt-B",
+              "questionId": "q-fdp-13",
+              "text": "Two or more independent authentication factors",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-13-opt-C",
+              "questionId": "q-fdp-13",
+              "text": "Multiple usernames",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-13-opt-D",
+              "questionId": "q-fdp-13",
+              "text": "Only biometric authentication",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-14",
+          "testId": "test-fdp-2026",
+          "text": "Which of the following is NOT normally considered an authentication factor?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 14,
+          "category": "Cyber Security",
+          "explanation": "Standard authentication factors comprise Something you know, Something you have, and Something you are. Downloaded files are not authentication factors.",
+          "options": [
+            {
+              "id": "q-fdp-14-opt-A",
+              "questionId": "q-fdp-14",
+              "text": "Something you know",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-14-opt-B",
+              "questionId": "q-fdp-14",
+              "text": "Something you have",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-14-opt-C",
+              "questionId": "q-fdp-14",
+              "text": "Something you are",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-14-opt-D",
+              "questionId": "q-fdp-14",
+              "text": "Something you download",
+              "isCorrect": true,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-15",
+          "testId": "test-fdp-2026",
+          "text": "Ransomware primarily aims to:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 15,
+          "category": "Cyber Security",
+          "explanation": "Ransomware maliciously encrypts victim storage or locks terminal interfaces and extorts payments for decryption keys.",
+          "options": [
+            {
+              "id": "q-fdp-15-opt-A",
+              "questionId": "q-fdp-15",
+              "text": "Improve system performance",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-15-opt-B",
+              "questionId": "q-fdp-15",
+              "text": "Encrypt or lock data and demand payment",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-15-opt-C",
+              "questionId": "q-fdp-15",
+              "text": "Increase network bandwidth",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-15-opt-D",
+              "questionId": "q-fdp-15",
+              "text": "Remove advertisements",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-16",
+          "testId": "test-fdp-2026",
+          "text": "Which principle assumes that no user or device should automatically be trusted, even inside an organization's network?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 16,
+          "category": "Cyber Security",
+          "explanation": "Zero Trust architectural model operates on \"never trust, always verify\", requiring continuous validation for every access request.",
+          "options": [
+            {
+              "id": "q-fdp-16-opt-A",
+              "questionId": "q-fdp-16",
+              "text": "Open Access",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-16-opt-B",
+              "questionId": "q-fdp-16",
+              "text": "Zero Trust",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-16-opt-C",
+              "questionId": "q-fdp-16",
+              "text": "Single Sign-On",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-16-opt-D",
+              "questionId": "q-fdp-16",
+              "text": "Least Encryption",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-17",
+          "testId": "test-fdp-2026",
+          "text": "The principle of least privilege means users should receive:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 17,
+          "category": "Cyber Security",
+          "explanation": "Principle of Least Privilege restricts access rights for accounts strictly to the bare minimum required to perform authorized duties.",
+          "options": [
+            {
+              "id": "q-fdp-17-opt-A",
+              "questionId": "q-fdp-17",
+              "text": "Maximum possible access",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-17-opt-B",
+              "questionId": "q-fdp-17",
+              "text": "Access only necessary for their role",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-17-opt-C",
+              "questionId": "q-fdp-17",
+              "text": "Administrator access by default",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-17-opt-D",
+              "questionId": "q-fdp-17",
+              "text": "Access to all public data",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-18",
+          "testId": "test-fdp-2026",
+          "text": "A firewall primarily controls:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 18,
+          "category": "Cyber Security",
+          "explanation": "Firewalls inspect and filter incoming and outgoing network traffic based on configurable security rules and port policies.",
+          "options": [
+            {
+              "id": "q-fdp-18-opt-A",
+              "questionId": "q-fdp-18",
+              "text": "Physical access to computers",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-18-opt-B",
+              "questionId": "q-fdp-18",
+              "text": "Network traffic based on security rules",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-18-opt-C",
+              "questionId": "q-fdp-18",
+              "text": "Password complexity",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-18-opt-D",
+              "questionId": "q-fdp-18",
+              "text": "Database normalization",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-19",
+          "testId": "test-fdp-2026",
+          "text": "Which attack involves secretly intercepting communication between two parties?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 19,
+          "category": "Cyber Security",
+          "explanation": "A Man-in-the-Middle (MitM) attack secretly intercepts, inspects, or alters communication passing between two communicating entities.",
+          "options": [
+            {
+              "id": "q-fdp-19-opt-A",
+              "questionId": "q-fdp-19",
+              "text": "Man-in-the-Middle",
+              "isCorrect": true,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-19-opt-B",
+              "questionId": "q-fdp-19",
+              "text": "Brute force",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-19-opt-C",
+              "questionId": "q-fdp-19",
+              "text": "Ransomware",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-19-opt-D",
+              "questionId": "q-fdp-19",
+              "text": "Buffer overflow",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-20",
+          "testId": "test-fdp-2026",
+          "text": "HTTPS primarily protects web communication by using:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 20,
+          "category": "Cyber Security",
+          "explanation": "HTTPS encrypts HTTP communications using Transport Layer Security (TLS) to guarantee confidentiality and integrity in transit.",
+          "options": [
+            {
+              "id": "q-fdp-20-opt-A",
+              "questionId": "q-fdp-20",
+              "text": "Plain HTTP only",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-20-opt-B",
+              "questionId": "q-fdp-20",
+              "text": "TLS encryption",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-20-opt-C",
+              "questionId": "q-fdp-20",
+              "text": "FTP",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-20-opt-D",
+              "questionId": "q-fdp-20",
+              "text": "DNS caching",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-21",
+          "testId": "test-fdp-2026",
+          "text": "A blockchain is best described as:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 21,
+          "category": "Blockchain",
+          "explanation": "A blockchain is a decentralized distributed ledger that synchronizes replicated transaction states across peer-to-peer network nodes.",
+          "options": [
+            {
+              "id": "q-fdp-21-opt-A",
+              "questionId": "q-fdp-21",
+              "text": "A centralized database",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-21-opt-B",
+              "questionId": "q-fdp-21",
+              "text": "A distributed ledger maintained across participating nodes",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-21-opt-C",
+              "questionId": "q-fdp-21",
+              "text": "A password-management system",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-21-opt-D",
+              "questionId": "q-fdp-21",
+              "text": "A type of firewall",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-22",
+          "testId": "test-fdp-2026",
+          "text": "The primary purpose of a cryptographic hash in blockchain is to:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 22,
+          "category": "Blockchain",
+          "explanation": "Cryptographic hashing generates deterministic fixed-length digests that detect any subsequent manipulation of underlying block payloads.",
+          "options": [
+            {
+              "id": "q-fdp-22-opt-A",
+              "questionId": "q-fdp-22",
+              "text": "Increase file size",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-22-opt-B",
+              "questionId": "q-fdp-22",
+              "text": "Provide a fixed-size representation and help detect data modification",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-22-opt-C",
+              "questionId": "q-fdp-22",
+              "text": "Hide the blockchain completely",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-22-opt-D",
+              "questionId": "q-fdp-22",
+              "text": "Replace consensus mechanisms",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-23",
+          "testId": "test-fdp-2026",
+          "text": "In a blockchain, changing data in a previous block generally requires modification of:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 23,
+          "category": "Blockchain",
+          "explanation": "Because each block embeds the hash of its predecessor, modifying historical blocks invalidates all successive blocks and requires re-mining against network consensus.",
+          "options": [
+            {
+              "id": "q-fdp-23-opt-A",
+              "questionId": "q-fdp-23",
+              "text": "Only that block with no further effect",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-23-opt-B",
+              "questionId": "q-fdp-23",
+              "text": "Subsequent linked blocks and overcoming network consensus",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-23-opt-C",
+              "questionId": "q-fdp-23",
+              "text": "Only the user's password",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-23-opt-D",
+              "questionId": "q-fdp-23",
+              "text": "The internet connection",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-24",
+          "testId": "test-fdp-2026",
+          "text": "Which property means that blockchain records are difficult to alter after confirmation?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 24,
+          "category": "Blockchain",
+          "explanation": "Immutability ensures that once confirmed by network consensus, recorded transactions cannot be altered or retroactively erased.",
+          "options": [
+            {
+              "id": "q-fdp-24-opt-A",
+              "questionId": "q-fdp-24",
+              "text": "Immutability",
+              "isCorrect": true,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-24-opt-B",
+              "questionId": "q-fdp-24",
+              "text": "Centralization",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-24-opt-C",
+              "questionId": "q-fdp-24",
+              "text": "Compression",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-24-opt-D",
+              "questionId": "q-fdp-24",
+              "text": "Virtualization",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-25",
+          "testId": "test-fdp-2026",
+          "text": "Bitcoin primarily uses which consensus mechanism?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 25,
+          "category": "Blockchain",
+          "explanation": "Bitcoin secures distributed consensus using Proof of Work (PoW) via SHA-256 mining calculations.",
+          "options": [
+            {
+              "id": "q-fdp-25-opt-A",
+              "questionId": "q-fdp-25",
+              "text": "Proof of Stake",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-25-opt-B",
+              "questionId": "q-fdp-25",
+              "text": "Proof of Work",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-25-opt-C",
+              "questionId": "q-fdp-25",
+              "text": "Proof of Authority",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-25-opt-D",
+              "questionId": "q-fdp-25",
+              "text": "Proof of Identity",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-26",
+          "testId": "test-fdp-2026",
+          "text": "In Proof of Work, miners primarily compete to:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 26,
+          "category": "Blockchain",
+          "explanation": "Miners iterate through candidate nonces to solve computationally demanding cryptographic hashing puzzles to earn block publishing rights.",
+          "options": [
+            {
+              "id": "q-fdp-26-opt-A",
+              "questionId": "q-fdp-26",
+              "text": "Store passwords",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-26-opt-B",
+              "questionId": "q-fdp-26",
+              "text": "Solve a computationally difficult puzzle",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-26-opt-C",
+              "questionId": "q-fdp-26",
+              "text": "Encrypt all internet traffic",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-26-opt-D",
+              "questionId": "q-fdp-26",
+              "text": "Approve usernames",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-27",
+          "testId": "test-fdp-2026",
+          "text": "Which blockchain consensus mechanism selects validators partly according to the amount of cryptocurrency they have staked?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 27,
+          "category": "Blockchain",
+          "explanation": "Proof of Stake (PoS) allocates block validation responsibilities based on the proportion of native tokens bonded or staked as security collateral.",
+          "options": [
+            {
+              "id": "q-fdp-27-opt-A",
+              "questionId": "q-fdp-27",
+              "text": "Proof of Work",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-27-opt-B",
+              "questionId": "q-fdp-27",
+              "text": "Proof of Stake",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-27-opt-C",
+              "questionId": "q-fdp-27",
+              "text": "Proof of Download",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-27-opt-D",
+              "questionId": "q-fdp-27",
+              "text": "Proof of Encryption",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-28",
+          "testId": "test-fdp-2026",
+          "text": "A smart contract is best described as:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 28,
+          "category": "Blockchain",
+          "explanation": "Smart contracts are immutable self-executing software programs deployed directly to blockchain state machines.",
+          "options": [
+            {
+              "id": "q-fdp-28-opt-A",
+              "questionId": "q-fdp-28",
+              "text": "A legal contract stored only on paper",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-28-opt-B",
+              "questionId": "q-fdp-28",
+              "text": "Self-executing code deployed on a blockchain",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-28-opt-C",
+              "questionId": "q-fdp-28",
+              "text": "A blockchain password",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-28-opt-D",
+              "questionId": "q-fdp-28",
+              "text": "An antivirus program",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-29",
+          "testId": "test-fdp-2026",
+          "text": "A blockchain wallet primarily manages:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 29,
+          "category": "Blockchain",
+          "explanation": "Wallets do not physically store tokens; they manage private and public cryptographic key pairs that grant transactional authority over ledger accounts.",
+          "options": [
+            {
+              "id": "q-fdp-29-opt-A",
+              "questionId": "q-fdp-29",
+              "text": "Cryptocurrency itself as a physical file",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-29-opt-B",
+              "questionId": "q-fdp-29",
+              "text": "Cryptographic keys used to access blockchain assets",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-29-opt-C",
+              "questionId": "q-fdp-29",
+              "text": "Internet bandwidth",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-29-opt-D",
+              "questionId": "q-fdp-29",
+              "text": "Blockchain servers",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-30",
+          "testId": "test-fdp-2026",
+          "text": "Which key must generally remain secret to authorize transactions from a blockchain account?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 30,
+          "category": "Blockchain",
+          "explanation": "The private key generates digital signatures required to authorize and spend assets from corresponding blockchain addresses.",
+          "options": [
+            {
+              "id": "q-fdp-30-opt-A",
+              "questionId": "q-fdp-30",
+              "text": "Public key",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-30-opt-B",
+              "questionId": "q-fdp-30",
+              "text": "Private key",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-30-opt-C",
+              "questionId": "q-fdp-30",
+              "text": "Hash value",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-30-opt-D",
+              "questionId": "q-fdp-30",
+              "text": "Block number",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-31",
+          "testId": "test-fdp-2026",
+          "text": "If a private key is lost, the most immediate concern is:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 31,
+          "category": "Blockchain",
+          "explanation": "Without the private key, cryptographic signatures cannot be generated, permanently locking control over associated assets on the ledger.",
+          "options": [
+            {
+              "id": "q-fdp-31-opt-A",
+              "questionId": "q-fdp-31",
+              "text": "Blockchain becomes centralized",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-31-opt-B",
+              "questionId": "q-fdp-31",
+              "text": "Loss of access/control over associated assets",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-31-opt-C",
+              "questionId": "q-fdp-31",
+              "text": "All blockchain blocks disappear",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-31-opt-D",
+              "questionId": "q-fdp-31",
+              "text": "The internet stops working",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-32",
+          "testId": "test-fdp-2026",
+          "text": "Which feature makes blockchain particularly useful for tracking a product's movement through multiple organizations?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 32,
+          "category": "Blockchain",
+          "explanation": "A shared, immutable, tamper-evident ledger creates verifiable transparency and provenance auditing across disparate supply-chain participants.",
+          "options": [
+            {
+              "id": "q-fdp-32-opt-A",
+              "questionId": "q-fdp-32",
+              "text": "Shared and tamper-evident ledger",
+              "isCorrect": true,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-32-opt-B",
+              "questionId": "q-fdp-32",
+              "text": "Centralized password storage",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-32-opt-C",
+              "questionId": "q-fdp-32",
+              "text": "Unlimited storage",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-32-opt-D",
+              "questionId": "q-fdp-32",
+              "text": "Anonymous email",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-33",
+          "testId": "test-fdp-2026",
+          "text": "In blockchain terminology, a \"block\" generally contains:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 33,
+          "category": "Blockchain",
+          "explanation": "Blocks bundle batches of validated transactions along with timestamps, nonces, and the cryptographic hash of the immediate prior block.",
+          "options": [
+            {
+              "id": "q-fdp-33-opt-A",
+              "questionId": "q-fdp-33",
+              "text": "Only a password",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-33-opt-B",
+              "questionId": "q-fdp-33",
+              "text": "Transactions and information linking it to the previous block",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-33-opt-C",
+              "questionId": "q-fdp-33",
+              "text": "Only user photographs",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-33-opt-D",
+              "questionId": "q-fdp-33",
+              "text": "Only cryptocurrency prices",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-34",
+          "testId": "test-fdp-2026",
+          "text": "Which statement about blockchain immutability is the most accurate?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 34,
+          "category": "Blockchain",
+          "explanation": "Confirmed blocks achieve practical immutability because altering historical data requires recalculating cryptographic links and overpowering majority network consensus.",
+          "options": [
+            {
+              "id": "q-fdp-34-opt-A",
+              "questionId": "q-fdp-34",
+              "text": "Blockchain data can never be changed under any circumstances",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-34-opt-B",
+              "questionId": "q-fdp-34",
+              "text": "Confirmed data is difficult to alter because of cryptographic linking and consensus",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-34-opt-C",
+              "questionId": "q-fdp-34",
+              "text": "Blockchain data is always encrypted",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-34-opt-D",
+              "questionId": "q-fdp-34",
+              "text": "Blockchain eliminates all cyberattacks",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-35",
+          "testId": "test-fdp-2026",
+          "text": "A permissioned blockchain differs from a permissionless blockchain mainly because:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 35,
+          "category": "Blockchain",
+          "explanation": "Permissioned blockchains implement access-control layers where participation, transaction submission, and block validation require explicit authorization.",
+          "options": [
+            {
+              "id": "q-fdp-35-opt-A",
+              "questionId": "q-fdp-35",
+              "text": "It does not use cryptography",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-35-opt-B",
+              "questionId": "q-fdp-35",
+              "text": "Participation and access can be restricted",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-35-opt-C",
+              "questionId": "q-fdp-35",
+              "text": "It cannot store transactions",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-35-opt-D",
+              "questionId": "q-fdp-35",
+              "text": "It cannot use consensus",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-36",
+          "testId": "test-fdp-2026",
+          "text": "Digital transformation primarily refers to:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 36,
+          "category": "Digital Transformation",
+          "explanation": "Digital transformation integrates modern digital technologies across all enterprise areas to fundamentally reshape operations, deliver value, and redefine models.",
+          "options": [
+            {
+              "id": "q-fdp-36-opt-A",
+              "questionId": "q-fdp-36",
+              "text": "Converting paper documents into PDFs only",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-36-opt-B",
+              "questionId": "q-fdp-36",
+              "text": "Using digital technologies to fundamentally improve processes, services and business models",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-36-opt-C",
+              "questionId": "q-fdp-36",
+              "text": "Purchasing more computers",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-36-opt-D",
+              "questionId": "q-fdp-36",
+              "text": "Installing antivirus software",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-37",
+          "testId": "test-fdp-2026",
+          "text": "Which technology enables computing resources to be delivered over the internet on demand?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 37,
+          "category": "Digital Transformation",
+          "explanation": "Cloud computing delivers on-demand computing services—including servers, storage, databases, and networking—over the internet with pay-as-you-go pricing.",
+          "options": [
+            {
+              "id": "q-fdp-37-opt-A",
+              "questionId": "q-fdp-37",
+              "text": "Cloud computing",
+              "isCorrect": true,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-37-opt-B",
+              "questionId": "q-fdp-37",
+              "text": "Blockchain",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-37-opt-C",
+              "questionId": "q-fdp-37",
+              "text": "Firewall",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-37-opt-D",
+              "questionId": "q-fdp-37",
+              "text": "BIOS",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-38",
+          "testId": "test-fdp-2026",
+          "text": "Which is an example of digital transformation rather than simple digitization?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 38,
+          "category": "Digital Transformation",
+          "explanation": "While digitization simply converts analog formats to digital, transformation restructures workflows and operating models around digital capabilities.",
+          "options": [
+            {
+              "id": "q-fdp-38-opt-A",
+              "questionId": "q-fdp-38",
+              "text": "Scanning a paper form",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-38-opt-B",
+              "questionId": "q-fdp-38",
+              "text": "Converting a paper report to PDF",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-38-opt-C",
+              "questionId": "q-fdp-38",
+              "text": "Redesigning a service around an automated digital workflow",
+              "isCorrect": true,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-38-opt-D",
+              "questionId": "q-fdp-38",
+              "text": "Printing a digital document",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-39",
+          "testId": "test-fdp-2026",
+          "text": "IoT devices create a cybersecurity challenge mainly because:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 39,
+          "category": "Digital Transformation",
+          "explanation": "Massive proliferation of internet-connected IoT devices, often with constrained compute and default credentials, drastically broadens the organizational threat attack surface.",
+          "options": [
+            {
+              "id": "q-fdp-39-opt-A",
+              "questionId": "q-fdp-39",
+              "text": "They never communicate over networks",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-39-opt-B",
+              "questionId": "q-fdp-39",
+              "text": "Many connected devices increase the attack surface",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-39-opt-C",
+              "questionId": "q-fdp-39",
+              "text": "They cannot collect data",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-39-opt-D",
+              "questionId": "q-fdp-39",
+              "text": "They always use blockchain",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-40",
+          "testId": "test-fdp-2026",
+          "text": "Which technology is commonly used to analyze very large datasets and identify patterns for decision-making?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 40,
+          "category": "Digital Transformation",
+          "explanation": "Big Data Analytics employs scalable algorithms to inspect massive, diverse datasets to discover hidden patterns, correlations, and actionable insights.",
+          "options": [
+            {
+              "id": "q-fdp-40-opt-A",
+              "questionId": "q-fdp-40",
+              "text": "Big Data Analytics",
+              "isCorrect": true,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-40-opt-B",
+              "questionId": "q-fdp-40",
+              "text": "HDMI",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-40-opt-C",
+              "questionId": "q-fdp-40",
+              "text": "BIOS",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-40-opt-D",
+              "questionId": "q-fdp-40",
+              "text": "FTP",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-41",
+          "testId": "test-fdp-2026",
+          "text": "AI can strengthen cybersecurity by:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 41,
+          "category": "Digital Transformation",
+          "explanation": "Artificial Intelligence and machine learning analyze vast volumes of telemetry in real time to pinpoint behavioral anomalies and detect emerging threats.",
+          "options": [
+            {
+              "id": "q-fdp-41-opt-A",
+              "questionId": "q-fdp-41",
+              "text": "Eliminating the need for security professionals",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-41-opt-B",
+              "questionId": "q-fdp-41",
+              "text": "Detecting patterns and anomalies in large volumes of data",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-41-opt-C",
+              "questionId": "q-fdp-41",
+              "text": "Making passwords unnecessary",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-41-opt-D",
+              "questionId": "q-fdp-41",
+              "text": "Preventing every possible cyberattack",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-42",
+          "testId": "test-fdp-2026",
+          "text": "Which cloud service model provides the greatest control over the underlying virtualized infrastructure?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 42,
+          "category": "Digital Transformation",
+          "explanation": "Infrastructure as a Service (IaaS) provides bare virtualized compute, storage, and networking, leaving OS, middleware, and application administration to the client.",
+          "options": [
+            {
+              "id": "q-fdp-42-opt-A",
+              "questionId": "q-fdp-42",
+              "text": "SaaS",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-42-opt-B",
+              "questionId": "q-fdp-42",
+              "text": "PaaS",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-42-opt-C",
+              "questionId": "q-fdp-42",
+              "text": "IaaS",
+              "isCorrect": true,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-42-opt-D",
+              "questionId": "q-fdp-42",
+              "text": "FaaS",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-43",
+          "testId": "test-fdp-2026",
+          "text": "In SaaS, the customer typically:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 43,
+          "category": "Digital Transformation",
+          "explanation": "Software as a Service (SaaS) delivers complete applications over the web where the cloud vendor manages infrastructure, maintenance, and patches.",
+          "options": [
+            {
+              "id": "q-fdp-43-opt-A",
+              "questionId": "q-fdp-43",
+              "text": "Manages physical servers",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-43-opt-B",
+              "questionId": "q-fdp-43",
+              "text": "Uses software provided and managed by the service provider",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-43-opt-C",
+              "questionId": "q-fdp-43",
+              "text": "Builds the cloud data center",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-43-opt-D",
+              "questionId": "q-fdp-43",
+              "text": "Controls the underlying hypervisor",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-44",
+          "testId": "test-fdp-2026",
+          "text": "Digital twins are primarily used to:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 44,
+          "category": "Digital Transformation",
+          "explanation": "A digital twin is a virtual model designed to accurately reflect a physical object or system using real-time sensor streams for simulation and optimization.",
+          "options": [
+            {
+              "id": "q-fdp-44-opt-A",
+              "questionId": "q-fdp-44",
+              "text": "Create duplicate passwords",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-44-opt-B",
+              "questionId": "q-fdp-44",
+              "text": "Create digital representations of physical systems or objects",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-44-opt-C",
+              "questionId": "q-fdp-44",
+              "text": "Replace blockchain consensus",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-44-opt-D",
+              "questionId": "q-fdp-44",
+              "text": "Encrypt emails",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-45",
+          "testId": "test-fdp-2026",
+          "text": "Which technology is particularly useful for providing an auditable history of transactions among multiple organizations?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 45,
+          "category": "Digital Transformation",
+          "explanation": "Blockchain provides a cryptographically verifiable, shared audit trail that multiple independent organizations can inspect and trust without centralized intermediaries.",
+          "options": [
+            {
+              "id": "q-fdp-45-opt-A",
+              "questionId": "q-fdp-45",
+              "text": "Blockchain",
+              "isCorrect": true,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-45-opt-B",
+              "questionId": "q-fdp-45",
+              "text": "Calculator",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-45-opt-C",
+              "questionId": "q-fdp-45",
+              "text": "Word processor",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-45-opt-D",
+              "questionId": "q-fdp-45",
+              "text": "Image compression",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-46",
+          "testId": "test-fdp-2026",
+          "text": "An organization stores sensitive personal information directly on a public blockchain. What is the main concern?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 46,
+          "category": "Integrated",
+          "explanation": "Public blockchain immutability means stored data cannot be erased or modified, conflicting with regulatory privacy rights such as the \"Right to be Forgotten\" (GDPR).",
+          "options": [
+            {
+              "id": "q-fdp-46-opt-A",
+              "questionId": "q-fdp-46",
+              "text": "Blockchain cannot store data",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-46-opt-B",
+              "questionId": "q-fdp-46",
+              "text": "Immutability may conflict with privacy and data-erasure requirements",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-46-opt-C",
+              "questionId": "q-fdp-46",
+              "text": "Blockchain automatically deletes old data",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-46-opt-D",
+              "questionId": "q-fdp-46",
+              "text": "Public blockchains have no cryptography",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-47",
+          "testId": "test-fdp-2026",
+          "text": "A smart contract contains a programming bug that allows unauthorized fund transfers. Which statement is most accurate?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 47,
+          "category": "Integrated",
+          "explanation": "Once deployed, smart contract bytecode is immutable, making hot-patching logic bugs difficult without pre-architected upgrade patterns or proxy contracts.",
+          "options": [
+            {
+              "id": "q-fdp-47-opt-A",
+              "questionId": "q-fdp-47",
+              "text": "Blockchain automatically corrects all smart-contract bugs",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-47-opt-B",
+              "questionId": "q-fdp-47",
+              "text": "Immutability can make correcting deployed contract logic difficult",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-47-opt-C",
+              "questionId": "q-fdp-47",
+              "text": "Hashing prevents all programming errors",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-47-opt-D",
+              "questionId": "q-fdp-47",
+              "text": "Consensus guarantees bug-free code",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-48",
+          "testId": "test-fdp-2026",
+          "text": "An IoT-based smart factory uses blockchain to record sensor data. What problem does blockchain not automatically solve?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 48,
+          "category": "Integrated",
+          "explanation": "The oracle/input problem: Blockchain guarantees tamper-evidence once data is committed, but cannot inherently verify if the input sensor was faulty or physically compromised.",
+          "options": [
+            {
+              "id": "q-fdp-48-opt-A",
+              "questionId": "q-fdp-48",
+              "text": "Maintaining a tamper-evident ledger",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-48-opt-B",
+              "questionId": "q-fdp-48",
+              "text": "Whether the original sensor supplied false or manipulated data",
+              "isCorrect": true,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-48-opt-C",
+              "questionId": "q-fdp-48",
+              "text": "Sharing records among participants",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-48-opt-D",
+              "questionId": "q-fdp-48",
+              "text": "Recording transactions",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-49",
+          "testId": "test-fdp-2026",
+          "text": "An employee receives a legitimate-looking AI-generated voice message from a senior executive requesting an urgent money transfer. This is an example of the growing risk of:",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 49,
+          "category": "Integrated",
+          "explanation": "Generative AI audio cloning enables hyper-realistic synthetic deepfake voice phishing (vishing) used in executive impersonation attacks.",
+          "options": [
+            {
+              "id": "q-fdp-49-opt-A",
+              "questionId": "q-fdp-49",
+              "text": "Deepfake-enabled social engineering",
+              "isCorrect": true,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-49-opt-B",
+              "questionId": "q-fdp-49",
+              "text": "Data normalization",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-49-opt-C",
+              "questionId": "q-fdp-49",
+              "text": "Blockchain mining",
+              "isCorrect": false,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-49-opt-D",
+              "questionId": "q-fdp-49",
+              "text": "Load balancing",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "q-fdp-50",
+          "testId": "test-fdp-2026",
+          "text": "Which combination provides the most comprehensive approach to secure digital transformation?",
+          "type": "MULTIPLE_CHOICE",
+          "marks": 1,
+          "order": 50,
+          "category": "Integrated",
+          "explanation": "Robust security during digital transformation requires multi-layered defense: technical architecture, privacy safeguards, threat intelligence, continuous human awareness, and executive governance.",
+          "options": [
+            {
+              "id": "q-fdp-50-opt-A",
+              "questionId": "q-fdp-50",
+              "text": "Blockchain alone",
+              "isCorrect": false,
+              "order": 1
+            },
+            {
+              "id": "q-fdp-50-opt-B",
+              "questionId": "q-fdp-50",
+              "text": "Antivirus alone",
+              "isCorrect": false,
+              "order": 2
+            },
+            {
+              "id": "q-fdp-50-opt-C",
+              "questionId": "q-fdp-50",
+              "text": "Cybersecurity + privacy + secure technology design + user awareness + governance",
+              "isCorrect": true,
+              "order": 3
+            },
+            {
+              "id": "q-fdp-50-opt-D",
+              "questionId": "q-fdp-50",
+              "text": "Cloud computing alone",
+              "isCorrect": false,
+              "order": 4
+            }
+          ]
+        }
+      ]
     }
   ],
   "questions": [
     {
-      "id": "q-1",
-      "testId": "test-web-dev-1",
-      "text": "Which HTML5 semantic element represents a self-contained composition in a document that is intended to be independently distributable or reusable?",
+      "id": "q-fdp-1",
+      "testId": "test-fdp-2026",
+      "text": "Which security property ensures that data is accessible to authorized users when required?",
       "type": "MULTIPLE_CHOICE",
       "marks": 1,
       "order": 1,
-      "category": "HTML",
-      "explanation": "<article> is intended for self-contained syndicatable content such as blog posts, news stories, or forum entries, whereas <section> represents a generic thematic grouping.",
-      "options": []
+      "category": "Cyber Security",
+      "explanation": "Availability guarantees reliable, timely access to data and resources for authorized users whenever needed.",
+      "options": [
+        {
+          "id": "q-fdp-1-opt-A",
+          "questionId": "q-fdp-1",
+          "text": "Confidentiality",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-1-opt-B",
+          "questionId": "q-fdp-1",
+          "text": "Integrity",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-1-opt-C",
+          "questionId": "q-fdp-1",
+          "text": "Availability",
+          "isCorrect": true,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-1-opt-D",
+          "questionId": "q-fdp-1",
+          "text": "Authentication",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
     },
     {
-      "id": "q-2",
-      "testId": "test-web-dev-1",
-      "text": "If an element has `box-sizing: border-box`, `width: 300px`, `padding: 20px`, and `border: 2px solid #000`, what is its final rendered total width on screen?",
+      "id": "q-fdp-2",
+      "testId": "test-fdp-2026",
+      "text": "A user receives an email appearing to be from their bank asking them to click a link and verify credentials. This is most likely:",
       "type": "MULTIPLE_CHOICE",
       "marks": 1,
       "order": 2,
-      "category": "CSS",
-      "explanation": "Under border-box sizing, padding and border are contained within the declared 300px width. The rendered total width is exactly 300px.",
-      "options": []
+      "category": "Cyber Security",
+      "explanation": "Phishing is a social engineering attack that mimics legitimate institutions to deceive victims into exposing sensitive credentials.",
+      "options": [
+        {
+          "id": "q-fdp-2-opt-A",
+          "questionId": "q-fdp-2",
+          "text": "DDoS",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-2-opt-B",
+          "questionId": "q-fdp-2",
+          "text": "Phishing",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-2-opt-C",
+          "questionId": "q-fdp-2",
+          "text": "Spoofing only",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-2-opt-D",
+          "questionId": "q-fdp-2",
+          "text": "Shoulder surfing",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
     },
     {
-      "id": "q-3",
-      "testId": "test-web-dev-1",
-      "text": "In CSS Flexbox, which property controls alignment along the cross axis (perpendicular to the main axis)?",
+      "id": "q-fdp-3",
+      "testId": "test-fdp-2026",
+      "text": "Which attack specifically attempts to make a legitimate website unavailable by overwhelming it with traffic?",
       "type": "MULTIPLE_CHOICE",
       "marks": 1,
       "order": 3,
-      "category": "CSS",
-      "explanation": "`justify-content` defines alignment along the main axis, while `align-items` defines how flex items align along the cross axis.",
-      "options": []
+      "category": "Cyber Security",
+      "explanation": "Distributed Denial of Service (DDoS) overwhelms targets with coordinated flood traffic to deny service to genuine users.",
+      "options": [
+        {
+          "id": "q-fdp-3-opt-A",
+          "questionId": "q-fdp-3",
+          "text": "SQL Injection",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-3-opt-B",
+          "questionId": "q-fdp-3",
+          "text": "DDoS",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-3-opt-C",
+          "questionId": "q-fdp-3",
+          "text": "Phishing",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-3-opt-D",
+          "questionId": "q-fdp-3",
+          "text": "Keylogging",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
     },
     {
-      "id": "q-4",
-      "testId": "test-web-dev-1",
-      "text": "In the JavaScript Event Loop, which queue has priority and drains completely before the next macrotask is processed?",
+      "id": "q-fdp-4",
+      "testId": "test-fdp-2026",
+      "text": "If a hash function produces the same hash for two different inputs, the situation is called:",
       "type": "MULTIPLE_CHOICE",
       "marks": 1,
       "order": 4,
-      "category": "JavaScript",
-      "explanation": "Microtasks (Promises, queueMicrotask, MutationObserver) have higher priority than macrotasks (setTimeout, setInterval, I/O) and the microtask queue must be empty before the next macrotask executes.",
-      "options": []
+      "category": "Cyber Security",
+      "explanation": "A hash collision occurs when two distinct input values generate identical cryptographic digests.",
+      "options": [
+        {
+          "id": "q-fdp-4-opt-A",
+          "questionId": "q-fdp-4",
+          "text": "Encryption",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-4-opt-B",
+          "questionId": "q-fdp-4",
+          "text": "Collision",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-4-opt-C",
+          "questionId": "q-fdp-4",
+          "text": "Salting",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-4-opt-D",
+          "questionId": "q-fdp-4",
+          "text": "Tokenization",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
     },
     {
-      "id": "q-5",
-      "testId": "test-web-dev-1",
-      "text": "What will be the output of `console.log(typeof null)` in JavaScript?",
+      "id": "q-fdp-5",
+      "testId": "test-fdp-2026",
+      "text": "Which is generally considered the strongest password?",
       "type": "MULTIPLE_CHOICE",
       "marks": 1,
       "order": 5,
-      "category": "JavaScript",
-      "explanation": "Due to a historical bug in the first implementation of JavaScript where object type tags were represented by 0, `typeof null` returns \"object\".",
-      "options": []
+      "category": "Cyber Security",
+      "explanation": "Long passphrases consisting of multiple random words provide exponential entropy, making brute-force and dictionary attacks computationally infeasible.",
+      "options": [
+        {
+          "id": "q-fdp-5-opt-A",
+          "questionId": "q-fdp-5",
+          "text": "Kavita123",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-5-opt-B",
+          "questionId": "q-fdp-5",
+          "text": "Password@123",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-5-opt-C",
+          "questionId": "q-fdp-5",
+          "text": "Qwerty@2026",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-5-opt-D",
+          "questionId": "q-fdp-5",
+          "text": "A long, unique passphrase with multiple random words",
+          "isCorrect": true,
+          "order": 4
+        }
+      ]
     },
     {
-      "id": "q-6",
-      "testId": "test-web-dev-1",
-      "text": "True or False: Arrow functions in JavaScript retain lexical scoping for `this` and do not bind their own `this`, `arguments`, or `super`.",
-      "type": "TRUE_FALSE",
+      "id": "q-fdp-6",
+      "testId": "test-fdp-2026",
+      "text": "In asymmetric cryptography, which key is normally shared publicly?",
+      "type": "MULTIPLE_CHOICE",
       "marks": 1,
       "order": 6,
-      "category": "JavaScript",
-      "explanation": "True. Arrow functions do not have their own `this` context; they inherit `this` from the enclosing lexical scope.",
-      "options": []
+      "category": "Cyber Security",
+      "explanation": "The public key is freely distributed for encryption or signature verification, while the corresponding private key remains secret.",
+      "options": [
+        {
+          "id": "q-fdp-6-opt-A",
+          "questionId": "q-fdp-6",
+          "text": "Private key",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-6-opt-B",
+          "questionId": "q-fdp-6",
+          "text": "Session key",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-6-opt-C",
+          "questionId": "q-fdp-6",
+          "text": "Public key",
+          "isCorrect": true,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-6-opt-D",
+          "questionId": "q-fdp-6",
+          "text": "Master key",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
     },
     {
-      "id": "q-7",
-      "testId": "test-web-dev-1",
-      "text": "In React, why should component state never be directly mutated (e.g., `user.name = \"Alex\"`) instead of using setter functions?",
+      "id": "q-fdp-7",
+      "testId": "test-fdp-2026",
+      "text": "Digital signatures primarily provide:",
       "type": "MULTIPLE_CHOICE",
       "marks": 1,
       "order": 7,
-      "category": "React",
-      "explanation": "Direct mutations do not change object references, causing React to miss state changes in shallow comparison, preventing component re-renders.",
-      "options": []
+      "category": "Cyber Security",
+      "explanation": "Digital signatures prove the identity of the sender (authentication), ensure content has not altered in transit (integrity), and enforce non-repudiation.",
+      "options": [
+        {
+          "id": "q-fdp-7-opt-A",
+          "questionId": "q-fdp-7",
+          "text": "Confidentiality only",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-7-opt-B",
+          "questionId": "q-fdp-7",
+          "text": "Authentication and integrity",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-7-opt-C",
+          "questionId": "q-fdp-7",
+          "text": "Compression",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-7-opt-D",
+          "questionId": "q-fdp-7",
+          "text": "Data availability",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
     },
     {
-      "id": "q-8",
-      "testId": "test-web-dev-1",
-      "text": "In React, when does the cleanup function returned by `useEffect` execute?",
+      "id": "q-fdp-8",
+      "testId": "test-fdp-2026",
+      "text": "Which technique adds random data to a password before hashing to make precomputed attacks harder?",
       "type": "MULTIPLE_CHOICE",
       "marks": 1,
       "order": 8,
-      "category": "React",
-      "explanation": "The cleanup function executes before the component re-runs the effect on dependency change, as well as when the component unmounts.",
-      "options": []
+      "category": "Cyber Security",
+      "explanation": "Salting appends unique pseudo-random bytes to plaintext passwords before hashing, effectively neutralizing precomputed rainbow-table lookups.",
+      "options": [
+        {
+          "id": "q-fdp-8-opt-A",
+          "questionId": "q-fdp-8",
+          "text": "Salting",
+          "isCorrect": true,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-8-opt-B",
+          "questionId": "q-fdp-8",
+          "text": "Encoding",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-8-opt-C",
+          "questionId": "q-fdp-8",
+          "text": "Encryption",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-8-opt-D",
+          "questionId": "q-fdp-8",
+          "text": "Fragmentation",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
     },
     {
-      "id": "q-9",
-      "testId": "test-web-dev-1",
-      "text": "True or False: In Git, `git rebase` creates a new merge commit preserving both branch histories verbatim, whereas `git merge` rewrites commit hashes linearly.",
-      "type": "TRUE_FALSE",
+      "id": "q-fdp-9",
+      "testId": "test-fdp-2026",
+      "text": "SQL Injection primarily exploits weaknesses in:",
+      "type": "MULTIPLE_CHOICE",
       "marks": 1,
       "order": 9,
-      "category": "Git",
-      "explanation": "False. `git merge` preserves histories and creates a merge commit, while `git rebase` replays commits onto a new base, rewriting commit hashes.",
-      "options": []
+      "category": "Cyber Security",
+      "explanation": "SQL Injection occurs when untrusted user input is directly concatenated into database queries without proper sanitization or parameterized binding.",
+      "options": [
+        {
+          "id": "q-fdp-9-opt-A",
+          "questionId": "q-fdp-9",
+          "text": "Network cables",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-9-opt-B",
+          "questionId": "q-fdp-9",
+          "text": "Database queries and input handling",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-9-opt-C",
+          "questionId": "q-fdp-9",
+          "text": "Operating-system hardware",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-9-opt-D",
+          "questionId": "q-fdp-9",
+          "text": "Blockchain consensus",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
     },
     {
-      "id": "q-10",
-      "testId": "test-web-dev-1",
-      "text": "What is the precise difference between HTTP status code 401 Unauthorized and 403 Forbidden?",
+      "id": "q-fdp-10",
+      "testId": "test-fdp-2026",
+      "text": "Which security mechanism is specifically designed to detect suspicious network traffic based on predefined rules or signatures?",
       "type": "MULTIPLE_CHOICE",
       "marks": 1,
       "order": 10,
-      "category": "Web Fundamentals",
-      "explanation": "401 indicates missing or invalid authentication credentials (user identity unknown), while 403 means the identity is authenticated but lacks permission to access the resource.",
-      "options": []
+      "category": "Cyber Security",
+      "explanation": "An Intrusion Detection System (IDS) inspects inbound and outbound network packets against signature databases and anomalous heuristics.",
+      "options": [
+        {
+          "id": "q-fdp-10-opt-A",
+          "questionId": "q-fdp-10",
+          "text": "IDS",
+          "isCorrect": true,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-10-opt-B",
+          "questionId": "q-fdp-10",
+          "text": "DNS",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-10-opt-C",
+          "questionId": "q-fdp-10",
+          "text": "DHCP",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-10-opt-D",
+          "questionId": "q-fdp-10",
+          "text": "NAT",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-11",
+      "testId": "test-fdp-2026",
+      "text": "A zero-day vulnerability is one that:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 11,
+      "category": "Cyber Security",
+      "explanation": "Zero-day vulnerabilities are previously undisclosed software flaws exploited before the vendor has developed or deployed an official security patch.",
+      "options": [
+        {
+          "id": "q-fdp-11-opt-A",
+          "questionId": "q-fdp-11",
+          "text": "Has existed for exactly zero days",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-11-opt-B",
+          "questionId": "q-fdp-11",
+          "text": "Has no possible impact",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-11-opt-C",
+          "questionId": "q-fdp-11",
+          "text": "Is unknown or has no available patch when exploited",
+          "isCorrect": true,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-11-opt-D",
+          "questionId": "q-fdp-11",
+          "text": "Can only affect zero-day-old systems",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-12",
+      "testId": "test-fdp-2026",
+      "text": "Which attack tricks a user into revealing confidential information by pretending to be a trusted entity?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 12,
+      "category": "Cyber Security",
+      "explanation": "Social engineering exploits psychological manipulation rather than technical flaws to coerce people into revealing confidential data.",
+      "options": [
+        {
+          "id": "q-fdp-12-opt-A",
+          "questionId": "q-fdp-12",
+          "text": "Social engineering",
+          "isCorrect": true,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-12-opt-B",
+          "questionId": "q-fdp-12",
+          "text": "Packet switching",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-12-opt-C",
+          "questionId": "q-fdp-12",
+          "text": "Load balancing",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-12-opt-D",
+          "questionId": "q-fdp-12",
+          "text": "Data deduplication",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-13",
+      "testId": "test-fdp-2026",
+      "text": "Multi-factor authentication requires:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 13,
+      "category": "Cyber Security",
+      "explanation": "MFA mandates proof across two or more distinct categories: knowledge (password), possession (hardware key/phone), or inherence (biometrics).",
+      "options": [
+        {
+          "id": "q-fdp-13-opt-A",
+          "questionId": "q-fdp-13",
+          "text": "Two passwords",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-13-opt-B",
+          "questionId": "q-fdp-13",
+          "text": "Two or more independent authentication factors",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-13-opt-C",
+          "questionId": "q-fdp-13",
+          "text": "Multiple usernames",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-13-opt-D",
+          "questionId": "q-fdp-13",
+          "text": "Only biometric authentication",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-14",
+      "testId": "test-fdp-2026",
+      "text": "Which of the following is NOT normally considered an authentication factor?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 14,
+      "category": "Cyber Security",
+      "explanation": "Standard authentication factors comprise Something you know, Something you have, and Something you are. Downloaded files are not authentication factors.",
+      "options": [
+        {
+          "id": "q-fdp-14-opt-A",
+          "questionId": "q-fdp-14",
+          "text": "Something you know",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-14-opt-B",
+          "questionId": "q-fdp-14",
+          "text": "Something you have",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-14-opt-C",
+          "questionId": "q-fdp-14",
+          "text": "Something you are",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-14-opt-D",
+          "questionId": "q-fdp-14",
+          "text": "Something you download",
+          "isCorrect": true,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-15",
+      "testId": "test-fdp-2026",
+      "text": "Ransomware primarily aims to:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 15,
+      "category": "Cyber Security",
+      "explanation": "Ransomware maliciously encrypts victim storage or locks terminal interfaces and extorts payments for decryption keys.",
+      "options": [
+        {
+          "id": "q-fdp-15-opt-A",
+          "questionId": "q-fdp-15",
+          "text": "Improve system performance",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-15-opt-B",
+          "questionId": "q-fdp-15",
+          "text": "Encrypt or lock data and demand payment",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-15-opt-C",
+          "questionId": "q-fdp-15",
+          "text": "Increase network bandwidth",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-15-opt-D",
+          "questionId": "q-fdp-15",
+          "text": "Remove advertisements",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-16",
+      "testId": "test-fdp-2026",
+      "text": "Which principle assumes that no user or device should automatically be trusted, even inside an organization's network?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 16,
+      "category": "Cyber Security",
+      "explanation": "Zero Trust architectural model operates on \"never trust, always verify\", requiring continuous validation for every access request.",
+      "options": [
+        {
+          "id": "q-fdp-16-opt-A",
+          "questionId": "q-fdp-16",
+          "text": "Open Access",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-16-opt-B",
+          "questionId": "q-fdp-16",
+          "text": "Zero Trust",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-16-opt-C",
+          "questionId": "q-fdp-16",
+          "text": "Single Sign-On",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-16-opt-D",
+          "questionId": "q-fdp-16",
+          "text": "Least Encryption",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-17",
+      "testId": "test-fdp-2026",
+      "text": "The principle of least privilege means users should receive:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 17,
+      "category": "Cyber Security",
+      "explanation": "Principle of Least Privilege restricts access rights for accounts strictly to the bare minimum required to perform authorized duties.",
+      "options": [
+        {
+          "id": "q-fdp-17-opt-A",
+          "questionId": "q-fdp-17",
+          "text": "Maximum possible access",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-17-opt-B",
+          "questionId": "q-fdp-17",
+          "text": "Access only necessary for their role",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-17-opt-C",
+          "questionId": "q-fdp-17",
+          "text": "Administrator access by default",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-17-opt-D",
+          "questionId": "q-fdp-17",
+          "text": "Access to all public data",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-18",
+      "testId": "test-fdp-2026",
+      "text": "A firewall primarily controls:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 18,
+      "category": "Cyber Security",
+      "explanation": "Firewalls inspect and filter incoming and outgoing network traffic based on configurable security rules and port policies.",
+      "options": [
+        {
+          "id": "q-fdp-18-opt-A",
+          "questionId": "q-fdp-18",
+          "text": "Physical access to computers",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-18-opt-B",
+          "questionId": "q-fdp-18",
+          "text": "Network traffic based on security rules",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-18-opt-C",
+          "questionId": "q-fdp-18",
+          "text": "Password complexity",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-18-opt-D",
+          "questionId": "q-fdp-18",
+          "text": "Database normalization",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-19",
+      "testId": "test-fdp-2026",
+      "text": "Which attack involves secretly intercepting communication between two parties?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 19,
+      "category": "Cyber Security",
+      "explanation": "A Man-in-the-Middle (MitM) attack secretly intercepts, inspects, or alters communication passing between two communicating entities.",
+      "options": [
+        {
+          "id": "q-fdp-19-opt-A",
+          "questionId": "q-fdp-19",
+          "text": "Man-in-the-Middle",
+          "isCorrect": true,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-19-opt-B",
+          "questionId": "q-fdp-19",
+          "text": "Brute force",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-19-opt-C",
+          "questionId": "q-fdp-19",
+          "text": "Ransomware",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-19-opt-D",
+          "questionId": "q-fdp-19",
+          "text": "Buffer overflow",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-20",
+      "testId": "test-fdp-2026",
+      "text": "HTTPS primarily protects web communication by using:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 20,
+      "category": "Cyber Security",
+      "explanation": "HTTPS encrypts HTTP communications using Transport Layer Security (TLS) to guarantee confidentiality and integrity in transit.",
+      "options": [
+        {
+          "id": "q-fdp-20-opt-A",
+          "questionId": "q-fdp-20",
+          "text": "Plain HTTP only",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-20-opt-B",
+          "questionId": "q-fdp-20",
+          "text": "TLS encryption",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-20-opt-C",
+          "questionId": "q-fdp-20",
+          "text": "FTP",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-20-opt-D",
+          "questionId": "q-fdp-20",
+          "text": "DNS caching",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-21",
+      "testId": "test-fdp-2026",
+      "text": "A blockchain is best described as:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 21,
+      "category": "Blockchain",
+      "explanation": "A blockchain is a decentralized distributed ledger that synchronizes replicated transaction states across peer-to-peer network nodes.",
+      "options": [
+        {
+          "id": "q-fdp-21-opt-A",
+          "questionId": "q-fdp-21",
+          "text": "A centralized database",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-21-opt-B",
+          "questionId": "q-fdp-21",
+          "text": "A distributed ledger maintained across participating nodes",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-21-opt-C",
+          "questionId": "q-fdp-21",
+          "text": "A password-management system",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-21-opt-D",
+          "questionId": "q-fdp-21",
+          "text": "A type of firewall",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-22",
+      "testId": "test-fdp-2026",
+      "text": "The primary purpose of a cryptographic hash in blockchain is to:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 22,
+      "category": "Blockchain",
+      "explanation": "Cryptographic hashing generates deterministic fixed-length digests that detect any subsequent manipulation of underlying block payloads.",
+      "options": [
+        {
+          "id": "q-fdp-22-opt-A",
+          "questionId": "q-fdp-22",
+          "text": "Increase file size",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-22-opt-B",
+          "questionId": "q-fdp-22",
+          "text": "Provide a fixed-size representation and help detect data modification",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-22-opt-C",
+          "questionId": "q-fdp-22",
+          "text": "Hide the blockchain completely",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-22-opt-D",
+          "questionId": "q-fdp-22",
+          "text": "Replace consensus mechanisms",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-23",
+      "testId": "test-fdp-2026",
+      "text": "In a blockchain, changing data in a previous block generally requires modification of:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 23,
+      "category": "Blockchain",
+      "explanation": "Because each block embeds the hash of its predecessor, modifying historical blocks invalidates all successive blocks and requires re-mining against network consensus.",
+      "options": [
+        {
+          "id": "q-fdp-23-opt-A",
+          "questionId": "q-fdp-23",
+          "text": "Only that block with no further effect",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-23-opt-B",
+          "questionId": "q-fdp-23",
+          "text": "Subsequent linked blocks and overcoming network consensus",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-23-opt-C",
+          "questionId": "q-fdp-23",
+          "text": "Only the user's password",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-23-opt-D",
+          "questionId": "q-fdp-23",
+          "text": "The internet connection",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-24",
+      "testId": "test-fdp-2026",
+      "text": "Which property means that blockchain records are difficult to alter after confirmation?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 24,
+      "category": "Blockchain",
+      "explanation": "Immutability ensures that once confirmed by network consensus, recorded transactions cannot be altered or retroactively erased.",
+      "options": [
+        {
+          "id": "q-fdp-24-opt-A",
+          "questionId": "q-fdp-24",
+          "text": "Immutability",
+          "isCorrect": true,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-24-opt-B",
+          "questionId": "q-fdp-24",
+          "text": "Centralization",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-24-opt-C",
+          "questionId": "q-fdp-24",
+          "text": "Compression",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-24-opt-D",
+          "questionId": "q-fdp-24",
+          "text": "Virtualization",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-25",
+      "testId": "test-fdp-2026",
+      "text": "Bitcoin primarily uses which consensus mechanism?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 25,
+      "category": "Blockchain",
+      "explanation": "Bitcoin secures distributed consensus using Proof of Work (PoW) via SHA-256 mining calculations.",
+      "options": [
+        {
+          "id": "q-fdp-25-opt-A",
+          "questionId": "q-fdp-25",
+          "text": "Proof of Stake",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-25-opt-B",
+          "questionId": "q-fdp-25",
+          "text": "Proof of Work",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-25-opt-C",
+          "questionId": "q-fdp-25",
+          "text": "Proof of Authority",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-25-opt-D",
+          "questionId": "q-fdp-25",
+          "text": "Proof of Identity",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-26",
+      "testId": "test-fdp-2026",
+      "text": "In Proof of Work, miners primarily compete to:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 26,
+      "category": "Blockchain",
+      "explanation": "Miners iterate through candidate nonces to solve computationally demanding cryptographic hashing puzzles to earn block publishing rights.",
+      "options": [
+        {
+          "id": "q-fdp-26-opt-A",
+          "questionId": "q-fdp-26",
+          "text": "Store passwords",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-26-opt-B",
+          "questionId": "q-fdp-26",
+          "text": "Solve a computationally difficult puzzle",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-26-opt-C",
+          "questionId": "q-fdp-26",
+          "text": "Encrypt all internet traffic",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-26-opt-D",
+          "questionId": "q-fdp-26",
+          "text": "Approve usernames",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-27",
+      "testId": "test-fdp-2026",
+      "text": "Which blockchain consensus mechanism selects validators partly according to the amount of cryptocurrency they have staked?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 27,
+      "category": "Blockchain",
+      "explanation": "Proof of Stake (PoS) allocates block validation responsibilities based on the proportion of native tokens bonded or staked as security collateral.",
+      "options": [
+        {
+          "id": "q-fdp-27-opt-A",
+          "questionId": "q-fdp-27",
+          "text": "Proof of Work",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-27-opt-B",
+          "questionId": "q-fdp-27",
+          "text": "Proof of Stake",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-27-opt-C",
+          "questionId": "q-fdp-27",
+          "text": "Proof of Download",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-27-opt-D",
+          "questionId": "q-fdp-27",
+          "text": "Proof of Encryption",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-28",
+      "testId": "test-fdp-2026",
+      "text": "A smart contract is best described as:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 28,
+      "category": "Blockchain",
+      "explanation": "Smart contracts are immutable self-executing software programs deployed directly to blockchain state machines.",
+      "options": [
+        {
+          "id": "q-fdp-28-opt-A",
+          "questionId": "q-fdp-28",
+          "text": "A legal contract stored only on paper",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-28-opt-B",
+          "questionId": "q-fdp-28",
+          "text": "Self-executing code deployed on a blockchain",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-28-opt-C",
+          "questionId": "q-fdp-28",
+          "text": "A blockchain password",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-28-opt-D",
+          "questionId": "q-fdp-28",
+          "text": "An antivirus program",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-29",
+      "testId": "test-fdp-2026",
+      "text": "A blockchain wallet primarily manages:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 29,
+      "category": "Blockchain",
+      "explanation": "Wallets do not physically store tokens; they manage private and public cryptographic key pairs that grant transactional authority over ledger accounts.",
+      "options": [
+        {
+          "id": "q-fdp-29-opt-A",
+          "questionId": "q-fdp-29",
+          "text": "Cryptocurrency itself as a physical file",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-29-opt-B",
+          "questionId": "q-fdp-29",
+          "text": "Cryptographic keys used to access blockchain assets",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-29-opt-C",
+          "questionId": "q-fdp-29",
+          "text": "Internet bandwidth",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-29-opt-D",
+          "questionId": "q-fdp-29",
+          "text": "Blockchain servers",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-30",
+      "testId": "test-fdp-2026",
+      "text": "Which key must generally remain secret to authorize transactions from a blockchain account?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 30,
+      "category": "Blockchain",
+      "explanation": "The private key generates digital signatures required to authorize and spend assets from corresponding blockchain addresses.",
+      "options": [
+        {
+          "id": "q-fdp-30-opt-A",
+          "questionId": "q-fdp-30",
+          "text": "Public key",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-30-opt-B",
+          "questionId": "q-fdp-30",
+          "text": "Private key",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-30-opt-C",
+          "questionId": "q-fdp-30",
+          "text": "Hash value",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-30-opt-D",
+          "questionId": "q-fdp-30",
+          "text": "Block number",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-31",
+      "testId": "test-fdp-2026",
+      "text": "If a private key is lost, the most immediate concern is:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 31,
+      "category": "Blockchain",
+      "explanation": "Without the private key, cryptographic signatures cannot be generated, permanently locking control over associated assets on the ledger.",
+      "options": [
+        {
+          "id": "q-fdp-31-opt-A",
+          "questionId": "q-fdp-31",
+          "text": "Blockchain becomes centralized",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-31-opt-B",
+          "questionId": "q-fdp-31",
+          "text": "Loss of access/control over associated assets",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-31-opt-C",
+          "questionId": "q-fdp-31",
+          "text": "All blockchain blocks disappear",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-31-opt-D",
+          "questionId": "q-fdp-31",
+          "text": "The internet stops working",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-32",
+      "testId": "test-fdp-2026",
+      "text": "Which feature makes blockchain particularly useful for tracking a product's movement through multiple organizations?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 32,
+      "category": "Blockchain",
+      "explanation": "A shared, immutable, tamper-evident ledger creates verifiable transparency and provenance auditing across disparate supply-chain participants.",
+      "options": [
+        {
+          "id": "q-fdp-32-opt-A",
+          "questionId": "q-fdp-32",
+          "text": "Shared and tamper-evident ledger",
+          "isCorrect": true,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-32-opt-B",
+          "questionId": "q-fdp-32",
+          "text": "Centralized password storage",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-32-opt-C",
+          "questionId": "q-fdp-32",
+          "text": "Unlimited storage",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-32-opt-D",
+          "questionId": "q-fdp-32",
+          "text": "Anonymous email",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-33",
+      "testId": "test-fdp-2026",
+      "text": "In blockchain terminology, a \"block\" generally contains:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 33,
+      "category": "Blockchain",
+      "explanation": "Blocks bundle batches of validated transactions along with timestamps, nonces, and the cryptographic hash of the immediate prior block.",
+      "options": [
+        {
+          "id": "q-fdp-33-opt-A",
+          "questionId": "q-fdp-33",
+          "text": "Only a password",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-33-opt-B",
+          "questionId": "q-fdp-33",
+          "text": "Transactions and information linking it to the previous block",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-33-opt-C",
+          "questionId": "q-fdp-33",
+          "text": "Only user photographs",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-33-opt-D",
+          "questionId": "q-fdp-33",
+          "text": "Only cryptocurrency prices",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-34",
+      "testId": "test-fdp-2026",
+      "text": "Which statement about blockchain immutability is the most accurate?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 34,
+      "category": "Blockchain",
+      "explanation": "Confirmed blocks achieve practical immutability because altering historical data requires recalculating cryptographic links and overpowering majority network consensus.",
+      "options": [
+        {
+          "id": "q-fdp-34-opt-A",
+          "questionId": "q-fdp-34",
+          "text": "Blockchain data can never be changed under any circumstances",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-34-opt-B",
+          "questionId": "q-fdp-34",
+          "text": "Confirmed data is difficult to alter because of cryptographic linking and consensus",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-34-opt-C",
+          "questionId": "q-fdp-34",
+          "text": "Blockchain data is always encrypted",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-34-opt-D",
+          "questionId": "q-fdp-34",
+          "text": "Blockchain eliminates all cyberattacks",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-35",
+      "testId": "test-fdp-2026",
+      "text": "A permissioned blockchain differs from a permissionless blockchain mainly because:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 35,
+      "category": "Blockchain",
+      "explanation": "Permissioned blockchains implement access-control layers where participation, transaction submission, and block validation require explicit authorization.",
+      "options": [
+        {
+          "id": "q-fdp-35-opt-A",
+          "questionId": "q-fdp-35",
+          "text": "It does not use cryptography",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-35-opt-B",
+          "questionId": "q-fdp-35",
+          "text": "Participation and access can be restricted",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-35-opt-C",
+          "questionId": "q-fdp-35",
+          "text": "It cannot store transactions",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-35-opt-D",
+          "questionId": "q-fdp-35",
+          "text": "It cannot use consensus",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-36",
+      "testId": "test-fdp-2026",
+      "text": "Digital transformation primarily refers to:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 36,
+      "category": "Digital Transformation",
+      "explanation": "Digital transformation integrates modern digital technologies across all enterprise areas to fundamentally reshape operations, deliver value, and redefine models.",
+      "options": [
+        {
+          "id": "q-fdp-36-opt-A",
+          "questionId": "q-fdp-36",
+          "text": "Converting paper documents into PDFs only",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-36-opt-B",
+          "questionId": "q-fdp-36",
+          "text": "Using digital technologies to fundamentally improve processes, services and business models",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-36-opt-C",
+          "questionId": "q-fdp-36",
+          "text": "Purchasing more computers",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-36-opt-D",
+          "questionId": "q-fdp-36",
+          "text": "Installing antivirus software",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-37",
+      "testId": "test-fdp-2026",
+      "text": "Which technology enables computing resources to be delivered over the internet on demand?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 37,
+      "category": "Digital Transformation",
+      "explanation": "Cloud computing delivers on-demand computing services—including servers, storage, databases, and networking—over the internet with pay-as-you-go pricing.",
+      "options": [
+        {
+          "id": "q-fdp-37-opt-A",
+          "questionId": "q-fdp-37",
+          "text": "Cloud computing",
+          "isCorrect": true,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-37-opt-B",
+          "questionId": "q-fdp-37",
+          "text": "Blockchain",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-37-opt-C",
+          "questionId": "q-fdp-37",
+          "text": "Firewall",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-37-opt-D",
+          "questionId": "q-fdp-37",
+          "text": "BIOS",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-38",
+      "testId": "test-fdp-2026",
+      "text": "Which is an example of digital transformation rather than simple digitization?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 38,
+      "category": "Digital Transformation",
+      "explanation": "While digitization simply converts analog formats to digital, transformation restructures workflows and operating models around digital capabilities.",
+      "options": [
+        {
+          "id": "q-fdp-38-opt-A",
+          "questionId": "q-fdp-38",
+          "text": "Scanning a paper form",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-38-opt-B",
+          "questionId": "q-fdp-38",
+          "text": "Converting a paper report to PDF",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-38-opt-C",
+          "questionId": "q-fdp-38",
+          "text": "Redesigning a service around an automated digital workflow",
+          "isCorrect": true,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-38-opt-D",
+          "questionId": "q-fdp-38",
+          "text": "Printing a digital document",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-39",
+      "testId": "test-fdp-2026",
+      "text": "IoT devices create a cybersecurity challenge mainly because:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 39,
+      "category": "Digital Transformation",
+      "explanation": "Massive proliferation of internet-connected IoT devices, often with constrained compute and default credentials, drastically broadens the organizational threat attack surface.",
+      "options": [
+        {
+          "id": "q-fdp-39-opt-A",
+          "questionId": "q-fdp-39",
+          "text": "They never communicate over networks",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-39-opt-B",
+          "questionId": "q-fdp-39",
+          "text": "Many connected devices increase the attack surface",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-39-opt-C",
+          "questionId": "q-fdp-39",
+          "text": "They cannot collect data",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-39-opt-D",
+          "questionId": "q-fdp-39",
+          "text": "They always use blockchain",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-40",
+      "testId": "test-fdp-2026",
+      "text": "Which technology is commonly used to analyze very large datasets and identify patterns for decision-making?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 40,
+      "category": "Digital Transformation",
+      "explanation": "Big Data Analytics employs scalable algorithms to inspect massive, diverse datasets to discover hidden patterns, correlations, and actionable insights.",
+      "options": [
+        {
+          "id": "q-fdp-40-opt-A",
+          "questionId": "q-fdp-40",
+          "text": "Big Data Analytics",
+          "isCorrect": true,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-40-opt-B",
+          "questionId": "q-fdp-40",
+          "text": "HDMI",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-40-opt-C",
+          "questionId": "q-fdp-40",
+          "text": "BIOS",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-40-opt-D",
+          "questionId": "q-fdp-40",
+          "text": "FTP",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-41",
+      "testId": "test-fdp-2026",
+      "text": "AI can strengthen cybersecurity by:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 41,
+      "category": "Digital Transformation",
+      "explanation": "Artificial Intelligence and machine learning analyze vast volumes of telemetry in real time to pinpoint behavioral anomalies and detect emerging threats.",
+      "options": [
+        {
+          "id": "q-fdp-41-opt-A",
+          "questionId": "q-fdp-41",
+          "text": "Eliminating the need for security professionals",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-41-opt-B",
+          "questionId": "q-fdp-41",
+          "text": "Detecting patterns and anomalies in large volumes of data",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-41-opt-C",
+          "questionId": "q-fdp-41",
+          "text": "Making passwords unnecessary",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-41-opt-D",
+          "questionId": "q-fdp-41",
+          "text": "Preventing every possible cyberattack",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-42",
+      "testId": "test-fdp-2026",
+      "text": "Which cloud service model provides the greatest control over the underlying virtualized infrastructure?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 42,
+      "category": "Digital Transformation",
+      "explanation": "Infrastructure as a Service (IaaS) provides bare virtualized compute, storage, and networking, leaving OS, middleware, and application administration to the client.",
+      "options": [
+        {
+          "id": "q-fdp-42-opt-A",
+          "questionId": "q-fdp-42",
+          "text": "SaaS",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-42-opt-B",
+          "questionId": "q-fdp-42",
+          "text": "PaaS",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-42-opt-C",
+          "questionId": "q-fdp-42",
+          "text": "IaaS",
+          "isCorrect": true,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-42-opt-D",
+          "questionId": "q-fdp-42",
+          "text": "FaaS",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-43",
+      "testId": "test-fdp-2026",
+      "text": "In SaaS, the customer typically:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 43,
+      "category": "Digital Transformation",
+      "explanation": "Software as a Service (SaaS) delivers complete applications over the web where the cloud vendor manages infrastructure, maintenance, and patches.",
+      "options": [
+        {
+          "id": "q-fdp-43-opt-A",
+          "questionId": "q-fdp-43",
+          "text": "Manages physical servers",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-43-opt-B",
+          "questionId": "q-fdp-43",
+          "text": "Uses software provided and managed by the service provider",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-43-opt-C",
+          "questionId": "q-fdp-43",
+          "text": "Builds the cloud data center",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-43-opt-D",
+          "questionId": "q-fdp-43",
+          "text": "Controls the underlying hypervisor",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-44",
+      "testId": "test-fdp-2026",
+      "text": "Digital twins are primarily used to:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 44,
+      "category": "Digital Transformation",
+      "explanation": "A digital twin is a virtual model designed to accurately reflect a physical object or system using real-time sensor streams for simulation and optimization.",
+      "options": [
+        {
+          "id": "q-fdp-44-opt-A",
+          "questionId": "q-fdp-44",
+          "text": "Create duplicate passwords",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-44-opt-B",
+          "questionId": "q-fdp-44",
+          "text": "Create digital representations of physical systems or objects",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-44-opt-C",
+          "questionId": "q-fdp-44",
+          "text": "Replace blockchain consensus",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-44-opt-D",
+          "questionId": "q-fdp-44",
+          "text": "Encrypt emails",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-45",
+      "testId": "test-fdp-2026",
+      "text": "Which technology is particularly useful for providing an auditable history of transactions among multiple organizations?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 45,
+      "category": "Digital Transformation",
+      "explanation": "Blockchain provides a cryptographically verifiable, shared audit trail that multiple independent organizations can inspect and trust without centralized intermediaries.",
+      "options": [
+        {
+          "id": "q-fdp-45-opt-A",
+          "questionId": "q-fdp-45",
+          "text": "Blockchain",
+          "isCorrect": true,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-45-opt-B",
+          "questionId": "q-fdp-45",
+          "text": "Calculator",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-45-opt-C",
+          "questionId": "q-fdp-45",
+          "text": "Word processor",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-45-opt-D",
+          "questionId": "q-fdp-45",
+          "text": "Image compression",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-46",
+      "testId": "test-fdp-2026",
+      "text": "An organization stores sensitive personal information directly on a public blockchain. What is the main concern?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 46,
+      "category": "Integrated",
+      "explanation": "Public blockchain immutability means stored data cannot be erased or modified, conflicting with regulatory privacy rights such as the \"Right to be Forgotten\" (GDPR).",
+      "options": [
+        {
+          "id": "q-fdp-46-opt-A",
+          "questionId": "q-fdp-46",
+          "text": "Blockchain cannot store data",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-46-opt-B",
+          "questionId": "q-fdp-46",
+          "text": "Immutability may conflict with privacy and data-erasure requirements",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-46-opt-C",
+          "questionId": "q-fdp-46",
+          "text": "Blockchain automatically deletes old data",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-46-opt-D",
+          "questionId": "q-fdp-46",
+          "text": "Public blockchains have no cryptography",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-47",
+      "testId": "test-fdp-2026",
+      "text": "A smart contract contains a programming bug that allows unauthorized fund transfers. Which statement is most accurate?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 47,
+      "category": "Integrated",
+      "explanation": "Once deployed, smart contract bytecode is immutable, making hot-patching logic bugs difficult without pre-architected upgrade patterns or proxy contracts.",
+      "options": [
+        {
+          "id": "q-fdp-47-opt-A",
+          "questionId": "q-fdp-47",
+          "text": "Blockchain automatically corrects all smart-contract bugs",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-47-opt-B",
+          "questionId": "q-fdp-47",
+          "text": "Immutability can make correcting deployed contract logic difficult",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-47-opt-C",
+          "questionId": "q-fdp-47",
+          "text": "Hashing prevents all programming errors",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-47-opt-D",
+          "questionId": "q-fdp-47",
+          "text": "Consensus guarantees bug-free code",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-48",
+      "testId": "test-fdp-2026",
+      "text": "An IoT-based smart factory uses blockchain to record sensor data. What problem does blockchain not automatically solve?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 48,
+      "category": "Integrated",
+      "explanation": "The oracle/input problem: Blockchain guarantees tamper-evidence once data is committed, but cannot inherently verify if the input sensor was faulty or physically compromised.",
+      "options": [
+        {
+          "id": "q-fdp-48-opt-A",
+          "questionId": "q-fdp-48",
+          "text": "Maintaining a tamper-evident ledger",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-48-opt-B",
+          "questionId": "q-fdp-48",
+          "text": "Whether the original sensor supplied false or manipulated data",
+          "isCorrect": true,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-48-opt-C",
+          "questionId": "q-fdp-48",
+          "text": "Sharing records among participants",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-48-opt-D",
+          "questionId": "q-fdp-48",
+          "text": "Recording transactions",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-49",
+      "testId": "test-fdp-2026",
+      "text": "An employee receives a legitimate-looking AI-generated voice message from a senior executive requesting an urgent money transfer. This is an example of the growing risk of:",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 49,
+      "category": "Integrated",
+      "explanation": "Generative AI audio cloning enables hyper-realistic synthetic deepfake voice phishing (vishing) used in executive impersonation attacks.",
+      "options": [
+        {
+          "id": "q-fdp-49-opt-A",
+          "questionId": "q-fdp-49",
+          "text": "Deepfake-enabled social engineering",
+          "isCorrect": true,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-49-opt-B",
+          "questionId": "q-fdp-49",
+          "text": "Data normalization",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-49-opt-C",
+          "questionId": "q-fdp-49",
+          "text": "Blockchain mining",
+          "isCorrect": false,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-49-opt-D",
+          "questionId": "q-fdp-49",
+          "text": "Load balancing",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "q-fdp-50",
+      "testId": "test-fdp-2026",
+      "text": "Which combination provides the most comprehensive approach to secure digital transformation?",
+      "type": "MULTIPLE_CHOICE",
+      "marks": 1,
+      "order": 50,
+      "category": "Integrated",
+      "explanation": "Robust security during digital transformation requires multi-layered defense: technical architecture, privacy safeguards, threat intelligence, continuous human awareness, and executive governance.",
+      "options": [
+        {
+          "id": "q-fdp-50-opt-A",
+          "questionId": "q-fdp-50",
+          "text": "Blockchain alone",
+          "isCorrect": false,
+          "order": 1
+        },
+        {
+          "id": "q-fdp-50-opt-B",
+          "questionId": "q-fdp-50",
+          "text": "Antivirus alone",
+          "isCorrect": false,
+          "order": 2
+        },
+        {
+          "id": "q-fdp-50-opt-C",
+          "questionId": "q-fdp-50",
+          "text": "Cybersecurity + privacy + secure technology design + user awareness + governance",
+          "isCorrect": true,
+          "order": 3
+        },
+        {
+          "id": "q-fdp-50-opt-D",
+          "questionId": "q-fdp-50",
+          "text": "Cloud computing alone",
+          "isCorrect": false,
+          "order": 4
+        }
+      ]
     }
   ],
   "options": [
     {
-      "id": "opt-1-a",
-      "questionId": "q-1",
-      "text": "<article>",
-      "isCorrect": true,
+      "id": "q-fdp-1-opt-A",
+      "questionId": "q-fdp-1",
+      "text": "Confidentiality",
+      "isCorrect": false,
       "order": 1
     },
     {
-      "id": "opt-1-b",
-      "questionId": "q-1",
-      "text": "<section>",
+      "id": "q-fdp-1-opt-B",
+      "questionId": "q-fdp-1",
+      "text": "Integrity",
       "isCorrect": false,
       "order": 2
     },
     {
-      "id": "opt-1-c",
-      "questionId": "q-1",
-      "text": "<aside>",
-      "isCorrect": false,
+      "id": "q-fdp-1-opt-C",
+      "questionId": "q-fdp-1",
+      "text": "Availability",
+      "isCorrect": true,
       "order": 3
     },
     {
-      "id": "opt-1-d",
-      "questionId": "q-1",
-      "text": "<div>",
+      "id": "q-fdp-1-opt-D",
+      "questionId": "q-fdp-1",
+      "text": "Authentication",
       "isCorrect": false,
       "order": 4
     },
     {
-      "id": "opt-2-a",
-      "questionId": "q-2",
-      "text": "300px",
-      "isCorrect": true,
+      "id": "q-fdp-2-opt-A",
+      "questionId": "q-fdp-2",
+      "text": "DDoS",
+      "isCorrect": false,
       "order": 1
     },
     {
-      "id": "opt-2-b",
-      "questionId": "q-2",
-      "text": "344px",
-      "isCorrect": false,
+      "id": "q-fdp-2-opt-B",
+      "questionId": "q-fdp-2",
+      "text": "Phishing",
+      "isCorrect": true,
       "order": 2
     },
     {
-      "id": "opt-2-c",
-      "questionId": "q-2",
-      "text": "320px",
+      "id": "q-fdp-2-opt-C",
+      "questionId": "q-fdp-2",
+      "text": "Spoofing only",
       "isCorrect": false,
       "order": 3
     },
     {
-      "id": "opt-2-d",
-      "questionId": "q-2",
-      "text": "256px",
+      "id": "q-fdp-2-opt-D",
+      "questionId": "q-fdp-2",
+      "text": "Shoulder surfing",
       "isCorrect": false,
       "order": 4
     },
     {
-      "id": "opt-3-a",
-      "questionId": "q-3",
-      "text": "justify-content",
+      "id": "q-fdp-3-opt-A",
+      "questionId": "q-fdp-3",
+      "text": "SQL Injection",
       "isCorrect": false,
       "order": 1
     },
     {
-      "id": "opt-3-b",
-      "questionId": "q-3",
-      "text": "align-items",
+      "id": "q-fdp-3-opt-B",
+      "questionId": "q-fdp-3",
+      "text": "DDoS",
       "isCorrect": true,
       "order": 2
     },
     {
-      "id": "opt-3-c",
-      "questionId": "q-3",
-      "text": "flex-direction",
+      "id": "q-fdp-3-opt-C",
+      "questionId": "q-fdp-3",
+      "text": "Phishing",
       "isCorrect": false,
       "order": 3
     },
     {
-      "id": "opt-3-d",
-      "questionId": "q-3",
-      "text": "align-content",
+      "id": "q-fdp-3-opt-D",
+      "questionId": "q-fdp-3",
+      "text": "Keylogging",
       "isCorrect": false,
       "order": 4
     },
     {
-      "id": "opt-4-a",
-      "questionId": "q-4",
-      "text": "Microtask Queue",
-      "isCorrect": true,
+      "id": "q-fdp-4-opt-A",
+      "questionId": "q-fdp-4",
+      "text": "Encryption",
+      "isCorrect": false,
       "order": 1
     },
     {
-      "id": "opt-4-b",
-      "questionId": "q-4",
-      "text": "Macrotask Queue (Task Queue)",
-      "isCorrect": false,
+      "id": "q-fdp-4-opt-B",
+      "questionId": "q-fdp-4",
+      "text": "Collision",
+      "isCorrect": true,
       "order": 2
     },
     {
-      "id": "opt-4-c",
-      "questionId": "q-4",
-      "text": "Animation Frame Queue",
+      "id": "q-fdp-4-opt-C",
+      "questionId": "q-fdp-4",
+      "text": "Salting",
       "isCorrect": false,
       "order": 3
     },
     {
-      "id": "opt-4-d",
-      "questionId": "q-4",
-      "text": "I/O Polling Queue",
+      "id": "q-fdp-4-opt-D",
+      "questionId": "q-fdp-4",
+      "text": "Tokenization",
       "isCorrect": false,
       "order": 4
     },
     {
-      "id": "opt-5-a",
-      "questionId": "q-5",
-      "text": "\"object\"",
-      "isCorrect": true,
+      "id": "q-fdp-5-opt-A",
+      "questionId": "q-fdp-5",
+      "text": "Kavita123",
+      "isCorrect": false,
       "order": 1
     },
     {
-      "id": "opt-5-b",
-      "questionId": "q-5",
-      "text": "\"null\"",
+      "id": "q-fdp-5-opt-B",
+      "questionId": "q-fdp-5",
+      "text": "Password@123",
       "isCorrect": false,
       "order": 2
     },
     {
-      "id": "opt-5-c",
-      "questionId": "q-5",
-      "text": "\"undefined\"",
+      "id": "q-fdp-5-opt-C",
+      "questionId": "q-fdp-5",
+      "text": "Qwerty@2026",
       "isCorrect": false,
       "order": 3
     },
     {
-      "id": "opt-5-d",
-      "questionId": "q-5",
-      "text": "\"boolean\"",
+      "id": "q-fdp-5-opt-D",
+      "questionId": "q-fdp-5",
+      "text": "A long, unique passphrase with multiple random words",
+      "isCorrect": true,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-6-opt-A",
+      "questionId": "q-fdp-6",
+      "text": "Private key",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-6-opt-B",
+      "questionId": "q-fdp-6",
+      "text": "Session key",
+      "isCorrect": false,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-6-opt-C",
+      "questionId": "q-fdp-6",
+      "text": "Public key",
+      "isCorrect": true,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-6-opt-D",
+      "questionId": "q-fdp-6",
+      "text": "Master key",
       "isCorrect": false,
       "order": 4
     },
     {
-      "id": "opt-6-a",
-      "questionId": "q-6",
-      "text": "True",
-      "isCorrect": true,
+      "id": "q-fdp-7-opt-A",
+      "questionId": "q-fdp-7",
+      "text": "Confidentiality only",
+      "isCorrect": false,
       "order": 1
     },
     {
-      "id": "opt-6-b",
-      "questionId": "q-6",
-      "text": "False",
-      "isCorrect": false,
-      "order": 2
-    },
-    {
-      "id": "opt-7-a",
-      "questionId": "q-7",
-      "text": "React compares state by shallow reference equality; mutations do not trigger re-renders",
+      "id": "q-fdp-7-opt-B",
+      "questionId": "q-fdp-7",
+      "text": "Authentication and integrity",
       "isCorrect": true,
-      "order": 1
-    },
-    {
-      "id": "opt-7-b",
-      "questionId": "q-7",
-      "text": "Direct mutations crash the browser JavaScript garbage collector",
-      "isCorrect": false,
       "order": 2
     },
     {
-      "id": "opt-7-c",
-      "questionId": "q-7",
-      "text": "Direct mutations convert state properties into strings",
+      "id": "q-fdp-7-opt-C",
+      "questionId": "q-fdp-7",
+      "text": "Compression",
       "isCorrect": false,
       "order": 3
     },
     {
-      "id": "opt-7-d",
-      "questionId": "q-7",
-      "text": "React immediately throws a runtime TypeError",
+      "id": "q-fdp-7-opt-D",
+      "questionId": "q-fdp-7",
+      "text": "Data availability",
       "isCorrect": false,
       "order": 4
     },
     {
-      "id": "opt-8-a",
-      "questionId": "q-8",
-      "text": "Before the next effect runs and during unmounting",
+      "id": "q-fdp-8-opt-A",
+      "questionId": "q-fdp-8",
+      "text": "Salting",
       "isCorrect": true,
       "order": 1
     },
     {
-      "id": "opt-8-b",
-      "questionId": "q-8",
-      "text": "Only when the browser window is closed",
+      "id": "q-fdp-8-opt-B",
+      "questionId": "q-fdp-8",
+      "text": "Encoding",
       "isCorrect": false,
       "order": 2
     },
     {
-      "id": "opt-8-c",
-      "questionId": "q-8",
-      "text": "Immediately before the initial component render",
+      "id": "q-fdp-8-opt-C",
+      "questionId": "q-fdp-8",
+      "text": "Encryption",
       "isCorrect": false,
       "order": 3
     },
     {
-      "id": "opt-8-d",
-      "questionId": "q-8",
-      "text": "Only once every 60 seconds",
+      "id": "q-fdp-8-opt-D",
+      "questionId": "q-fdp-8",
+      "text": "Fragmentation",
       "isCorrect": false,
       "order": 4
     },
     {
-      "id": "opt-9-a",
-      "questionId": "q-9",
-      "text": "True",
+      "id": "q-fdp-9-opt-A",
+      "questionId": "q-fdp-9",
+      "text": "Network cables",
       "isCorrect": false,
       "order": 1
     },
     {
-      "id": "opt-9-b",
-      "questionId": "q-9",
-      "text": "False",
+      "id": "q-fdp-9-opt-B",
+      "questionId": "q-fdp-9",
+      "text": "Database queries and input handling",
       "isCorrect": true,
       "order": 2
     },
     {
-      "id": "opt-10-a",
-      "questionId": "q-10",
-      "text": "401 means unauthenticated (identity needed); 403 means authenticated but unauthorized (forbidden)",
-      "isCorrect": true,
-      "order": 1
-    },
-    {
-      "id": "opt-10-b",
-      "questionId": "q-10",
-      "text": "401 is a client network timeout; 403 is an internal server database crash",
-      "isCorrect": false,
-      "order": 2
-    },
-    {
-      "id": "opt-10-c",
-      "questionId": "q-10",
-      "text": "401 is for GET requests only; 403 is for POST and PUT requests",
+      "id": "q-fdp-9-opt-C",
+      "questionId": "q-fdp-9",
+      "text": "Operating-system hardware",
       "isCorrect": false,
       "order": 3
     },
     {
-      "id": "opt-10-d",
-      "questionId": "q-10",
-      "text": "Both codes mean exactly the same and can be used interchangeably",
+      "id": "q-fdp-9-opt-D",
+      "questionId": "q-fdp-9",
+      "text": "Blockchain consensus",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-10-opt-A",
+      "questionId": "q-fdp-10",
+      "text": "IDS",
+      "isCorrect": true,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-10-opt-B",
+      "questionId": "q-fdp-10",
+      "text": "DNS",
+      "isCorrect": false,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-10-opt-C",
+      "questionId": "q-fdp-10",
+      "text": "DHCP",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-10-opt-D",
+      "questionId": "q-fdp-10",
+      "text": "NAT",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-11-opt-A",
+      "questionId": "q-fdp-11",
+      "text": "Has existed for exactly zero days",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-11-opt-B",
+      "questionId": "q-fdp-11",
+      "text": "Has no possible impact",
+      "isCorrect": false,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-11-opt-C",
+      "questionId": "q-fdp-11",
+      "text": "Is unknown or has no available patch when exploited",
+      "isCorrect": true,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-11-opt-D",
+      "questionId": "q-fdp-11",
+      "text": "Can only affect zero-day-old systems",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-12-opt-A",
+      "questionId": "q-fdp-12",
+      "text": "Social engineering",
+      "isCorrect": true,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-12-opt-B",
+      "questionId": "q-fdp-12",
+      "text": "Packet switching",
+      "isCorrect": false,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-12-opt-C",
+      "questionId": "q-fdp-12",
+      "text": "Load balancing",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-12-opt-D",
+      "questionId": "q-fdp-12",
+      "text": "Data deduplication",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-13-opt-A",
+      "questionId": "q-fdp-13",
+      "text": "Two passwords",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-13-opt-B",
+      "questionId": "q-fdp-13",
+      "text": "Two or more independent authentication factors",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-13-opt-C",
+      "questionId": "q-fdp-13",
+      "text": "Multiple usernames",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-13-opt-D",
+      "questionId": "q-fdp-13",
+      "text": "Only biometric authentication",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-14-opt-A",
+      "questionId": "q-fdp-14",
+      "text": "Something you know",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-14-opt-B",
+      "questionId": "q-fdp-14",
+      "text": "Something you have",
+      "isCorrect": false,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-14-opt-C",
+      "questionId": "q-fdp-14",
+      "text": "Something you are",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-14-opt-D",
+      "questionId": "q-fdp-14",
+      "text": "Something you download",
+      "isCorrect": true,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-15-opt-A",
+      "questionId": "q-fdp-15",
+      "text": "Improve system performance",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-15-opt-B",
+      "questionId": "q-fdp-15",
+      "text": "Encrypt or lock data and demand payment",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-15-opt-C",
+      "questionId": "q-fdp-15",
+      "text": "Increase network bandwidth",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-15-opt-D",
+      "questionId": "q-fdp-15",
+      "text": "Remove advertisements",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-16-opt-A",
+      "questionId": "q-fdp-16",
+      "text": "Open Access",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-16-opt-B",
+      "questionId": "q-fdp-16",
+      "text": "Zero Trust",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-16-opt-C",
+      "questionId": "q-fdp-16",
+      "text": "Single Sign-On",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-16-opt-D",
+      "questionId": "q-fdp-16",
+      "text": "Least Encryption",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-17-opt-A",
+      "questionId": "q-fdp-17",
+      "text": "Maximum possible access",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-17-opt-B",
+      "questionId": "q-fdp-17",
+      "text": "Access only necessary for their role",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-17-opt-C",
+      "questionId": "q-fdp-17",
+      "text": "Administrator access by default",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-17-opt-D",
+      "questionId": "q-fdp-17",
+      "text": "Access to all public data",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-18-opt-A",
+      "questionId": "q-fdp-18",
+      "text": "Physical access to computers",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-18-opt-B",
+      "questionId": "q-fdp-18",
+      "text": "Network traffic based on security rules",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-18-opt-C",
+      "questionId": "q-fdp-18",
+      "text": "Password complexity",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-18-opt-D",
+      "questionId": "q-fdp-18",
+      "text": "Database normalization",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-19-opt-A",
+      "questionId": "q-fdp-19",
+      "text": "Man-in-the-Middle",
+      "isCorrect": true,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-19-opt-B",
+      "questionId": "q-fdp-19",
+      "text": "Brute force",
+      "isCorrect": false,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-19-opt-C",
+      "questionId": "q-fdp-19",
+      "text": "Ransomware",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-19-opt-D",
+      "questionId": "q-fdp-19",
+      "text": "Buffer overflow",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-20-opt-A",
+      "questionId": "q-fdp-20",
+      "text": "Plain HTTP only",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-20-opt-B",
+      "questionId": "q-fdp-20",
+      "text": "TLS encryption",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-20-opt-C",
+      "questionId": "q-fdp-20",
+      "text": "FTP",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-20-opt-D",
+      "questionId": "q-fdp-20",
+      "text": "DNS caching",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-21-opt-A",
+      "questionId": "q-fdp-21",
+      "text": "A centralized database",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-21-opt-B",
+      "questionId": "q-fdp-21",
+      "text": "A distributed ledger maintained across participating nodes",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-21-opt-C",
+      "questionId": "q-fdp-21",
+      "text": "A password-management system",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-21-opt-D",
+      "questionId": "q-fdp-21",
+      "text": "A type of firewall",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-22-opt-A",
+      "questionId": "q-fdp-22",
+      "text": "Increase file size",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-22-opt-B",
+      "questionId": "q-fdp-22",
+      "text": "Provide a fixed-size representation and help detect data modification",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-22-opt-C",
+      "questionId": "q-fdp-22",
+      "text": "Hide the blockchain completely",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-22-opt-D",
+      "questionId": "q-fdp-22",
+      "text": "Replace consensus mechanisms",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-23-opt-A",
+      "questionId": "q-fdp-23",
+      "text": "Only that block with no further effect",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-23-opt-B",
+      "questionId": "q-fdp-23",
+      "text": "Subsequent linked blocks and overcoming network consensus",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-23-opt-C",
+      "questionId": "q-fdp-23",
+      "text": "Only the user's password",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-23-opt-D",
+      "questionId": "q-fdp-23",
+      "text": "The internet connection",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-24-opt-A",
+      "questionId": "q-fdp-24",
+      "text": "Immutability",
+      "isCorrect": true,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-24-opt-B",
+      "questionId": "q-fdp-24",
+      "text": "Centralization",
+      "isCorrect": false,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-24-opt-C",
+      "questionId": "q-fdp-24",
+      "text": "Compression",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-24-opt-D",
+      "questionId": "q-fdp-24",
+      "text": "Virtualization",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-25-opt-A",
+      "questionId": "q-fdp-25",
+      "text": "Proof of Stake",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-25-opt-B",
+      "questionId": "q-fdp-25",
+      "text": "Proof of Work",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-25-opt-C",
+      "questionId": "q-fdp-25",
+      "text": "Proof of Authority",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-25-opt-D",
+      "questionId": "q-fdp-25",
+      "text": "Proof of Identity",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-26-opt-A",
+      "questionId": "q-fdp-26",
+      "text": "Store passwords",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-26-opt-B",
+      "questionId": "q-fdp-26",
+      "text": "Solve a computationally difficult puzzle",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-26-opt-C",
+      "questionId": "q-fdp-26",
+      "text": "Encrypt all internet traffic",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-26-opt-D",
+      "questionId": "q-fdp-26",
+      "text": "Approve usernames",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-27-opt-A",
+      "questionId": "q-fdp-27",
+      "text": "Proof of Work",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-27-opt-B",
+      "questionId": "q-fdp-27",
+      "text": "Proof of Stake",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-27-opt-C",
+      "questionId": "q-fdp-27",
+      "text": "Proof of Download",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-27-opt-D",
+      "questionId": "q-fdp-27",
+      "text": "Proof of Encryption",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-28-opt-A",
+      "questionId": "q-fdp-28",
+      "text": "A legal contract stored only on paper",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-28-opt-B",
+      "questionId": "q-fdp-28",
+      "text": "Self-executing code deployed on a blockchain",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-28-opt-C",
+      "questionId": "q-fdp-28",
+      "text": "A blockchain password",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-28-opt-D",
+      "questionId": "q-fdp-28",
+      "text": "An antivirus program",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-29-opt-A",
+      "questionId": "q-fdp-29",
+      "text": "Cryptocurrency itself as a physical file",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-29-opt-B",
+      "questionId": "q-fdp-29",
+      "text": "Cryptographic keys used to access blockchain assets",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-29-opt-C",
+      "questionId": "q-fdp-29",
+      "text": "Internet bandwidth",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-29-opt-D",
+      "questionId": "q-fdp-29",
+      "text": "Blockchain servers",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-30-opt-A",
+      "questionId": "q-fdp-30",
+      "text": "Public key",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-30-opt-B",
+      "questionId": "q-fdp-30",
+      "text": "Private key",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-30-opt-C",
+      "questionId": "q-fdp-30",
+      "text": "Hash value",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-30-opt-D",
+      "questionId": "q-fdp-30",
+      "text": "Block number",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-31-opt-A",
+      "questionId": "q-fdp-31",
+      "text": "Blockchain becomes centralized",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-31-opt-B",
+      "questionId": "q-fdp-31",
+      "text": "Loss of access/control over associated assets",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-31-opt-C",
+      "questionId": "q-fdp-31",
+      "text": "All blockchain blocks disappear",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-31-opt-D",
+      "questionId": "q-fdp-31",
+      "text": "The internet stops working",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-32-opt-A",
+      "questionId": "q-fdp-32",
+      "text": "Shared and tamper-evident ledger",
+      "isCorrect": true,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-32-opt-B",
+      "questionId": "q-fdp-32",
+      "text": "Centralized password storage",
+      "isCorrect": false,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-32-opt-C",
+      "questionId": "q-fdp-32",
+      "text": "Unlimited storage",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-32-opt-D",
+      "questionId": "q-fdp-32",
+      "text": "Anonymous email",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-33-opt-A",
+      "questionId": "q-fdp-33",
+      "text": "Only a password",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-33-opt-B",
+      "questionId": "q-fdp-33",
+      "text": "Transactions and information linking it to the previous block",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-33-opt-C",
+      "questionId": "q-fdp-33",
+      "text": "Only user photographs",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-33-opt-D",
+      "questionId": "q-fdp-33",
+      "text": "Only cryptocurrency prices",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-34-opt-A",
+      "questionId": "q-fdp-34",
+      "text": "Blockchain data can never be changed under any circumstances",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-34-opt-B",
+      "questionId": "q-fdp-34",
+      "text": "Confirmed data is difficult to alter because of cryptographic linking and consensus",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-34-opt-C",
+      "questionId": "q-fdp-34",
+      "text": "Blockchain data is always encrypted",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-34-opt-D",
+      "questionId": "q-fdp-34",
+      "text": "Blockchain eliminates all cyberattacks",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-35-opt-A",
+      "questionId": "q-fdp-35",
+      "text": "It does not use cryptography",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-35-opt-B",
+      "questionId": "q-fdp-35",
+      "text": "Participation and access can be restricted",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-35-opt-C",
+      "questionId": "q-fdp-35",
+      "text": "It cannot store transactions",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-35-opt-D",
+      "questionId": "q-fdp-35",
+      "text": "It cannot use consensus",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-36-opt-A",
+      "questionId": "q-fdp-36",
+      "text": "Converting paper documents into PDFs only",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-36-opt-B",
+      "questionId": "q-fdp-36",
+      "text": "Using digital technologies to fundamentally improve processes, services and business models",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-36-opt-C",
+      "questionId": "q-fdp-36",
+      "text": "Purchasing more computers",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-36-opt-D",
+      "questionId": "q-fdp-36",
+      "text": "Installing antivirus software",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-37-opt-A",
+      "questionId": "q-fdp-37",
+      "text": "Cloud computing",
+      "isCorrect": true,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-37-opt-B",
+      "questionId": "q-fdp-37",
+      "text": "Blockchain",
+      "isCorrect": false,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-37-opt-C",
+      "questionId": "q-fdp-37",
+      "text": "Firewall",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-37-opt-D",
+      "questionId": "q-fdp-37",
+      "text": "BIOS",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-38-opt-A",
+      "questionId": "q-fdp-38",
+      "text": "Scanning a paper form",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-38-opt-B",
+      "questionId": "q-fdp-38",
+      "text": "Converting a paper report to PDF",
+      "isCorrect": false,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-38-opt-C",
+      "questionId": "q-fdp-38",
+      "text": "Redesigning a service around an automated digital workflow",
+      "isCorrect": true,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-38-opt-D",
+      "questionId": "q-fdp-38",
+      "text": "Printing a digital document",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-39-opt-A",
+      "questionId": "q-fdp-39",
+      "text": "They never communicate over networks",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-39-opt-B",
+      "questionId": "q-fdp-39",
+      "text": "Many connected devices increase the attack surface",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-39-opt-C",
+      "questionId": "q-fdp-39",
+      "text": "They cannot collect data",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-39-opt-D",
+      "questionId": "q-fdp-39",
+      "text": "They always use blockchain",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-40-opt-A",
+      "questionId": "q-fdp-40",
+      "text": "Big Data Analytics",
+      "isCorrect": true,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-40-opt-B",
+      "questionId": "q-fdp-40",
+      "text": "HDMI",
+      "isCorrect": false,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-40-opt-C",
+      "questionId": "q-fdp-40",
+      "text": "BIOS",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-40-opt-D",
+      "questionId": "q-fdp-40",
+      "text": "FTP",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-41-opt-A",
+      "questionId": "q-fdp-41",
+      "text": "Eliminating the need for security professionals",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-41-opt-B",
+      "questionId": "q-fdp-41",
+      "text": "Detecting patterns and anomalies in large volumes of data",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-41-opt-C",
+      "questionId": "q-fdp-41",
+      "text": "Making passwords unnecessary",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-41-opt-D",
+      "questionId": "q-fdp-41",
+      "text": "Preventing every possible cyberattack",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-42-opt-A",
+      "questionId": "q-fdp-42",
+      "text": "SaaS",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-42-opt-B",
+      "questionId": "q-fdp-42",
+      "text": "PaaS",
+      "isCorrect": false,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-42-opt-C",
+      "questionId": "q-fdp-42",
+      "text": "IaaS",
+      "isCorrect": true,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-42-opt-D",
+      "questionId": "q-fdp-42",
+      "text": "FaaS",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-43-opt-A",
+      "questionId": "q-fdp-43",
+      "text": "Manages physical servers",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-43-opt-B",
+      "questionId": "q-fdp-43",
+      "text": "Uses software provided and managed by the service provider",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-43-opt-C",
+      "questionId": "q-fdp-43",
+      "text": "Builds the cloud data center",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-43-opt-D",
+      "questionId": "q-fdp-43",
+      "text": "Controls the underlying hypervisor",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-44-opt-A",
+      "questionId": "q-fdp-44",
+      "text": "Create duplicate passwords",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-44-opt-B",
+      "questionId": "q-fdp-44",
+      "text": "Create digital representations of physical systems or objects",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-44-opt-C",
+      "questionId": "q-fdp-44",
+      "text": "Replace blockchain consensus",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-44-opt-D",
+      "questionId": "q-fdp-44",
+      "text": "Encrypt emails",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-45-opt-A",
+      "questionId": "q-fdp-45",
+      "text": "Blockchain",
+      "isCorrect": true,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-45-opt-B",
+      "questionId": "q-fdp-45",
+      "text": "Calculator",
+      "isCorrect": false,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-45-opt-C",
+      "questionId": "q-fdp-45",
+      "text": "Word processor",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-45-opt-D",
+      "questionId": "q-fdp-45",
+      "text": "Image compression",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-46-opt-A",
+      "questionId": "q-fdp-46",
+      "text": "Blockchain cannot store data",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-46-opt-B",
+      "questionId": "q-fdp-46",
+      "text": "Immutability may conflict with privacy and data-erasure requirements",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-46-opt-C",
+      "questionId": "q-fdp-46",
+      "text": "Blockchain automatically deletes old data",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-46-opt-D",
+      "questionId": "q-fdp-46",
+      "text": "Public blockchains have no cryptography",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-47-opt-A",
+      "questionId": "q-fdp-47",
+      "text": "Blockchain automatically corrects all smart-contract bugs",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-47-opt-B",
+      "questionId": "q-fdp-47",
+      "text": "Immutability can make correcting deployed contract logic difficult",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-47-opt-C",
+      "questionId": "q-fdp-47",
+      "text": "Hashing prevents all programming errors",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-47-opt-D",
+      "questionId": "q-fdp-47",
+      "text": "Consensus guarantees bug-free code",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-48-opt-A",
+      "questionId": "q-fdp-48",
+      "text": "Maintaining a tamper-evident ledger",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-48-opt-B",
+      "questionId": "q-fdp-48",
+      "text": "Whether the original sensor supplied false or manipulated data",
+      "isCorrect": true,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-48-opt-C",
+      "questionId": "q-fdp-48",
+      "text": "Sharing records among participants",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-48-opt-D",
+      "questionId": "q-fdp-48",
+      "text": "Recording transactions",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-49-opt-A",
+      "questionId": "q-fdp-49",
+      "text": "Deepfake-enabled social engineering",
+      "isCorrect": true,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-49-opt-B",
+      "questionId": "q-fdp-49",
+      "text": "Data normalization",
+      "isCorrect": false,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-49-opt-C",
+      "questionId": "q-fdp-49",
+      "text": "Blockchain mining",
+      "isCorrect": false,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-49-opt-D",
+      "questionId": "q-fdp-49",
+      "text": "Load balancing",
+      "isCorrect": false,
+      "order": 4
+    },
+    {
+      "id": "q-fdp-50-opt-A",
+      "questionId": "q-fdp-50",
+      "text": "Blockchain alone",
+      "isCorrect": false,
+      "order": 1
+    },
+    {
+      "id": "q-fdp-50-opt-B",
+      "questionId": "q-fdp-50",
+      "text": "Antivirus alone",
+      "isCorrect": false,
+      "order": 2
+    },
+    {
+      "id": "q-fdp-50-opt-C",
+      "questionId": "q-fdp-50",
+      "text": "Cybersecurity + privacy + secure technology design + user awareness + governance",
+      "isCorrect": true,
+      "order": 3
+    },
+    {
+      "id": "q-fdp-50-opt-D",
+      "questionId": "q-fdp-50",
+      "text": "Cloud computing alone",
       "isCorrect": false,
       "order": 4
     }
   ],
-  "attempts": [
-    {
-      "id": "attempt-demo-1",
-      "testId": "test-web-dev-1",
-      "userId": "user-demo-1",
-      "status": "COMPLETED",
-      "startedAt": "2026-10-04T04:30:00.000Z",
-      "submittedAt": "2026-10-04T04:46:15.000Z",
-      "timeSpentSeconds": 975,
-      "tabSwitchCount": 0,
-      "totalQuestions": 10,
-      "correctAnswers": 9,
-      "incorrectAnswers": 1,
-      "unanswered": 0,
-      "score": 9,
-      "maxScore": 10,
-      "percentage": 90,
-      "isPassed": true,
-      "answers": []
-    },
-    {
-      "id": "attempt-demo-2",
-      "testId": "test-web-dev-1",
-      "userId": "user-demo-2",
-      "status": "COMPLETED",
-      "startedAt": "2026-10-03T14:10:00.000Z",
-      "submittedAt": "2026-10-03T14:28:40.000Z",
-      "timeSpentSeconds": 1120,
-      "tabSwitchCount": 1,
-      "totalQuestions": 10,
-      "correctAnswers": 8,
-      "incorrectAnswers": 2,
-      "unanswered": 0,
-      "score": 8,
-      "maxScore": 10,
-      "percentage": 80,
-      "isPassed": true,
-      "answers": []
-    },
-    {
-      "id": "att-1791093794426-4yn1b",
-      "testId": "test-web-dev-1",
-      "userId": "user-1791093794421-8mz5d",
-      "status": "COMPLETED",
-      "startedAt": "2026-10-04T06:03:14.426Z",
-      "submittedAt": "2026-10-04T06:03:14.581Z",
-      "timeSpentSeconds": 850,
-      "tabSwitchCount": 0,
-      "totalQuestions": 10,
-      "correctAnswers": 8,
-      "incorrectAnswers": 2,
-      "unanswered": 0,
-      "score": 8,
-      "maxScore": 10,
-      "percentage": 80,
-      "isPassed": true,
-      "answers": []
-    },
-    {
-      "id": "att-1791093851839-7ft1d",
-      "testId": "test-web-dev-1",
-      "userId": "user-1791093851837-qv1zw",
-      "status": "COMPLETED",
-      "startedAt": "2026-10-04T06:04:11.839Z",
-      "submittedAt": "2026-10-04T06:04:11.875Z",
-      "timeSpentSeconds": 600,
-      "tabSwitchCount": 0,
-      "totalQuestions": 10,
-      "correctAnswers": 3,
-      "incorrectAnswers": 7,
-      "unanswered": 0,
-      "score": 3,
-      "maxScore": 10,
-      "percentage": 30,
-      "isPassed": false,
-      "answers": []
-    }
-  ],
-  "answers": [
-    {
-      "id": "ans-1791093794465-j480",
-      "attemptId": "att-1791093794426-4yn1b",
-      "questionId": "q-1",
-      "selectedOptionId": "opt-1-a",
-      "isMarkedForReview": true,
-      "isCorrect": true,
-      "createdAt": "2026-10-04T06:03:14.465Z",
-      "updatedAt": "2026-10-04T06:03:14.562Z"
-    },
-    {
-      "id": "ans-1791093794565-8kfe",
-      "attemptId": "att-1791093794426-4yn1b",
-      "questionId": "q-2",
-      "selectedOptionId": "opt-2-a",
-      "isMarkedForReview": false,
-      "isCorrect": true,
-      "createdAt": "2026-10-04T06:03:14.565Z",
-      "updatedAt": "2026-10-04T06:03:14.565Z"
-    },
-    {
-      "id": "ans-1791093794567-nik9",
-      "attemptId": "att-1791093794426-4yn1b",
-      "questionId": "q-3",
-      "selectedOptionId": "opt-3-b",
-      "isMarkedForReview": false,
-      "isCorrect": true,
-      "createdAt": "2026-10-04T06:03:14.567Z",
-      "updatedAt": "2026-10-04T06:03:14.567Z"
-    },
-    {
-      "id": "ans-1791093794569-7akb",
-      "attemptId": "att-1791093794426-4yn1b",
-      "questionId": "q-4",
-      "selectedOptionId": "opt-4-a",
-      "isMarkedForReview": false,
-      "isCorrect": true,
-      "createdAt": "2026-10-04T06:03:14.569Z",
-      "updatedAt": "2026-10-04T06:03:14.569Z"
-    },
-    {
-      "id": "ans-1791093794571-katy",
-      "attemptId": "att-1791093794426-4yn1b",
-      "questionId": "q-5",
-      "selectedOptionId": "opt-5-a",
-      "isMarkedForReview": false,
-      "isCorrect": true,
-      "createdAt": "2026-10-04T06:03:14.571Z",
-      "updatedAt": "2026-10-04T06:03:14.571Z"
-    },
-    {
-      "id": "ans-1791093794573-jo8t",
-      "attemptId": "att-1791093794426-4yn1b",
-      "questionId": "q-6",
-      "selectedOptionId": "opt-6-a",
-      "isMarkedForReview": false,
-      "isCorrect": true,
-      "createdAt": "2026-10-04T06:03:14.573Z",
-      "updatedAt": "2026-10-04T06:03:14.573Z"
-    },
-    {
-      "id": "ans-1791093794575-tg7u",
-      "attemptId": "att-1791093794426-4yn1b",
-      "questionId": "q-7",
-      "selectedOptionId": "opt-7-a",
-      "isMarkedForReview": false,
-      "isCorrect": true,
-      "createdAt": "2026-10-04T06:03:14.575Z",
-      "updatedAt": "2026-10-04T06:03:14.575Z"
-    },
-    {
-      "id": "ans-1791093794576-8dxf",
-      "attemptId": "att-1791093794426-4yn1b",
-      "questionId": "q-8",
-      "selectedOptionId": "opt-8-a",
-      "isMarkedForReview": false,
-      "isCorrect": true,
-      "createdAt": "2026-10-04T06:03:14.576Z",
-      "updatedAt": "2026-10-04T06:03:14.576Z"
-    },
-    {
-      "id": "ans-1791093794578-b5va",
-      "attemptId": "att-1791093794426-4yn1b",
-      "questionId": "q-9",
-      "selectedOptionId": "opt-9-a",
-      "isMarkedForReview": false,
-      "isCorrect": false,
-      "createdAt": "2026-10-04T06:03:14.578Z",
-      "updatedAt": "2026-10-04T06:03:14.578Z"
-    },
-    {
-      "id": "ans-1791093794580-91la",
-      "attemptId": "att-1791093794426-4yn1b",
-      "questionId": "q-10",
-      "selectedOptionId": "opt-10-b",
-      "isMarkedForReview": false,
-      "isCorrect": false,
-      "createdAt": "2026-10-04T06:03:14.580Z",
-      "updatedAt": "2026-10-04T06:03:14.580Z"
-    },
-    {
-      "id": "ans-1791093851859-wdvl",
-      "attemptId": "att-1791093851839-7ft1d",
-      "questionId": "q-1",
-      "selectedOptionId": "opt-1-a",
-      "isMarkedForReview": false,
-      "isCorrect": true,
-      "createdAt": "2026-10-04T06:04:11.859Z",
-      "updatedAt": "2026-10-04T06:04:11.859Z"
-    },
-    {
-      "id": "ans-1791093851861-3z30",
-      "attemptId": "att-1791093851839-7ft1d",
-      "questionId": "q-2",
-      "selectedOptionId": "opt-2-a",
-      "isMarkedForReview": false,
-      "isCorrect": true,
-      "createdAt": "2026-10-04T06:04:11.861Z",
-      "updatedAt": "2026-10-04T06:04:11.861Z"
-    },
-    {
-      "id": "ans-1791093851863-bkth",
-      "attemptId": "att-1791093851839-7ft1d",
-      "questionId": "q-3",
-      "selectedOptionId": "opt-3-b",
-      "isMarkedForReview": false,
-      "isCorrect": true,
-      "createdAt": "2026-10-04T06:04:11.863Z",
-      "updatedAt": "2026-10-04T06:04:11.863Z"
-    },
-    {
-      "id": "ans-1791093851864-j3n5",
-      "attemptId": "att-1791093851839-7ft1d",
-      "questionId": "q-4",
-      "selectedOptionId": "opt-4-b",
-      "isMarkedForReview": false,
-      "isCorrect": false,
-      "createdAt": "2026-10-04T06:04:11.864Z",
-      "updatedAt": "2026-10-04T06:04:11.864Z"
-    },
-    {
-      "id": "ans-1791093851866-py87",
-      "attemptId": "att-1791093851839-7ft1d",
-      "questionId": "q-5",
-      "selectedOptionId": "opt-5-b",
-      "isMarkedForReview": false,
-      "isCorrect": false,
-      "createdAt": "2026-10-04T06:04:11.866Z",
-      "updatedAt": "2026-10-04T06:04:11.866Z"
-    },
-    {
-      "id": "ans-1791093851867-emx5",
-      "attemptId": "att-1791093851839-7ft1d",
-      "questionId": "q-6",
-      "selectedOptionId": "opt-6-b",
-      "isMarkedForReview": false,
-      "isCorrect": false,
-      "createdAt": "2026-10-04T06:04:11.867Z",
-      "updatedAt": "2026-10-04T06:04:11.867Z"
-    },
-    {
-      "id": "ans-1791093851870-yzu1",
-      "attemptId": "att-1791093851839-7ft1d",
-      "questionId": "q-7",
-      "selectedOptionId": "opt-7-b",
-      "isMarkedForReview": false,
-      "isCorrect": false,
-      "createdAt": "2026-10-04T06:04:11.870Z",
-      "updatedAt": "2026-10-04T06:04:11.870Z"
-    },
-    {
-      "id": "ans-1791093851871-sh9f",
-      "attemptId": "att-1791093851839-7ft1d",
-      "questionId": "q-8",
-      "selectedOptionId": "opt-8-b",
-      "isMarkedForReview": false,
-      "isCorrect": false,
-      "createdAt": "2026-10-04T06:04:11.871Z",
-      "updatedAt": "2026-10-04T06:04:11.871Z"
-    },
-    {
-      "id": "ans-1791093851873-0rvy",
-      "attemptId": "att-1791093851839-7ft1d",
-      "questionId": "q-9",
-      "selectedOptionId": "opt-9-a",
-      "isMarkedForReview": false,
-      "isCorrect": false,
-      "createdAt": "2026-10-04T06:04:11.873Z",
-      "updatedAt": "2026-10-04T06:04:11.873Z"
-    },
-    {
-      "id": "ans-1791093851874-zu6i",
-      "attemptId": "att-1791093851839-7ft1d",
-      "questionId": "q-10",
-      "selectedOptionId": "opt-10-b",
-      "isMarkedForReview": false,
-      "isCorrect": false,
-      "createdAt": "2026-10-04T06:04:11.874Z",
-      "updatedAt": "2026-10-04T06:04:11.874Z"
-    }
-  ],
-  "certificates": [
-    {
-      "id": "cert-db-1",
-      "certificateId": "CERT-2026-8F42K9",
-      "attemptId": "attempt-demo-1",
-      "userId": "user-demo-1",
-      "testId": "test-web-dev-1",
-      "participantName": "Shardul Parihar",
-      "participantEmail": "shardulparihar.work@gmail.com",
-      "testTitle": "Web Development Fundamentals Assessment",
-      "score": 9,
-      "percentage": 90,
-      "issueDate": "2026-10-04T04:46:15.000Z",
-      "verificationUrl": "/verify/CERT-2026-8F42K9",
-      "emailSent": true,
-      "emailSentAt": "2026-10-04T04:46:20.000Z",
-      "createdAt": "2026-10-04T04:46:15.000Z"
-    },
-    {
-      "id": "cert-db-2",
-      "certificateId": "CERT-2026-9A77X2",
-      "attemptId": "attempt-demo-2",
-      "userId": "user-demo-2",
-      "testId": "test-web-dev-1",
-      "participantName": "Elena Rostova",
-      "participantEmail": "elena.rostova@example.com",
-      "testTitle": "Web Development Fundamentals Assessment",
-      "score": 8,
-      "percentage": 80,
-      "issueDate": "2026-10-03T14:28:40.000Z",
-      "verificationUrl": "/verify/CERT-2026-9A77X2",
-      "emailSent": true,
-      "emailSentAt": "2026-10-03T14:28:45.000Z",
-      "createdAt": "2026-10-03T14:28:40.000Z"
-    },
-    {
-      "id": "cert-1791093794584-azmo",
-      "certificateId": "CERT-2026-RE65LQ",
-      "attemptId": "att-1791093794426-4yn1b",
-      "userId": "user-1791093794421-8mz5d",
-      "testId": "test-web-dev-1",
-      "participantName": "Alex Chen",
-      "participantEmail": "alex.chen@example.com",
-      "testTitle": "Web Development Fundamentals Assessment",
-      "score": 8,
-      "percentage": 80,
-      "issueDate": "2026-10-04T06:03:14.584Z",
-      "verificationUrl": "/verify/CERT-2026-RE65LQ",
-      "emailSent": true,
-      "emailSentAt": "2026-10-04T06:03:14.806Z",
-      "createdAt": "2026-10-04T06:03:14.584Z"
-    }
-  ],
-  "emailLogs": [
-    {
-      "id": "log-1",
-      "certificateId": "CERT-2026-8F42K9",
-      "recipient": "shardulparihar.work@gmail.com",
-      "emailType": "CERTIFICATE_DELIVERY",
-      "status": "DELIVERED",
-      "providerId": "msg_resend_9921_demo",
-      "errorMessage": null,
-      "timestamp": "2026-10-04T04:46:20.000Z"
-    },
-    {
-      "id": "log-2",
-      "certificateId": "CERT-2026-9A77X2",
-      "recipient": "elena.rostova@example.com",
-      "emailType": "CERTIFICATE_DELIVERY",
-      "status": "DELIVERED",
-      "providerId": "msg_resend_8842_demo",
-      "errorMessage": null,
-      "timestamp": "2026-10-03T14:28:45.000Z"
-    },
-    {
-      "id": "log-1791093794805-2gey",
-      "certificateId": "CERT-2026-RE65LQ",
-      "recipient": "alex.chen@example.com",
-      "emailType": "CERTIFICATE_DELIVERY",
-      "status": "SIMULATED",
-      "providerId": "sim_msg_1791093794802_0xod",
-      "errorMessage": null,
-      "timestamp": "2026-10-04T06:03:14.805Z"
-    }
-  ]
+  "attempts": [],
+  "answers": [],
+  "certificates": [],
+  "emailLogs": []
 }

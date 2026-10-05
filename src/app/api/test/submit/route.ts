@@ -123,9 +123,8 @@ export async function POST(request: NextRequest) {
     }
 
     const percentage = maxScore > 0 ? Math.round((totalScore / maxScore) * 100 * 10) / 10 : 0;
-    const isPassed = percentage >= (test.passingPercentage || 60);
-
-    // Update Attempt record
+    // Update Attempt record (all submitted participants earn Certificate of Participation)
+    const isPassed = true;
     const updatedAttempt = db.attempt.update({
       where: { id: attempt.id },
       data: {
@@ -139,68 +138,67 @@ export async function POST(request: NextRequest) {
         score: totalScore,
         maxScore,
         percentage,
-        isPassed,
+        isPassed: true,
       },
     });
 
     let certificateRecord = null;
     let emailStatus = null;
 
-    // If passed: Generate Certificate, Create Certificate record, Send Email
-    if (isPassed) {
-      let uniqueCertId = generateUniqueCertificateId();
-      // Ensure uniqueness
-      while (db.certificate.findUnique({ where: { certificateId: uniqueCertId } })) {
-        uniqueCertId = generateUniqueCertificateId();
-      }
+    // Generate Certificate of Participation for every participant who submits
+    let uniqueCertId = generateUniqueCertificateId();
+    while (db.certificate.findUnique({ where: { certificateId: uniqueCertId } })) {
+      uniqueCertId = generateUniqueCertificateId();
+    }
 
-      certificateRecord = db.certificate.create({
-        data: {
-          certificateId: uniqueCertId,
-          attemptId: attempt.id,
-          userId: user.id,
-          testId: test.id,
-          participantName: user.name,
-          participantEmail: user.email,
-          testTitle: test.title,
-          score: totalScore,
-          percentage,
-          issueDate: new Date().toISOString(),
-          verificationUrl: `/verify/${uniqueCertId}`,
-          emailSent: false,
-          emailSentAt: null,
-        },
+    certificateRecord = db.certificate.create({
+      data: {
+        certificateId: uniqueCertId,
+        attemptId: attempt.id,
+        userId: user.id,
+        testId: test.id,
+        participantName: user.name,
+        participantEmail: user.email,
+        participantOrganization: user.organization || null,
+        testTitle: test.title,
+        score: totalScore,
+        percentage,
+        issueDate: new Date().toISOString(),
+        verificationUrl: `/verify/${uniqueCertId}`,
+        emailSent: false,
+        emailSentAt: null,
+      },
+    });
+
+    // Generate PDF buffer using official template
+    try {
+      const pdfBytes = await generateCertificatePdf({
+        certificateId: uniqueCertId,
+        participantName: user.name,
+        participantOrganization: user.organization || undefined,
+        testTitle: test.title,
+        score: totalScore,
+        maxScore,
+        percentage,
+        issueDate: certificateRecord.issueDate,
+        organizationName: test.organizationName,
+        certificateTitle: test.certificateTitle,
+        appUrl: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
       });
 
-      // Generate PDF buffer
-      try {
-        const pdfBytes = await generateCertificatePdf({
-          certificateId: uniqueCertId,
-          participantName: user.name,
-          testTitle: test.title,
-          score: totalScore,
-          maxScore,
-          percentage,
-          issueDate: certificateRecord.issueDate,
-          organizationName: test.organizationName,
-          certificateTitle: test.certificateTitle,
-          appUrl: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
-        });
+      // Trigger automated transactional email with attached PDF
+      const emailResult = await sendCertificateEmail({
+        recipientEmail: user.email,
+        recipientName: user.name,
+        testTitle: test.title,
+        certificateId: uniqueCertId,
+        pdfBuffer: pdfBytes,
+      });
 
-        // Trigger transactional email
-        const emailResult = await sendCertificateEmail({
-          recipientEmail: user.email,
-          recipientName: user.name,
-          testTitle: test.title,
-          certificateId: uniqueCertId,
-          pdfBuffer: pdfBytes,
-        });
-
-        emailStatus = emailResult;
-      } catch (err: any) {
-        console.error('Error generating PDF or sending email:', err);
-        emailStatus = { success: false, status: 'FAILED', error: err.message };
-      }
+      emailStatus = emailResult;
+    } catch (err: any) {
+      console.error('Error generating PDF or sending email:', err);
+      emailStatus = { success: false, status: 'FAILED', error: err.message };
     }
 
     return NextResponse.json({

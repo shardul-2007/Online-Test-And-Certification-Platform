@@ -23,14 +23,14 @@ export default function VerifyIndexPage() {
     <div className="min-h-screen bg-[#06080F] text-slate-100 py-16 md:py-24 flex items-center justify-center">
       <div className="max-w-xl w-full mx-auto px-4 space-y-8">
         <div className="text-center space-y-3">
-          <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto text-cyan-400 shadow-lg shadow-cyan-500/10">
+          <div className="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mx-auto text-amber-400 shadow-lg shadow-amber-500/10">
             <ShieldCheck className="w-7 h-7" />
           </div>
-          <h1 className="text-3xl font-extrabold text-white tracking-tight">
-            Official Credential Verification
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            NMIET &amp; ISTE Certificate Verification
           </h1>
-          <p className="text-sm text-slate-400 max-w-md mx-auto">
-            SkillCert Global Institute maintains a public cryptographic registry of all issued engineering and technical credentials.
+          <p className="text-xs sm:text-sm text-slate-400 max-w-md mx-auto">
+            Public verification portal for the Faculty Development Programme on Recent Advances in Cyber Security and Blockchain for Secure Digital Transformation (5th to 9th Oct, 2026).
           </p>
         </div>
 
@@ -46,13 +46,13 @@ export default function VerifyIndexPage() {
                 <input
                   type="text"
                   required
-                  placeholder="e.g. CERT-2026-8F42K9"
+                  placeholder="e.g. CERT-2026-FDP-8F42K9"
                   value={certId}
                   onChange={(e) => {
                     setCertId(e.target.value);
                     if (error) setError(null);
                   }}
-                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white font-mono placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white font-mono placeholder-slate-500 text-sm focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
                 />
               </div>
               {error && <p className="text-xs text-red-400 mt-1">{error}</p>}
@@ -60,39 +60,20 @@ export default function VerifyIndexPage() {
 
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-sm text-slate-950 bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 shadow-md shadow-cyan-500/20 transition cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-sm text-slate-950 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-yellow-300 shadow-md shadow-amber-500/20 transition cursor-pointer"
             >
               <ShieldCheck className="w-4 h-4" />
-              <span>Verify Credential Authenticity</span>
+              <span>Verify Certificate Authenticity</span>
             </button>
           </form>
-
-          {/* Quick Examples */}
-          <div className="pt-4 border-t border-slate-800/80 text-center space-y-2">
-            <span className="text-xs text-slate-500">Quick Test Credentials:</span>
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              <Link
-                href="/verify/CERT-2026-8F42K9"
-                className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300 hover:border-cyan-500 transition"
-              >
-                CERT-2026-8F42K9 (Shardul Parihar)
-              </Link>
-              <Link
-                href="/verify/CERT-2026-9A77X2"
-                className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300 hover:border-cyan-500 transition"
-              >
-                CERT-2026-9A77X2 (Elena Rostova)
-              </Link>
-            </div>
-          </div>
         </div>
 
         <div className="text-center">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-cyan-400 transition"
+            className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-amber-400 transition"
           >
-            <span>Return to SkillCert Homepage</span>
+            <span>Return to FDP Assessment Portal</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>

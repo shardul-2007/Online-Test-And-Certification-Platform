@@ -35,3 +35,5 @@ next-env.d.ts
 
 # temp stash
 _certificate_platform_stash
+.campus_crew_os_data.json
+*.pdf

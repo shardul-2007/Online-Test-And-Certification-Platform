@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import {
   Award,
@@ -17,15 +18,17 @@ import {
   Search,
   ExternalLink,
   Code2,
-  Terminal,
+  Lock,
   Cpu,
+  Layers,
+  BookOpen,
+  User,
 } from 'lucide-react';
 import TestRegisterModal from '@/components/TestRegisterModal';
 
 export default function LandingPage() {
   const router = useRouter();
-  const [tests, setTests] = useState<any[]>([]);
-  const [selectedTest, setSelectedTest] = useState<any | null>(null);
+  const [test, setTest] = useState<any | null>(null);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [verifyIdInput, setVerifyIdInput] = useState('');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -35,17 +38,13 @@ export default function LandingPage() {
       .then((res) => res.json())
       .then((data) => {
         if (data.success && data.tests?.length > 0) {
-          setTests(data.tests);
-          setSelectedTest(data.tests[0]);
+          setTest(data.tests[0]);
         }
       })
       .catch((err) => console.error('Failed to load tests:', err));
   }, []);
 
-  const handleStartTest = (test?: any) => {
-    if (test) {
-      setSelectedTest(test);
-    }
+  const handleStartTest = () => {
     setIsRegisterOpen(true);
   };
 
@@ -56,367 +55,457 @@ export default function LandingPage() {
     }
   };
 
+  const fdpTest = test || {
+    id: 'test-fdp-2026',
+    title: 'Faculty Development Programme (FDP) Assessment',
+    durationMinutes: 60,
+    passingPercentage: 0,
+    questionCount: 50,
+    description:
+      'Official Assessment for Faculty Development Programme on "Recent advances in cyber security and blockchain for secure digital transformation" organized by Department of Information Technology, Nutan Maharashtra Institute of Engineering & Technology (NMIET) in association with ISTE held on 5th to 9th Oct, 2026.',
+  };
+
   const faqs = [
     {
-      q: 'How does the automatic certificate generation work?',
-      a: 'Upon submitting your assessment, your responses are evaluated against authoritative criteria on our secure server. If your percentage meets or exceeds the required threshold (60%), a high-resolution, cryptographically signed PDF certificate is generated instantly and dispatched to your email address.',
+      q: 'Who receives the Certificate of Participation?',
+      a: 'Every participant who completes and submits the 50 compulsory questions will receive the official accredited Certificate of Participation. The certificate is not restricted by pass/fail criteria—participation in the assessment qualifies every attendee for certification.',
     },
     {
-      q: 'Is the certificate verifiable by employers or academic institutions?',
-      a: 'Yes. Every issued certificate receives an unalterable Certificate ID (e.g., CERT-2026-8F42K9) and embedded QR code. Anyone can verify its authenticity 24/7 on our public verification portal without needing to log in.',
+      q: 'How does the automatic certificate generation and email delivery work?',
+      a: 'Upon submitting your assessment, the system immediately binds your full legal name and college/organization onto the high-resolution official NMIET & ISTE certificate template. The cryptographically signed PDF certificate is automatically generated, made available for 1-click download, and dispatched directly to your registered email address.',
     },
     {
-      q: 'What happens if I do not pass the assessment on my first try?',
-      a: 'If you score below the passing criteria, you will receive a comprehensive breakdown of your results along with explanations for each question so you can study and bridge knowledge gaps. No certificate is issued for unsuccessful attempts, but you are welcome to retake the test.',
+      q: 'Are all 50 questions compulsory?',
+      a: 'Yes. All 50 questions across Section A (Cyber Security), Section B (Blockchain), Section C (Digital Transformation), and Section D (Integrated) are compulsory. Each question carries 1 mark (Total 50 marks).',
     },
     {
-      q: 'What are the examination anti-cheating protections?',
-      a: 'The testing environment includes browser tab visibility tracking, background blur detection, and auto-submission upon timer expiry. All evaluation logic is strictly executed on the server, guaranteeing that answers and marks cannot be inspected or altered in the client browser.',
+      q: 'How can academic institutions or employers verify my certificate?',
+      a: 'Every issued certificate contains an unalterable Certificate ID (e.g., CERT-2026-FDP-8F42K9) and embedded QR code. Anyone can verify its authenticity 24/7 on our public verification portal (/verify) without needing to log in.',
     },
     {
-      q: 'Can an organization customize assessments and passing criteria?',
-      a: 'Administrators have full control via the secure Admin Dashboard to create custom tests, configure durations, set custom passing thresholds, add MCQ/True-False questions, view analytics, and resend certificate emails at any time.',
+      q: 'What proctoring measures are in place during the assessment?',
+      a: 'The test room includes tab visibility detection, background blur monitoring, and countdown timer synchronization. Responses are automatically saved to our server in real time so your progress is never lost.',
     },
   ];
 
-  const demoTest = tests[0] || {
-    id: 'test-web-dev-1',
-    title: 'Web Development Fundamentals Assessment',
-    durationMinutes: 20,
-    passingPercentage: 60,
-    questionCount: 10,
-    description:
-      'Comprehensive industry examination evaluating modern HTML5, CSS3, modern JavaScript (ES6+), React core concepts, Git workflow, and web performance standards.',
-  };
-
   return (
-    <div className="min-h-screen bg-[#06080F] text-slate-100 selection:bg-cyan-500 selection:text-slate-950">
-      {/* Subtle Grid Accent */}
+    <div className="min-h-screen bg-[#06080F] text-slate-100 selection:bg-amber-400 selection:text-slate-950">
+      {/* Subtle Background Grid Accent */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293d12_1px,transparent_1px),linear-gradient(to_bottom,#1f293d12_1px,transparent_1px)] bg-[size:3rem_3rem] pointer-events-none" />
 
-      {/* HERO SECTION */}
-      <section className="relative pt-20 pb-20 md:pt-28 md:pb-32 overflow-hidden">
+      {/* ── TOP INSTITUTION BANNER ── */}
+      <div className="bg-[#080C18] border-b border-slate-800/80 py-2.5 px-4 text-center">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-xs">
+          <div className="flex items-center gap-2 text-slate-400 font-medium">
+            <span className="text-amber-400 font-bold uppercase tracking-wider text-[11px]">NMVPM &amp; PCET</span>
+            <span>·</span>
+            <span>Nutan Maharashtra Institute of Engineering &amp; Technology (NMIET), Talegaon, Pune</span>
+          </div>
+          <div className="flex items-center gap-2 text-slate-400">
+            <span className="px-2 py-0.5 rounded bg-amber-400/10 text-amber-300 font-semibold border border-amber-400/20 text-[10px]">
+              In Association with ISTE
+            </span>
+            <span className="text-[11px] text-slate-500">5th to 9th Oct, 2026</span>
+          </div>
+        </div>
+      </div>
+
+      {/* ── NAVIGATION HEADER ── */}
+      <header className="sticky top-0 z-40 bg-[#06080F]/90 backdrop-blur-md border-b border-slate-800/80 px-4 sm:px-6 py-3.5">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shadow-md">
+              <Award className="w-5 h-5" />
+            </div>
+            <div className="min-w-0">
+              <div className="text-xs sm:text-sm font-bold text-white tracking-tight truncate max-w-[150px] xs:max-w-[200px] sm:max-w-none">
+                Dept. of Information Technology
+              </div>
+              <div className="text-[10px] sm:text-[11px] text-slate-400 truncate max-w-[150px] xs:max-w-[200px] sm:max-w-none">
+                NMIET &amp; ISTE FDP 2026
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <Link
+              href="/verify"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 hover:border-slate-700 transition"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+              <span>Verify Certificate</span>
+            </Link>
+
+            <button
+              onClick={handleStartTest}
+              className="flex items-center gap-1.5 px-3.5 sm:px-5 py-2 rounded-xl font-bold text-xs text-slate-950 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-yellow-300 shadow-md shadow-amber-500/20 transition cursor-pointer"
+            >
+              <span className="hidden sm:inline">Start FDP Assessment</span>
+              <span className="sm:hidden">Start Test</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* ── HERO SECTION ── */}
+      <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden">
         {/* Glow Spheres */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-cyan-500/10 blur-[130px] rounded-full pointer-events-none" />
-        <div className="absolute top-1/3 left-1/3 w-[300px] h-[250px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-amber-500/10 blur-[130px] rounded-full pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto space-y-6">
-            {/* Accreditation Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-xs text-slate-300 shadow-sm backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-              <span className="font-medium text-slate-200">ISO/IEC Compliant Automated Certification Platform</span>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-6 relative z-10">
+          {/* Programme pill */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-amber-500/30 text-amber-300 text-xs font-semibold shadow-inner">
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <span>Faculty Development Programme (FDP) Assessment</span>
+          </div>
+
+          {/* Headline */}
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-[1.15]">
+            Recent advances in cyber security &amp; blockchain for secure digital transformation
+          </h1>
+
+          {/* Subtitle */}
+          <p className="max-w-3xl mx-auto text-sm sm:text-base text-slate-300 leading-relaxed">
+            Organized by the <strong className="text-white">Department of Information Technology</strong>,{' '}
+            <strong className="text-amber-300">Nutan Maharashtra Institute of Engineering and Technology (NMIET)</strong> in association with{' '}
+            <strong className="text-white">Indian Society for Technical Education (ISTE)</strong> held on 5th to 9th Oct, 2026.
+          </p>
+
+          {/* Highlights Banner */}
+          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 max-w-2xl mx-auto flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-slate-300">
+            <span className="flex items-center gap-1.5 text-white font-medium">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400" /> 50 Questions (All Compulsory)
+            </span>
+            <span className="flex items-center gap-1.5 text-white font-medium">
+              <Clock className="w-4 h-4 text-amber-400" /> 60 Minutes Duration
+            </span>
+            <span className="flex items-center gap-1.5 text-white font-medium">
+              <Award className="w-4 h-4 text-amber-400" /> Certificate of Participation for All
+            </span>
+          </div>
+
+          {/* Primary Action Buttons */}
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button
+              onClick={handleStartTest}
+              className="w-full sm:w-auto flex items-center justify-center gap-2 py-3.5 px-8 rounded-xl font-bold text-sm text-slate-950 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-yellow-300 shadow-xl shadow-amber-500/25 transition cursor-pointer"
+            >
+              <span>Start FDP Assessment Now</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+
+            <Link
+              href="/verify"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3.5 px-8 rounded-xl font-semibold text-sm text-slate-200 hover:text-white bg-slate-900 border border-slate-700 hover:bg-slate-800 transition"
+            >
+              <ShieldCheck className="w-4 h-4 text-amber-400" />
+              <span>Verify Existing Certificate</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── OFFICIAL CERTIFICATE SHOWCASE SECTION ── */}
+      <section className="py-16 bg-[#070B16] border-y border-slate-800/80 relative">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center space-y-3 mb-10">
+            <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-amber-400/10 text-amber-300 border border-amber-400/20 uppercase tracking-wider">
+              Accredited Credential
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Official Certificate of Participation
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto">
+              Every participant who completes the 50 compulsory questions will automatically receive this personalized certificate delivered directly to their email address.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Visual Certificate Card */}
+            <div className="lg:col-span-7 rounded-2xl overflow-hidden border-2 border-amber-500/40 shadow-2xl bg-white relative">
+              <div className="relative w-full aspect-[1024/707]">
+                <Image
+                  src="/certificate-template-clean.jpg"
+                  alt="NMIET ISTE Certificate of Participation Template"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+
+                {/* Dynamic Demo Name Stamp */}
+                <div
+                  className="absolute inset-x-0 flex items-center justify-center font-serif font-bold text-slate-900 tracking-wide select-none"
+                  style={{
+                    top: '43.5%',
+                    fontSize: 'clamp(14px, 2.2vw, 22px)',
+                  }}
+                >
+                  YOUR FULL NAME
+                </div>
+
+                {/* Dynamic Demo Institute Stamp */}
+                <div
+                  className="absolute font-sans font-semibold text-slate-900 select-none line-clamp-1"
+                  style={{
+                    top: '55.2%',
+                    left: '20%',
+                    right: '12%',
+                    fontSize: 'clamp(9px, 1.2vw, 13px)',
+                  }}
+                >
+                  YOUR INSTITUTE / COLLEGE NAME
+                </div>
+
+                {/* Watermark Tag */}
+                <div className="absolute bottom-2 left-3 font-mono font-bold text-[9px] text-slate-600 bg-white/80 px-2 py-0.5 rounded border border-slate-300">
+                  Unique ID &amp; QR Code Included · Official NMIET &amp; ISTE
+                </div>
+              </div>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.08]">
-              Test. Prove.{' '}
-              <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
-                Get Certified.
-              </span>
-            </h1>
+            {/* Certificate Features */}
+            <div className="lg:col-span-5 space-y-4">
+              <div className="p-4 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1">
+                <div className="flex items-center gap-2 text-amber-300 font-bold text-sm">
+                  <User className="w-4 h-4" /> Personalized with Your Name
+                </div>
+                <p className="text-xs text-slate-400">
+                  Your full name is printed in crisp serif typography directly on the official participation line.
+                </p>
+              </div>
 
-            {/* Subtitle */}
-            <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed">
-              Take the assessment, demonstrate your skills, and receive your verified certificate automatically.
-            </p>
+              <div className="p-4 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1">
+                <div className="flex items-center gap-2 text-amber-300 font-bold text-sm">
+                  <Mail className="w-4 h-4" /> Direct Automatic Email Dispatch
+                </div>
+                <p className="text-xs text-slate-400">
+                  Immediately upon submitting your assessment, the generated PDF certificate is sent straight to your email inbox.
+                </p>
+              </div>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+              <div className="p-4 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1">
+                <div className="flex items-center gap-2 text-amber-300 font-bold text-sm">
+                  <ShieldCheck className="w-4 h-4" /> Publicly Verifiable 24/7
+                </div>
+                <p className="text-xs text-slate-400">
+                  Includes a unique Certificate ID and QR code verifiable by academic institutions and employers worldwide.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1">
+                <div className="flex items-center gap-2 text-amber-300 font-bold text-sm">
+                  <Award className="w-4 h-4" /> Authorized Institutional Signatures
+                </div>
+                <p className="text-xs text-slate-400">
+                  Includes authorized sign-offs from FDP Coordinators, HOD (IT), and Director, NMIET.
+                </p>
+              </div>
+
               <button
-                onClick={() => handleStartTest(demoTest)}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl font-bold text-base text-slate-950 bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all transform hover:-translate-y-0.5 cursor-pointer"
+                onClick={handleStartTest}
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-xs text-slate-950 bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 shadow-lg shadow-amber-500/20 transition cursor-pointer"
               >
-                <span>Start Test</span>
-                <ArrowRight className="w-5 h-5" />
+                <span>Take Assessment to Receive Certificate</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <Link
-                href="/verify"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-base text-slate-300 hover:text-white bg-slate-900/80 hover:bg-slate-800/80 border border-slate-700/80 transition-all"
+      {/* ── 4 SECTIONS OVERVIEW ── */}
+      <section className="py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-10">
+          <div className="text-center space-y-2">
+            <span className="text-xs font-mono text-amber-400 uppercase tracking-wider">Assessment Syllabus</span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              50 Compulsory MCQs across 4 Domains
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto">
+              Every section carries 1 mark per question. Complete all 50 questions to trigger your Certificate of Participation.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3 hover:border-slate-700 transition">
+              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                <Lock className="w-5 h-5" />
+              </div>
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono text-cyan-400 font-bold uppercase tracking-wider">Section A</span>
+                <h3 className="text-lg font-bold text-white">Cyber Security</h3>
+              </div>
+              <div className="text-xs text-slate-400 space-y-1">
+                <p><strong>20 Questions (Q1 - Q20)</strong></p>
+                <p>Covers CIA Triad, Phishing, DDoS, Hashing, Zero Trust, MFA, Firewalls, and HTTPS protocols.</p>
+              </div>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3 hover:border-slate-700 transition">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                <Layers className="w-5 h-5" />
+              </div>
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono text-amber-400 font-bold uppercase tracking-wider">Section B</span>
+                <h3 className="text-lg font-bold text-white">Blockchain</h3>
+              </div>
+              <div className="text-xs text-slate-400 space-y-1">
+                <p><strong>15 Questions (Q21 - Q35)</strong></p>
+                <p>Covers Distributed Ledgers, Cryptographic Hashes, PoW vs PoS, Smart Contracts, Wallets, and Immutability.</p>
+              </div>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3 hover:border-slate-700 transition">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <Cpu className="w-5 h-5" />
+              </div>
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono text-emerald-400 font-bold uppercase tracking-wider">Section C</span>
+                <h3 className="text-lg font-bold text-white">Digital Transformation</h3>
+              </div>
+              <div className="text-xs text-slate-400 space-y-1">
+                <p><strong>10 Questions (Q36 - Q45)</strong></p>
+                <p>Covers Cloud Computing (IaaS/SaaS), IoT Security Challenges, Big Data Analytics, AI, and Digital Twins.</p>
+              </div>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3 hover:border-slate-700 transition">
+              <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
+                <Sparkles className="w-5 h-5" />
+              </div>
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono text-purple-400 font-bold uppercase tracking-wider">Section D</span>
+                <h3 className="text-lg font-bold text-white">Integrated Domain</h3>
+              </div>
+              <div className="text-xs text-slate-400 space-y-1">
+                <p><strong>5 Questions (Q46 - Q50)</strong></p>
+                <p>Covers Privacy vs Blockchain Immutability, IoT Oracles, Deepfakes, and Multi-layered Governance.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── HOW IT WORKS IN 4 STEPS ── */}
+      <section className="py-16 bg-[#080C18] border-t border-slate-800/80">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 space-y-10">
+          <div className="text-center space-y-2">
+            <span className="text-xs font-mono text-amber-400 uppercase tracking-wider">Simple Process</span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">How It Works</h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="p-5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+              <div className="text-xs font-mono text-amber-400 font-bold">STEP 01</div>
+              <h4 className="font-bold text-white text-sm">Register</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Enter your Full Name, Email, and College/Organization Name.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+              <div className="text-xs font-mono text-amber-400 font-bold">STEP 02</div>
+              <h4 className="font-bold text-white text-sm">Take Test</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Complete the 50 compulsory questions across the 4 sections in 60 minutes.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+              <div className="text-xs font-mono text-amber-400 font-bold">STEP 03</div>
+              <h4 className="font-bold text-white text-sm">Submit</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Confirm your submission. Our server securely records and scores your answers.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+              <div className="text-xs font-mono text-amber-400 font-bold">STEP 04</div>
+              <h4 className="font-bold text-white text-sm">Get Certificate</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Your Certificate of Participation is generated, emailed to you, and ready for instant download!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ACCORDION ── */}
+      <section className="py-16 md:py-24">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-8">
+          <div className="text-center space-y-2">
+            <span className="text-xs font-mono text-amber-400 uppercase tracking-wider">FAQ</span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Frequently Asked Questions</h2>
+          </div>
+
+          <div className="space-y-3">
+            {faqs.map((faq, i) => (
+              <div
+                key={i}
+                className="rounded-xl border border-slate-800 bg-slate-900/60 overflow-hidden transition"
               >
-                <ShieldCheck className="w-5 h-5 text-cyan-400" />
-                <span>Verify Certificate</span>
-              </Link>
-            </div>
-
-            {/* Quick Metrics Bar */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-8 max-w-3xl mx-auto text-left">
-              <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-sm">
-                <div className="flex items-center gap-2 text-cyan-400 text-xs font-semibold mb-1">
-                  <Clock className="w-3.5 h-3.5" /> DURATION
-                </div>
-                <div className="text-xl font-bold text-white">20 Minutes</div>
-                <div className="text-[11px] text-slate-400">Strict timed countdown</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-sm">
-                <div className="flex items-center gap-2 text-cyan-400 text-xs font-semibold mb-1">
-                  <FileText className="w-3.5 h-3.5" /> QUESTIONS
-                </div>
-                <div className="text-xl font-bold text-white">10 Questions</div>
-                <div className="text-[11px] text-slate-400">MCQ & True / False</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-sm">
-                <div className="flex items-center gap-2 text-amber-400 text-xs font-semibold mb-1">
-                  <Award className="w-3.5 h-3.5" /> PASS THRESHOLD
-                </div>
-                <div className="text-xl font-bold text-white">60% Required</div>
-                <div className="text-[11px] text-slate-400">Calculated server-side</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-sm">
-                <div className="flex items-center gap-2 text-emerald-400 text-xs font-semibold mb-1">
-                  <Mail className="w-3.5 h-3.5" /> DISPATCH
-                </div>
-                <div className="text-xl font-bold text-white">Instant Email</div>
-                <div className="text-[11px] text-slate-400">With PDF certificate</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FEATURED ASSESSMENT CARD */}
-      <section id="tests" className="py-12 md:py-20 border-t border-slate-900 bg-slate-950/40 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-widest mb-2">
-              ACCREDITED EVALUATION
-            </h2>
-            <p className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Featured Assessment
-            </p>
-            <p className="text-sm text-slate-400 mt-2">
-              Test your engineering fundamentals with real industry-standard questions and get credentialed immediately.
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="p-6 md:p-8 rounded-2xl bg-gradient-to-b from-[#0D1527] to-[#070B14] border border-cyan-500/20 shadow-xl shadow-cyan-950/20 relative overflow-hidden group">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-800">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <span className="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-950/80 text-emerald-300 border border-emerald-800/50">
-                      LIVE TEST ACTIVE
-                    </span>
-                    <span className="text-xs text-slate-400 font-mono">CODE: CERT-WDF-2026</span>
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full flex items-center justify-between p-4 text-left text-sm font-semibold text-white hover:text-amber-300 transition"
+                >
+                  <span>{faq.q}</span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-slate-400 transition-transform ${openFaq === i ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                {openFaq === i && (
+                  <div className="px-4 pb-4 pt-1 text-xs text-slate-300 leading-relaxed border-t border-slate-800/80">
+                    {faq.a}
                   </div>
-                  <h3 className="text-2xl font-bold text-white tracking-tight">
-                    {demoTest.title}
-                  </h3>
-                  <p className="text-sm text-slate-300 max-w-xl leading-relaxed">
-                    {demoTest.description}
-                  </p>
-                </div>
-
-                <div className="shrink-0">
-                  <button
-                    onClick={() => handleStartTest(demoTest)}
-                    className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-slate-950 bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 shadow-md shadow-cyan-500/20 transition-all cursor-pointer"
-                  >
-                    <span>Begin Assessment</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
+                )}
               </div>
-
-              {/* Syllabus Breakdown */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 pt-6 text-xs">
-                <div className="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800 text-center">
-                  <Code2 className="w-4 h-4 text-cyan-400 mx-auto mb-1" />
-                  <span className="font-semibold text-slate-200">HTML5</span>
-                  <p className="text-[10px] text-slate-500">Semantics & A11y</p>
-                </div>
-                <div className="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800 text-center">
-                  <Sparkles className="w-4 h-4 text-emerald-400 mx-auto mb-1" />
-                  <span className="font-semibold text-slate-200">CSS3</span>
-                  <p className="text-[10px] text-slate-500">Flexbox & Box-Model</p>
-                </div>
-                <div className="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800 text-center">
-                  <Terminal className="w-4 h-4 text-amber-400 mx-auto mb-1" />
-                  <span className="font-semibold text-slate-200">JavaScript</span>
-                  <p className="text-[10px] text-slate-500">Event Loop & Scope</p>
-                </div>
-                <div className="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800 text-center">
-                  <Cpu className="w-4 h-4 text-sky-400 mx-auto mb-1" />
-                  <span className="font-semibold text-slate-200">React</span>
-                  <p className="text-[10px] text-slate-500">State & Lifecycle</p>
-                </div>
-                <div className="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800 text-center">
-                  <Zap className="w-4 h-4 text-purple-400 mx-auto mb-1" />
-                  <span className="font-semibold text-slate-200">Git</span>
-                  <p className="text-[10px] text-slate-500">Branching & Merge</p>
-                </div>
-                <div className="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800 text-center">
-                  <ShieldCheck className="w-4 h-4 text-rose-400 mx-auto mb-1" />
-                  <span className="font-semibold text-slate-200">HTTP / Web</span>
-                  <p className="text-[10px] text-slate-500">Auth & Protocols</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
-      <section id="how-it-works" className="py-16 md:py-24 border-t border-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-widest mb-2">
-              STANDARDIZED WORKFLOW
-            </h2>
-            <p className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              How the Certification Works
-            </p>
-            <p className="text-sm text-slate-400 mt-2">
-              From enrollment to certificate delivery, an automated, secure, and verifiable credentialing pipeline.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
-            <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition relative">
-              <div className="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-800 flex items-center justify-center text-cyan-400 font-mono font-bold text-base mb-4">
-                01
-              </div>
-              <h4 className="text-base font-bold text-white mb-2">Quick Enrollment</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Provide your full legal name and email address. Our system sets up an isolated, secure examination session.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition relative">
-              <div className="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-800 flex items-center justify-center text-cyan-400 font-mono font-bold text-base mb-4">
-                02
-              </div>
-              <h4 className="text-base font-bold text-white mb-2">Distraction-Free Test</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Answer MCQ and True/False questions within the 20-minute timer. Answers save automatically to the server as you select them.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition relative">
-              <div className="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-800 flex items-center justify-center text-cyan-400 font-mono font-bold text-base mb-4">
-                03
-              </div>
-              <h4 className="text-base font-bold text-white mb-2">Authoritative Evaluation</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Scoring is computed authoritatively on our server. If you pass (&ge; 60%), your personalized certificate is generated immediately.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition relative">
-              <div className="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-800 flex items-center justify-center text-cyan-400 font-mono font-bold text-base mb-4">
-                04
-              </div>
-              <h4 className="text-base font-bold text-white mb-2">PDF & Email Dispatch</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Download your official PDF certificate instantly and receive an automated transactional email with verification links.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* QUICK VERIFICATION SECTION */}
-      <section className="py-16 bg-[#080D1A] border-y border-slate-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mx-auto text-cyan-400">
-            <ShieldCheck className="w-6 h-6" />
-          </div>
-
-          <div className="space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">
-              Instant Credential Verification
-            </h2>
-            <p className="text-sm text-slate-400 max-w-lg mx-auto">
-              Received a certificate from a candidate? Enter the unique Certificate ID below to inspect its cryptographic validity.
-            </p>
-          </div>
-
-          <form onSubmit={handleQuickVerify} className="max-w-lg mx-auto flex gap-2">
-            <div className="relative flex-1">
-              <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                value={verifyIdInput}
-                onChange={(e) => setVerifyIdInput(e.target.value)}
-                placeholder="e.g. CERT-2026-8F42K9"
-                className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
-              />
-            </div>
+      {/* ── QUICK VERIFY FOOTER SEARCH ── */}
+      <section className="py-12 bg-[#080C18] border-t border-slate-800/80">
+        <div className="max-w-xl mx-auto px-4 text-center space-y-4">
+          <h3 className="text-base font-bold text-white">Have a Certificate ID to Verify?</h3>
+          <p className="text-xs text-slate-400">
+            Verify any issued Certificate of Participation instantly on our public registry.
+          </p>
+          <form onSubmit={handleQuickVerify} className="flex gap-2">
+            <input
+              type="text"
+              placeholder="e.g. CERT-2026-FDP-8F42K9"
+              value={verifyIdInput}
+              onChange={(e) => setVerifyIdInput(e.target.value)}
+              className="flex-1 px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+            />
             <button
               type="submit"
-              className="px-6 py-3 rounded-xl font-semibold text-sm text-slate-950 bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 shadow-md shadow-cyan-500/20 transition cursor-pointer"
+              className="px-5 py-2.5 rounded-xl font-bold text-xs text-slate-950 bg-amber-400 hover:bg-amber-300 transition cursor-pointer"
             >
               Verify
             </button>
           </form>
-
-          <p className="text-xs text-slate-500">
-            Try sample verified certificate:{' '}
-            <Link
-              href="/verify/CERT-2026-8F42K9"
-              className="text-cyan-400 hover:underline font-mono inline-flex items-center gap-1"
-            >
-              CERT-2026-8F42K9 <ExternalLink className="w-3 h-3" />
-            </Link>
-          </p>
         </div>
       </section>
 
-      {/* FAQ SECTION */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-widest mb-2">
-              FREQUENTLY ASKED QUESTIONS
-            </h2>
-            <p className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Everything You Need to Know
-            </p>
-          </div>
+      {/* ── FOOTER ── */}
+      <footer className="py-8 bg-[#06080F] border-t border-slate-800 text-center text-xs text-slate-500 space-y-2">
+        <p>
+          © 2026 Department of Information Technology, Nutan Maharashtra Institute of Engineering and Technology (NMIET).
+        </p>
+        <p className="text-[11px] text-slate-600">
+          Under administrative support of PCET · In association with Indian Society for Technical Education (ISTE) · Talegaon, Pune 410507
+        </p>
+      </footer>
 
-          <div className="space-y-3">
-            {faqs.map((faq, idx) => {
-              const isOpen = openFaq === idx;
-              return (
-                <div
-                  key={idx}
-                  className="rounded-xl bg-slate-900/60 border border-slate-800/80 overflow-hidden transition"
-                >
-                  <button
-                    onClick={() => setOpenFaq(isOpen ? null : idx)}
-                    className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 text-sm font-semibold text-slate-200 hover:text-white transition"
-                  >
-                    <span>{faq.q}</span>
-                    <ChevronDown
-                      className={`w-4 h-4 text-cyan-400 transition-transform duration-200 shrink-0 ${
-                        isOpen ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </button>
-                  {isOpen && (
-                    <div className="px-5 pb-4 text-xs text-slate-400 leading-relaxed border-t border-slate-800/60 pt-3">
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* REGISTRATION MODAL */}
-      {selectedTest && (
-        <TestRegisterModal
-          test={selectedTest}
-          isOpen={isRegisterOpen}
-          onClose={() => setIsRegisterOpen(false)}
-        />
-      )}
+      {/* Registration & Exam Launch Modal */}
+      <TestRegisterModal
+        test={fdpTest}
+        isOpen={isRegisterOpen}
+        onClose={() => setIsRegisterOpen(false)}
+      />
     </div>
   );
 }

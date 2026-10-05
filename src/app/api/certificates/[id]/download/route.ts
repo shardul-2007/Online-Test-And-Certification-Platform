@@ -22,13 +22,14 @@ export async function GET(
     const pdfBytes = await generateCertificatePdf({
       certificateId: certificate.certificateId,
       participantName: certificate.participantName,
+      participantOrganization: certificate.participantOrganization || undefined,
       testTitle: certificate.testTitle,
       score: certificate.score,
       maxScore,
       percentage: certificate.percentage,
       issueDate: certificate.issueDate,
-      organizationName: test?.organizationName || 'SkillCert Global Institute',
-      certificateTitle: test?.certificateTitle || 'Certificate of Achievement',
+      organizationName: test?.organizationName || 'NMIET in association with ISTE',
+      certificateTitle: test?.certificateTitle || 'Certificate of Participation',
       appUrl: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
     });
 
