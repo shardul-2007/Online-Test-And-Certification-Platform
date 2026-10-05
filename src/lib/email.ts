@@ -1,3 +1,4 @@
+import nodemailer from 'nodemailer';
 import { Resend } from 'resend';
 import { db } from './db';
 
@@ -112,7 +113,91 @@ Department of Information Technology, NMIET (in association with ISTE)
   `.trim();
 
   const apiKey = process.env.RESEND_API_KEY;
+  const smtpHost = process.env.SMTP_HOST;
+  const smtpUser = process.env.SMTP_USER || process.env.GMAIL_USER;
+  const smtpPass = process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD;
 
+  // 1. Send via SMTP / Gmail App Password if configured
+  if (smtpUser && smtpPass) {
+    try {
+      const isGmail = !smtpHost || smtpHost.includes('gmail') || !!process.env.GMAIL_USER;
+      const transporter = isGmail
+        ? nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: smtpUser,
+              pass: smtpPass,
+            },
+          })
+        : nodemailer.createTransport({
+            host: smtpHost,
+            port: Number(process.env.SMTP_PORT || 587),
+            secure: Number(process.env.SMTP_PORT) === 465,
+            auth: {
+              user: smtpUser,
+              pass: smtpPass,
+            },
+          });
+
+      const fromAddress = process.env.SMTP_FROM || `"NMIET & ISTE FDP" <${smtpUser}>`;
+
+      const info = await transporter.sendMail({
+        from: fromAddress,
+        to: recipientEmail,
+        subject: 'Congratulations! Your FDP Certificate of Participation is Ready',
+        text: textBody,
+        html: htmlBody,
+        attachments: [
+          {
+            filename: `${certificateId}.pdf`,
+            content: Buffer.from(pdfBuffer),
+          },
+        ],
+      });
+
+      const log = db.emailLog.create({
+        data: {
+          certificateId,
+          recipient: recipientEmail,
+          emailType: 'CERTIFICATE_DELIVERY',
+          status: 'DELIVERED',
+          providerId: info.messageId || `smtp_${Date.now()}`,
+          errorMessage: null,
+        },
+      });
+
+      db.certificate.update({
+        where: { certificateId },
+        data: { emailSent: true, emailSentAt: new Date().toISOString() },
+      });
+
+      return {
+        success: true,
+        status: 'DELIVERED',
+        providerId: log.providerId || undefined,
+      };
+    } catch (smtpErr: any) {
+      console.error('Failed to send email via SMTP:', smtpErr);
+      db.emailLog.create({
+        data: {
+          certificateId,
+          recipient: recipientEmail,
+          emailType: 'CERTIFICATE_DELIVERY',
+          status: 'FAILED',
+          providerId: null,
+          errorMessage: smtpErr.message || 'SMTP Error',
+        },
+      });
+
+      return {
+        success: false,
+        status: 'FAILED',
+        error: smtpErr.message,
+      };
+    }
+  }
+
+  // 2. Send via Resend if RESEND_API_KEY is configured
   if (apiKey && apiKey.startsWith('re_')) {
     try {
       const resend = new Resend(apiKey);

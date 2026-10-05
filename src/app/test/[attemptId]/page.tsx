@@ -63,6 +63,11 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
   const [test, setTest] = useState<TestData | null>(null);
   const [participant, setParticipant] = useState<{ name: string; email: string; organization?: string } | null>(null);
 
+  const [candidateName, setCandidateName] = useState('');
+  const [candidateEmail, setCandidateEmail] = useState('');
+  const [candidateOrg, setCandidateOrg] = useState('');
+  const [showNameEditModal, setShowNameEditModal] = useState(false);
+
   const [currentIdx, setCurrentIdx] = useState(0);
   const [activeSection, setActiveSection] = useState('ALL');
   const [answers, setAnswers] = useState<Record<string, string>>({}); // { questionId: optionId }
@@ -93,7 +98,54 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
         }
 
         setTest(data.test);
-        if (data.participant) setParticipant(data.participant);
+
+        // Resolve authentic candidate name and email from URL params, localStorage, or server
+        let candidateLocal: any = null;
+        try {
+          const item = localStorage.getItem('certipulse_candidate');
+          if (item) candidateLocal = JSON.parse(item);
+        } catch {}
+
+        const sp = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+        const qName = sp?.get('name')?.trim() || '';
+        const qEmail = sp?.get('email')?.trim() || '';
+        const qOrg = sp?.get('org')?.trim() || '';
+
+        const resolvedName = (
+          qName ||
+          candidateLocal?.name ||
+          (data.participant?.name && data.participant.name !== 'FDP Participant' && data.participant.name !== 'Candidate'
+            ? data.participant.name
+            : '')
+        ).trim();
+
+        const resolvedEmail = (
+          qEmail ||
+          candidateLocal?.email ||
+          (data.participant?.email && !data.participant.email.startsWith('participant-') ? data.participant.email : '')
+        ).trim();
+
+        const resolvedOrg = (
+          qOrg ||
+          candidateLocal?.organization ||
+          data.participant?.organization ||
+          ''
+        ).trim();
+
+        setCandidateName(resolvedName);
+        setCandidateEmail(resolvedEmail);
+        setCandidateOrg(resolvedOrg);
+        setParticipant({
+          name: resolvedName,
+          email: resolvedEmail,
+          organization: resolvedOrg,
+        });
+
+        // Prompt if participant name is empty so it is never dummy
+        if (!resolvedName) {
+          setShowNameEditModal(true);
+        }
+
         if (data.savedAnswers) setAnswers(data.savedAnswers);
         if (data.markedForReview) setMarkedForReview(data.markedForReview);
 
@@ -258,9 +310,9 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
           attemptId,
           answers,
           timeSpentSeconds: initialDurationRef.current,
-          participantName: participant?.name,
-          participantOrganization: participant?.organization,
-          participantEmail: participant?.email,
+          participantName: candidateName || participant?.name || 'Participant',
+          participantOrganization: candidateOrg || participant?.organization || null,
+          participantEmail: candidateEmail || participant?.email || '',
         }),
       });
       localStorage.removeItem(`certipulse_exam_${attemptId}`);
@@ -269,11 +321,40 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
       console.error('Auto submit failed:', err);
       router.push(`/result/${attemptId}`);
     }
-  }, [submitting, attemptId, answers, participant, router]);
+  }, [submitting, attemptId, answers, candidateName, candidateEmail, candidateOrg, participant, router]);
 
   const submitExamToServer = async () => {
+    const validName = (candidateName || participant?.name || '').trim();
+    const validEmail = (candidateEmail || participant?.email || '').trim();
+    const validOrg = (candidateOrg || participant?.organization || '').trim();
+
+    if (!validName || validName === 'FDP Participant' || validName === 'Candidate') {
+      alert('Please enter your full legal name so it can be printed on your Certificate of Participation.');
+      setShowSubmitModal(false);
+      setShowNameEditModal(true);
+      return;
+    }
+
+    if (!validEmail || !validEmail.includes('@') || validEmail.startsWith('participant-')) {
+      alert('Please enter a valid email address so your certificate PDF can be delivered to your inbox.');
+      setShowSubmitModal(false);
+      setShowNameEditModal(true);
+      return;
+    }
+
     setSubmitting(true);
     try {
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(
+          'certipulse_candidate',
+          JSON.stringify({
+            name: validName,
+            email: validEmail,
+            organization: validOrg,
+          })
+        );
+      }
+
       const res = await fetch('/api/test/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -281,9 +362,9 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
           attemptId,
           answers,
           timeSpentSeconds: initialDurationRef.current - timeLeft,
-          participantName: participant?.name,
-          participantOrganization: participant?.organization,
-          participantEmail: participant?.email,
+          participantName: validName,
+          participantOrganization: validOrg || null,
+          participantEmail: validEmail,
         }),
       });
 
@@ -394,11 +475,20 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
                 </span>
               </div>
               <div className="text-[11px] text-slate-400 flex items-center gap-2">
-                <span className="flex items-center gap-1 text-slate-300">
-                  <User className="w-3 h-3 text-cyan-400" /> {participant?.name || 'Candidate'}
-                </span>
-                {participant?.organization && (
-                  <span className="hidden sm:inline text-slate-500">· {participant.organization}</span>
+                <button
+                  type="button"
+                  onClick={() => setShowNameEditModal(true)}
+                  className="flex items-center gap-1 text-slate-300 hover:text-amber-300 transition cursor-pointer"
+                  title="Click to edit your name on the certificate"
+                >
+                  <User className="w-3 h-3 text-cyan-400" />
+                  <span className="font-semibold text-white underline decoration-slate-600 underline-offset-2">
+                    {candidateName || participant?.name || 'Enter Your Name'}
+                  </span>
+                  <span className="text-[10px] text-amber-400 font-mono">(Edit)</span>
+                </button>
+                {(candidateOrg || participant?.organization) && (
+                  <span className="hidden sm:inline text-slate-500">· {candidateOrg || participant?.organization}</span>
                 )}
               </div>
             </div>
@@ -735,20 +825,66 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
             </div>
 
             {/* Candidate Info on Certificate */}
-            <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs space-y-1">
+            <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 text-xs space-y-2.5 text-left">
               <div className="flex items-center justify-between text-slate-400">
-                <span className="text-[10px] uppercase font-mono tracking-wider">Certificate Recipient</span>
-                <span className="text-[10px] text-amber-400 font-mono">Official</span>
+                <span className="text-[10px] uppercase font-mono tracking-wider text-amber-400 font-bold">
+                  Official Certificate Recipient Details
+                </span>
+                <span className="text-[10px] text-slate-400">Printed directly on PDF</span>
               </div>
-              <div className="font-bold text-white text-sm flex items-center gap-1.5">
-                <User className="w-3.5 h-3.5 text-amber-400" />
-                <span>{participant?.name || 'Participant'}</span>
+
+              <div className="space-y-1">
+                <label className="text-[11px] font-semibold text-slate-300 flex items-center justify-between">
+                  <span>Full Legal Name <span className="text-red-400">*</span></span>
+                  <span className="text-[10px] text-slate-500 font-normal">Printed above official line</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={candidateName}
+                  onChange={(e) => {
+                    setCandidateName(e.target.value);
+                    setParticipant((p) => ({ ...p!, name: e.target.value }));
+                  }}
+                  placeholder="e.g. Dr. Rajesh Sharma / Prof. Kavita Joshi"
+                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-white font-medium text-xs focus:outline-none focus:border-amber-400"
+                />
               </div>
-              {participant?.organization && (
-                <div className="text-[11px] text-slate-400">
-                  College: <span className="text-slate-300 font-medium">{participant.organization}</span>
-                </div>
-              )}
+
+              <div className="space-y-1">
+                <label className="text-[11px] font-semibold text-slate-300 flex items-center justify-between">
+                  <span>Email for Certificate PDF <span className="text-red-400">*</span></span>
+                  <span className="text-[10px] text-slate-500 font-normal">Dispatched to this address</span>
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={candidateEmail}
+                  onChange={(e) => {
+                    setCandidateEmail(e.target.value);
+                    setParticipant((p) => ({ ...p!, email: e.target.value }));
+                  }}
+                  placeholder="e.g. participant@institute.edu.in"
+                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-white font-medium text-xs focus:outline-none focus:border-amber-400"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[11px] font-semibold text-slate-300">
+                  College / Institute Name
+                </label>
+                <input
+                  type="text"
+                  value={candidateOrg}
+                  onChange={(e) => {
+                    setCandidateOrg(e.target.value);
+                    setParticipant((p) => ({ ...p!, organization: e.target.value }));
+                  }}
+                  placeholder="e.g. NMIET, Talegaon / Pune University"
+                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-white font-medium text-xs focus:outline-none focus:border-amber-400"
+                />
+                <p className="text-[10px] text-slate-500">Printed after &quot;FROM&quot; on the certificate.</p>
+              </div>
             </div>
 
             {unansweredCount > 0 && firstUnansweredIdx !== -1 && (
@@ -872,6 +1008,107 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
                 Close Palette
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── NAME & EMAIL EDIT MODAL ── */}
+      {showNameEditModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-sm animate-fade-in">
+          <div className="w-full max-w-md bg-[#0A0F1D] border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl text-slate-100">
+            <div className="space-y-1.5 text-center">
+              <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mx-auto text-amber-400">
+                <User className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-white tracking-tight">Participant Details</h3>
+              <p className="text-xs text-slate-400">
+                Please enter your full legal name and email so your official Certificate of Participation is generated and delivered to you accurately.
+              </p>
+            </div>
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (!candidateName.trim() || candidateName.trim().length < 2) {
+                  alert('Please enter your full legal name (minimum 2 characters).');
+                  return;
+                }
+                if (!candidateEmail.trim() || !candidateEmail.includes('@')) {
+                  alert('Please enter a valid email address.');
+                  return;
+                }
+                if (typeof window !== 'undefined') {
+                  localStorage.setItem(
+                    'certipulse_candidate',
+                    JSON.stringify({
+                      name: candidateName.trim(),
+                      email: candidateEmail.trim(),
+                      organization: candidateOrg.trim(),
+                    })
+                  );
+                }
+                setParticipant({
+                  name: candidateName.trim(),
+                  email: candidateEmail.trim(),
+                  organization: candidateOrg.trim(),
+                });
+                setShowNameEditModal(false);
+              }}
+              className="space-y-4"
+            >
+              <div className="space-y-1 text-left">
+                <label className="text-xs font-semibold text-slate-300">
+                  Full Legal Name <span className="text-red-400">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={candidateName}
+                  onChange={(e) => setCandidateName(e.target.value)}
+                  placeholder="e.g. Dr. Rajesh Sharma / Prof. Kavita Joshi"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:outline-none focus:border-amber-400"
+                />
+                <p className="text-[10px] text-slate-500">Printed directly above the official line on the certificate.</p>
+              </div>
+
+              <div className="space-y-1 text-left">
+                <label className="text-xs font-semibold text-slate-300">
+                  Email Address <span className="text-red-400">*</span>
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={candidateEmail}
+                  onChange={(e) => setCandidateEmail(e.target.value)}
+                  placeholder="e.g. participant@institute.edu.in"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:outline-none focus:border-amber-400"
+                />
+                <p className="text-[10px] text-slate-500">Certificate PDF will be dispatched to this email address.</p>
+              </div>
+
+              <div className="space-y-1 text-left">
+                <label className="text-xs font-semibold text-slate-300">
+                  College / Institute Name
+                </label>
+                <input
+                  type="text"
+                  value={candidateOrg}
+                  onChange={(e) => setCandidateOrg(e.target.value)}
+                  placeholder="e.g. NMIET, Talegaon, Pune"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:outline-none focus:border-amber-400"
+                />
+                <p className="text-[10px] text-slate-500">Printed after &quot;FROM&quot; on the certificate.</p>
+              </div>
+
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  className="w-full py-3 px-4 rounded-xl font-bold text-xs text-slate-950 bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 shadow-md transition cursor-pointer"
+                >
+                  Save &amp; Continue Assessment
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

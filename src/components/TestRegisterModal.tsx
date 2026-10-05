@@ -68,8 +68,26 @@ export default function TestRegisterModal({ test, isOpen, onClose }: TestRegiste
         throw new Error(data.error || 'Failed to initialize assessment');
       }
 
+      // Save to localStorage so candidate details are never lost across lambdas/refreshes
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(
+          'certipulse_candidate',
+          JSON.stringify({
+            name: name.trim(),
+            email: email.trim(),
+            organization: organization.trim() || '',
+          })
+        );
+      }
+
+      const qParams = new URLSearchParams({
+        name: name.trim(),
+        email: email.trim(),
+        org: organization.trim() || '',
+      }).toString();
+
       // Route to exam room
-      router.push(`/test/${data.attemptId}`);
+      router.push(`/test/${data.attemptId}?${qParams}`);
     } catch (err: any) {
       setError(err.message || 'An error occurred while initializing test.');
       setIsLoading(false);

@@ -9,6 +9,10 @@ export async function GET(
     const attemptId = params.id;
     let attempt = db.attempt.findUnique({ where: { id: attemptId } });
 
+    const queryName = request.nextUrl.searchParams.get('name')?.trim();
+    const queryEmail = request.nextUrl.searchParams.get('email')?.trim();
+    const queryOrg = request.nextUrl.searchParams.get('org')?.trim();
+
     if (!attempt) {
       // Auto-provision attempt for the FDP assessment so users are never stranded
       const fdpTest =
@@ -19,9 +23,9 @@ export async function GET(
       if (fdpTest) {
         const guestUser = db.user.create({
           data: {
-            name: 'FDP Participant',
-            email: `participant-${Date.now()}@nmiet.edu.in`,
-            organization: 'NMIET, Talegaon, Pune',
+            name: queryName || '',
+            email: queryEmail || '',
+            organization: queryOrg || '',
           },
         });
 
@@ -44,13 +48,17 @@ export async function GET(
       return NextResponse.json({ success: false, error: 'Examination attempt not found' }, { status: 404 });
     }
 
+    let user = db.user.findUnique({ where: { id: attempt.userId } });
+    if (user) {
+      if (queryName) user.name = queryName;
+      if (queryEmail) user.email = queryEmail;
+      if (queryOrg) user.organization = queryOrg;
+    }
+
     const test = db.test.findUnique({ where: { id: attempt.testId } });
     if (!test) {
       return NextResponse.json({ success: false, error: 'Assessment details could not be found' }, { status: 404 });
     }
-
-    const user = db.user.findUnique({ where: { id: attempt.userId } });
-
     // Fetch any previously saved answers for this attempt
     const answers = db.answer.findMany({ where: { attemptId } });
     const savedAnswers: Record<string, string> = {};

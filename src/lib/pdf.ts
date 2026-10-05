@@ -44,7 +44,7 @@ export async function generateCertificatePdf(data: CertificateData): Promise<Uin
       const helvetica = await pdfDoc.embedFont(StandardFonts.Helvetica);
       const helveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
-      const participantName = (data.participantName || 'PARTICIPANT NAME').toUpperCase().trim();
+      const participantName = (data.participantName || 'Participant Name').trim();
       const orgName = (data.participantOrganization || '').trim();
       const certId = data.certificateId || 'CERT-NMIET-2026';
       const appUrl = (data.appUrl || 'http://localhost:3000').replace(/\/$/, '');
@@ -206,7 +206,7 @@ export async function generateCertificatePdf(data: CertificateData): Promise<Uin
     color: rgb(0.08, 0.12, 0.28),
   });
 
-  const participantName = (data.participantName || 'PARTICIPANT').toUpperCase();
+  const participantName = (data.participantName || 'Participant Name').trim();
   page.drawText(participantName, {
     x: (width - timesRomanBold.widthOfTextAtSize(participantName, 24)) / 2,
     y: height - 240,

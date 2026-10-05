@@ -9,6 +9,7 @@ export async function POST(
 ) {
   try {
     const certId = params.id;
+    const body = await request.json().catch(() => ({}));
     const certificate = db.certificate.findUnique({ where: { certificateId: certId } });
 
     if (!certificate) {
@@ -18,25 +19,34 @@ export async function POST(
     const test = db.test.findUnique({ where: { id: certificate.testId } });
     const attempt = db.attempt.findUnique({ where: { id: certificate.attemptId } });
 
-    const maxScore = attempt?.maxScore || 10;
+    const maxScore = attempt?.maxScore || 50;
+
+    const recipientName = (body.name || certificate.participantName || 'Participant').trim();
+    const recipientEmail = (body.email || certificate.participantEmail || '').trim();
+    const recipientOrg = (body.organization || certificate.participantOrganization || '').trim();
+
+    if (body.name) certificate.participantName = recipientName;
+    if (body.email) certificate.participantEmail = recipientEmail;
+    if (body.organization) certificate.participantOrganization = recipientOrg;
 
     const pdfBytes = await generateCertificatePdf({
       certificateId: certificate.certificateId,
-      participantName: certificate.participantName,
-      testTitle: certificate.testTitle,
+      participantName: recipientName,
+      participantOrganization: recipientOrg || undefined,
+      testTitle: certificate.testTitle || 'Faculty Development Programme (FDP) Assessment',
       score: certificate.score,
       maxScore,
       percentage: certificate.percentage,
       issueDate: certificate.issueDate,
-      organizationName: test?.organizationName || 'SkillCert Global Institute',
-      certificateTitle: test?.certificateTitle || 'Certificate of Achievement',
+      organizationName: test?.organizationName || 'NMIET in association with ISTE',
+      certificateTitle: test?.certificateTitle || 'Certificate of Participation',
       appUrl: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
     });
 
     const emailResult = await sendCertificateEmail({
-      recipientEmail: certificate.participantEmail,
-      recipientName: certificate.participantName,
-      testTitle: certificate.testTitle,
+      recipientEmail: recipientEmail,
+      recipientName: recipientName,
+      testTitle: certificate.testTitle || 'Faculty Development Programme (FDP) Assessment',
       certificateId: certificate.certificateId,
       pdfBuffer: pdfBytes,
     });

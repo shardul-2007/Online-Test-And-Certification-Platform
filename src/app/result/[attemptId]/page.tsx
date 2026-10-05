@@ -69,15 +69,39 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
   const [showReview, setShowReview] = useState(false);
   const [downloading, setDownloading] = useState(false);
 
+  const [customEmail, setCustomEmail] = useState('');
+  const [emailSending, setEmailSending] = useState(false);
+  const [emailSentSuccess, setEmailSentSuccess] = useState<string | null>(null);
+  const [emailSentError, setEmailSentError] = useState<string | null>(null);
+
   useEffect(() => {
     async function loadResult() {
       try {
         setLoading(true);
+
+        // Fetch candidate details stored in localStorage
+        let candidateLocal: any = null;
+        try {
+          const item = localStorage.getItem('certipulse_candidate');
+          if (item) candidateLocal = JSON.parse(item);
+        } catch {}
+
+        const submitPayload: any = { attemptId };
+        if (candidateLocal?.name && candidateLocal.name !== 'FDP Participant') {
+          submitPayload.participantName = candidateLocal.name;
+        }
+        if (candidateLocal?.email && !candidateLocal.email.startsWith('participant-')) {
+          submitPayload.participantEmail = candidateLocal.email;
+        }
+        if (candidateLocal?.organization) {
+          submitPayload.participantOrganization = candidateLocal.organization;
+        }
+
         // Call submit endpoint which evaluates authoritatively and returns the result
         const res = await fetch('/api/test/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ attemptId }),
+          body: JSON.stringify(submitPayload),
         });
 
         const data = await res.json();
@@ -85,7 +109,7 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
           throw new Error(data.error || 'Failed to retrieve assessment evaluation');
         }
 
-        const resData = data.result || {
+        const resData: ResultData = data.result || {
           attemptId: data.attempt.id,
           participantName: data.attempt.user?.name || 'Participant',
           participantEmail: data.attempt.user?.email || '',
@@ -105,7 +129,30 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
           questionReviews: [],
         };
 
+        // Guarantee authentic participant name from localStorage if server has dummy default
+        if (
+          candidateLocal?.name &&
+          (!resData.participantName || resData.participantName === 'FDP Participant' || resData.participantName === 'Participant')
+        ) {
+          resData.participantName = candidateLocal.name;
+          if (resData.certificate) {
+            resData.certificate.participantName = candidateLocal.name;
+          }
+        }
+
+        if (
+          candidateLocal?.email &&
+          (!resData.participantEmail || resData.participantEmail.startsWith('participant-'))
+        ) {
+          resData.participantEmail = candidateLocal.email;
+        }
+
+        if (candidateLocal?.organization && !resData.participantOrganization) {
+          resData.participantOrganization = candidateLocal.organization;
+        }
+
         setResult(resData);
+        setCustomEmail(resData.participantEmail || candidateLocal?.email || '');
 
         // Trigger celebratory confetti for Certificate of Participation
         confetti({
@@ -124,6 +171,42 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
 
     loadResult();
   }, [attemptId]);
+
+  const handleSendEmail = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!result?.certificate?.certificateId || !customEmail.trim()) return;
+
+    setEmailSending(true);
+    setEmailSentSuccess(null);
+    setEmailSentError(null);
+
+    try {
+      const res = await fetch(`/api/certificates/${result.certificate.certificateId}/resend-email`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: customEmail.trim(),
+          name: result.participantName,
+          organization: result.participantOrganization,
+        }),
+      });
+
+      const data = await res.json();
+      if (!data.success && data.error) {
+        throw new Error(data.error);
+      }
+
+      if (data.emailStatus?.status === 'SIMULATED') {
+        setEmailSentSuccess(`Notice: PDF certificate delivery recorded for ${customEmail.trim()}. (Add SMTP or Resend credentials in Vercel to dispatch live inboxes)`);
+      } else {
+        setEmailSentSuccess(`✓ Official PDF Certificate successfully dispatched to ${customEmail.trim()}! Please check your inbox & spam folder.`);
+      }
+    } catch (err: any) {
+      setEmailSentError(err.message || 'Failed to dispatch email.');
+    } finally {
+      setEmailSending(false);
+    }
+  };
 
   const handleDownloadPdf = async (certId: string) => {
     try {
@@ -285,7 +368,7 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
                     fontSize: 'clamp(14px, 2.5vw, 24px)',
                   }}
                 >
-                  {result.participantName.toUpperCase()}
+                  {result.participantName}
                 </div>
 
                 {/* Overlaid organization name right after FROM */}
@@ -340,6 +423,42 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
                 <span>Verify Credential Online</span>
                 <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
               </Link>
+            </div>
+
+            {/* Interactive Email Delivery Card */}
+            <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-3 text-left">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-xs font-semibold text-white">
+                  <Mail className="w-4 h-4 text-amber-400" />
+                  <span>Receive Certificate Directly via Email</span>
+                </div>
+                <span className="text-[10px] text-slate-400 font-mono">Instant Dispatch</span>
+              </div>
+
+              <form onSubmit={handleSendEmail} className="flex flex-col sm:flex-row items-center gap-2">
+                <input
+                  type="email"
+                  required
+                  value={customEmail}
+                  onChange={(e) => setCustomEmail(e.target.value)}
+                  placeholder="Enter email address"
+                  className="w-full sm:flex-1 px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-amber-400"
+                />
+                <button
+                  type="submit"
+                  disabled={emailSending}
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs shadow-md transition cursor-pointer shrink-0 disabled:opacity-50"
+                >
+                  {emailSending ? 'Dispatching PDF...' : 'Send Certificate to Email'}
+                </button>
+              </form>
+
+              {emailSentSuccess && (
+                <p className="text-xs text-emerald-400 font-medium">{emailSentSuccess}</p>
+              )}
+              {emailSentError && (
+                <p className="text-xs text-rose-400 font-medium">{emailSentError}</p>
+              )}
             </div>
           </div>
         )}
