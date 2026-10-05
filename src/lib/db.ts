@@ -317,6 +317,7 @@ export const db = {
       data,
     }: {
       data: {
+        id?: string;
         testId: string;
         userId: string;
         totalQuestions: number;
@@ -325,7 +326,7 @@ export const db = {
     }): TestAttempt {
       const state = ensureDataStore();
       const newAttempt: TestAttempt = {
-        id: `att-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+        id: data.id || `att-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
         testId: data.testId,
         userId: data.userId,
         status: 'IN_PROGRESS',

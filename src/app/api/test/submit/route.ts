@@ -22,7 +22,34 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'attemptId is required' }, { status: 400 });
     }
 
-    const attempt = db.attempt.findUnique({ where: { id: attemptId } });
+    let attempt = db.attempt.findUnique({ where: { id: attemptId } });
+    if (!attempt) {
+      const fdpTest =
+        db.test.findUnique({ where: { id: 'test-fdp-2026' } }) ||
+        db.test.findMany({ where: { isPublished: true } })[0] ||
+        db.test.findMany()[0];
+
+      if (fdpTest) {
+        const guestUser = db.user.create({
+          data: {
+            name: body.participantName || 'FDP Participant',
+            email: body.participantEmail || `participant-${Date.now()}@nmiet.edu.in`,
+            organization: body.participantOrganization || 'NMIET, Talegaon, Pune',
+          },
+        });
+
+        attempt = db.attempt.create({
+          data: {
+            id: attemptId,
+            testId: fdpTest.id,
+            userId: guestUser.id,
+            totalQuestions: fdpTest.questions?.length || 50,
+            maxScore: (fdpTest.questions || []).reduce((sum: number, q: any) => sum + (q.marks || 1), 0) || 50,
+          },
+        });
+      }
+    }
+
     if (!attempt) {
       return NextResponse.json({ success: false, error: 'Attempt not found' }, { status: 404 });
     }
@@ -44,9 +71,26 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'Test not found' }, { status: 404 });
     }
 
-    const user = db.user.findUnique({ where: { id: attempt.userId } });
+    let user = db.user.findUnique({ where: { id: attempt.userId } });
     if (!user) {
-      return NextResponse.json({ success: false, error: 'User not found' }, { status: 404 });
+      user = db.user.create({
+        data: {
+          name: body.participantName || 'FDP Participant',
+          email: body.participantEmail || `participant-${Date.now()}@nmiet.edu.in`,
+          organization: body.participantOrganization || 'NMIET, Talegaon, Pune',
+        },
+      });
+    }
+
+    // Update candidate details if passed in submit payload
+    if (body.participantName && body.participantName.trim()) {
+      user.name = body.participantName.trim();
+    }
+    if (body.participantOrganization && body.participantOrganization.trim()) {
+      user.organization = body.participantOrganization.trim();
+    }
+    if (body.participantEmail && body.participantEmail.trim()) {
+      user.email = body.participantEmail.trim();
     }
 
     const questions = test.questions || [];

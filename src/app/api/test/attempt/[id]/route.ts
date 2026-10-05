@@ -7,7 +7,38 @@ export async function GET(
 ) {
   try {
     const attemptId = params.id;
-    const attempt = db.attempt.findUnique({ where: { id: attemptId } });
+    let attempt = db.attempt.findUnique({ where: { id: attemptId } });
+
+    if (!attempt) {
+      // Auto-provision attempt for the FDP assessment so users are never stranded
+      const fdpTest =
+        db.test.findUnique({ where: { id: 'test-fdp-2026' } }) ||
+        db.test.findMany({ where: { isPublished: true } })[0] ||
+        db.test.findMany()[0];
+
+      if (fdpTest) {
+        const guestUser = db.user.create({
+          data: {
+            name: 'FDP Participant',
+            email: `participant-${Date.now()}@nmiet.edu.in`,
+            organization: 'NMIET, Talegaon, Pune',
+          },
+        });
+
+        const totalQ = fdpTest.questions?.length || 50;
+        const maxSc = (fdpTest.questions || []).reduce((sum: number, q: any) => sum + (q.marks || 1), 0) || 50;
+
+        attempt = db.attempt.create({
+          data: {
+            id: attemptId,
+            testId: fdpTest.id,
+            userId: guestUser.id,
+            totalQuestions: totalQ,
+            maxScore: maxSc,
+          },
+        });
+      }
+    }
 
     if (!attempt) {
       return NextResponse.json({ success: false, error: 'Examination attempt not found' }, { status: 404 });

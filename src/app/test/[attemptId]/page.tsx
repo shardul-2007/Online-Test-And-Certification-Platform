@@ -19,6 +19,7 @@ import {
   LayoutGrid,
   X,
 } from 'lucide-react';
+import TestRegisterModal from '@/components/TestRegisterModal';
 
 interface QuestionOption {
   id: string;
@@ -72,6 +73,7 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
   const [tabWarningVisible, setTabWarningVisible] = useState(false);
   const [showSubmitModal, setShowSubmitModal] = useState(false);
   const [showMobilePalette, setShowMobilePalette] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const initialDurationRef = useRef<number>(60 * 60);
@@ -256,6 +258,9 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
           attemptId,
           answers,
           timeSpentSeconds: initialDurationRef.current,
+          participantName: participant?.name,
+          participantOrganization: participant?.organization,
+          participantEmail: participant?.email,
         }),
       });
       localStorage.removeItem(`certipulse_exam_${attemptId}`);
@@ -264,7 +269,7 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
       console.error('Auto submit failed:', err);
       router.push(`/result/${attemptId}`);
     }
-  }, [submitting, attemptId, answers, router]);
+  }, [submitting, attemptId, answers, participant, router]);
 
   const submitExamToServer = async () => {
     setSubmitting(true);
@@ -276,6 +281,9 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
           attemptId,
           answers,
           timeSpentSeconds: initialDurationRef.current - timeLeft,
+          participantName: participant?.name,
+          participantOrganization: participant?.organization,
+          participantEmail: participant?.email,
         }),
       });
 
@@ -311,17 +319,46 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
   if (error || !test) {
     return (
       <div className="min-h-screen bg-[#060810] flex flex-col items-center justify-center p-4 text-white">
-        <div className="max-w-md w-full p-6 rounded-2xl bg-slate-900 border border-red-800 text-center space-y-4">
-          <AlertTriangle className="w-10 h-10 text-red-400 mx-auto" />
-          <h2 className="text-xl font-bold">Examination Session Error</h2>
-          <p className="text-xs text-slate-400">{error || 'Unable to load test questions.'}</p>
-          <button
-            onClick={() => router.push('/')}
-            className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold"
-          >
-            Return to Homepage
-          </button>
+        <div className="max-w-md w-full p-6 sm:p-8 rounded-2xl bg-[#090E1A] border border-slate-800 text-center space-y-5 shadow-2xl">
+          <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mx-auto text-amber-400">
+            <Award className="w-6 h-6" />
+          </div>
+          <div className="space-y-1.5">
+            <h2 className="text-xl font-bold text-white tracking-tight">FDP Assessment Room</h2>
+            <p className="text-xs text-slate-300">
+              {error === 'Examination attempt not found'
+                ? 'Your previous examination session has expired or was not initialized. You can start a fresh assessment right away below.'
+                : error || 'Unable to load test questions.'}
+            </p>
+          </div>
+
+          <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+            <button
+              onClick={() => setIsRegisterOpen(true)}
+              className="w-full sm:flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-yellow-300 font-bold text-xs text-slate-950 shadow-lg shadow-amber-500/20 transition cursor-pointer"
+            >
+              Start Assessment Now
+            </button>
+            <button
+              onClick={() => router.push('/')}
+              className="w-full sm:w-auto px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-300 hover:text-white transition cursor-pointer"
+            >
+              Return to Homepage
+            </button>
+          </div>
         </div>
+
+        <TestRegisterModal
+          test={{
+            id: 'test-fdp-2026',
+            title: 'Faculty Development Programme (FDP) Assessment',
+            durationMinutes: 60,
+            passingPercentage: 0,
+            questionCount: 50,
+          }}
+          isOpen={isRegisterOpen}
+          onClose={() => setIsRegisterOpen(false)}
+        />
       </div>
     );
   }
@@ -695,6 +732,23 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
                 <span className="block text-slate-500 text-[10px]">Flagged</span>
                 <span className="font-bold text-cyan-400 text-sm">{reviewCount}</span>
               </div>
+            </div>
+
+            {/* Candidate Info on Certificate */}
+            <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs space-y-1">
+              <div className="flex items-center justify-between text-slate-400">
+                <span className="text-[10px] uppercase font-mono tracking-wider">Certificate Recipient</span>
+                <span className="text-[10px] text-amber-400 font-mono">Official</span>
+              </div>
+              <div className="font-bold text-white text-sm flex items-center gap-1.5">
+                <User className="w-3.5 h-3.5 text-amber-400" />
+                <span>{participant?.name || 'Participant'}</span>
+              </div>
+              {participant?.organization && (
+                <div className="text-[11px] text-slate-400">
+                  College: <span className="text-slate-300 font-medium">{participant.organization}</span>
+                </div>
+              )}
             </div>
 
             {unansweredCount > 0 && firstUnansweredIdx !== -1 && (
