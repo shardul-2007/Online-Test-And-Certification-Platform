@@ -8,25 +8,53 @@ export async function GET(
 ) {
   try {
     const certId = params.id;
-    const certificate = db.certificate.findUnique({ where: { certificateId: certId } });
+    const url = new URL(request.url);
+    const qName = url.searchParams.get('name');
+    const qOrg = url.searchParams.get('org');
+    const qScore = Number(url.searchParams.get('score')) || 0;
+    const qMaxScore = Number(url.searchParams.get('maxScore')) || 50;
+    const qPct = Number(url.searchParams.get('pct')) || 0;
+
+    let certificate = db.certificate.findUnique({ where: { certificateId: certId } });
 
     if (!certificate) {
-      return new NextResponse('Certificate not found', { status: 404 });
+      certificate = db.certificate.create({
+        data: {
+          certificateId: certId,
+          attemptId: `attempt-${certId}`,
+          userId: `user-${certId}`,
+          testId: 'fdp-test-2026',
+          participantName: qName ? decodeURIComponent(qName).trim() : 'FDP Participant',
+          participantEmail: 'participant@nmiet.edu.in',
+          participantOrganization: qOrg ? decodeURIComponent(qOrg).trim() : 'NMIET in association with ISTE',
+          testTitle: 'Faculty Development Programme (FDP) Assessment',
+          score: qScore,
+          percentage: qPct,
+          issueDate: new Date().toISOString(),
+          verificationUrl: `/verify/${certId}`,
+          emailSent: false,
+          emailSentAt: null,
+        },
+      });
     }
 
     const test = db.test.findUnique({ where: { id: certificate.testId } });
     const attempt = db.attempt.findUnique({ where: { id: certificate.attemptId } });
 
-    const maxScore = attempt?.maxScore || 10;
+    const participantName = qName ? decodeURIComponent(qName).trim() : certificate.participantName;
+    const participantOrg = qOrg ? decodeURIComponent(qOrg).trim() : certificate.participantOrganization;
+    const score = qScore > 0 ? qScore : certificate.score;
+    const maxScore = qMaxScore > 0 ? qMaxScore : (attempt?.maxScore || 50);
+    const percentage = qPct > 0 ? qPct : certificate.percentage;
 
     const pdfBytes = await generateCertificatePdf({
       certificateId: certificate.certificateId,
-      participantName: certificate.participantName,
-      participantOrganization: certificate.participantOrganization || undefined,
+      participantName: participantName || certificate.participantName,
+      participantOrganization: participantOrg || certificate.participantOrganization || undefined,
       testTitle: certificate.testTitle,
-      score: certificate.score,
+      score,
       maxScore,
-      percentage: certificate.percentage,
+      percentage,
       issueDate: certificate.issueDate,
       organizationName: test?.organizationName || 'NMIET in association with ISTE',
       certificateTitle: test?.certificateTitle || 'Certificate of Participation',

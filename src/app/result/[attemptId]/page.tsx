@@ -188,6 +188,12 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
           email: customEmail.trim(),
           name: result.participantName,
           organization: result.participantOrganization,
+          score: result.score,
+          maxScore: result.maxScore || 50,
+          percentage: result.percentage,
+          testTitle: result.testTitle,
+          attemptId: result.attemptId || attemptId,
+          issueDate: result.certificate.issueDate,
         }),
       });
 
@@ -197,7 +203,7 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
       }
 
       if (data.emailStatus?.status === 'SIMULATED') {
-        setEmailSentSuccess(`Notice: PDF certificate delivery recorded for ${customEmail.trim()}. (Add SMTP or Resend credentials in Vercel to dispatch live inboxes)`);
+        setEmailSentSuccess(`Notice: PDF certificate delivery recorded for ${customEmail.trim()}. (To send live emails to Google/Yahoo inboxes, add GMAIL_USER & GMAIL_APP_PASSWORD in Vercel Environment Variables)`);
       } else {
         setEmailSentSuccess(`✓ Official PDF Certificate successfully dispatched to ${customEmail.trim()}! Please check your inbox & spam folder.`);
       }
@@ -211,7 +217,14 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
   const handleDownloadPdf = async (certId: string) => {
     try {
       setDownloading(true);
-      const url = `/api/certificates/${certId}/download`;
+      const qParams = new URLSearchParams({
+        name: result?.participantName || '',
+        org: result?.participantOrganization || '',
+        score: String(result?.score || 0),
+        maxScore: String(result?.maxScore || 50),
+        pct: String(result?.percentage || 0),
+      });
+      const url = `/api/certificates/${certId}/download?${qParams.toString()}`;
       const a = document.createElement('a');
       a.href = url;
       a.download = `${certId}.pdf`;

@@ -10,33 +10,55 @@ export async function POST(
   try {
     const certId = params.id;
     const body = await request.json().catch(() => ({}));
-    const certificate = db.certificate.findUnique({ where: { certificateId: certId } });
+    let certificate = db.certificate.findUnique({ where: { certificateId: certId } });
+
+    const recipientName = (body.name || certificate?.participantName || 'FDP Participant').trim();
+    const recipientEmail = (body.email || certificate?.participantEmail || '').trim();
+    const recipientOrg = (body.organization || certificate?.participantOrganization || '').trim();
+    const score = typeof body.score === 'number' ? body.score : (certificate?.score ?? 0);
+    const maxScore = typeof body.maxScore === 'number' ? body.maxScore : (certificate ? 50 : 50);
+    const percentage = typeof body.percentage === 'number' ? body.percentage : (certificate?.percentage ?? 0);
+
+    if (!recipientEmail) {
+      return NextResponse.json({ success: false, error: 'Recipient email address is required' }, { status: 400 });
+    }
 
     if (!certificate) {
-      return NextResponse.json({ success: false, error: 'Certificate not found' }, { status: 404 });
+      // Self-heal and record certificate in DB
+      certificate = db.certificate.create({
+        data: {
+          certificateId: certId,
+          attemptId: (body.attemptId as string) || `attempt-${certId}`,
+          userId: `user-${certId}`,
+          testId: 'fdp-test-2026',
+          participantName: recipientName,
+          participantEmail: recipientEmail,
+          participantOrganization: recipientOrg || null,
+          testTitle: (body.testTitle as string) || 'Faculty Development Programme (FDP) Assessment',
+          score,
+          percentage,
+          issueDate: (body.issueDate as string) || new Date().toISOString(),
+          verificationUrl: `/verify/${certId}`,
+          emailSent: false,
+          emailSentAt: null,
+        },
+      });
+    } else {
+      if (body.name) certificate.participantName = recipientName;
+      if (body.email) certificate.participantEmail = recipientEmail;
+      if (body.organization) certificate.participantOrganization = recipientOrg;
     }
 
     const test = db.test.findUnique({ where: { id: certificate.testId } });
-    const attempt = db.attempt.findUnique({ where: { id: certificate.attemptId } });
-
-    const maxScore = attempt?.maxScore || 50;
-
-    const recipientName = (body.name || certificate.participantName || 'Participant').trim();
-    const recipientEmail = (body.email || certificate.participantEmail || '').trim();
-    const recipientOrg = (body.organization || certificate.participantOrganization || '').trim();
-
-    if (body.name) certificate.participantName = recipientName;
-    if (body.email) certificate.participantEmail = recipientEmail;
-    if (body.organization) certificate.participantOrganization = recipientOrg;
 
     const pdfBytes = await generateCertificatePdf({
       certificateId: certificate.certificateId,
       participantName: recipientName,
       participantOrganization: recipientOrg || undefined,
       testTitle: certificate.testTitle || 'Faculty Development Programme (FDP) Assessment',
-      score: certificate.score,
+      score,
       maxScore,
-      percentage: certificate.percentage,
+      percentage,
       issueDate: certificate.issueDate,
       organizationName: test?.organizationName || 'NMIET in association with ISTE',
       certificateTitle: test?.certificateTitle || 'Certificate of Participation',

@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { initialDatabaseData } from './seed';
 import {
   Admin,
@@ -15,38 +16,66 @@ import {
 } from './types';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
-const DB_FILE = path.join(DATA_DIR, 'certipulse_db.json');
+const LOCAL_DB_FILE = path.join(DATA_DIR, 'certipulse_db.json');
+const TMP_DB_FILE = path.join(os.tmpdir(), 'certipulse_db.json');
+
+// Global in-memory cache to retain state across warm lambda invocations
+let inMemoryCache: DatabaseSchema | null = null;
 
 // Ensure data folder and file existence with initial seed
 function ensureDataStore(): DatabaseSchema {
+  if (inMemoryCache) {
+    return inMemoryCache;
+  }
+
   try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
+    // 1. Try reading from tmp directory (most up-to-date in serverless runtime)
+    if (fs.existsSync(TMP_DB_FILE)) {
+      const raw = fs.readFileSync(TMP_DB_FILE, 'utf-8');
+      inMemoryCache = JSON.parse(raw);
+      return inMemoryCache!;
     }
-    if (!fs.existsSync(DB_FILE)) {
-      fs.writeFileSync(DB_FILE, JSON.stringify(initialDatabaseData, null, 2), 'utf-8');
-      return JSON.parse(JSON.stringify(initialDatabaseData));
+
+    // 2. Try reading from bundled repository data directory
+    if (fs.existsSync(LOCAL_DB_FILE)) {
+      const raw = fs.readFileSync(LOCAL_DB_FILE, 'utf-8');
+      inMemoryCache = JSON.parse(raw);
+      return inMemoryCache!;
     }
-    const raw = fs.readFileSync(DB_FILE, 'utf-8');
-    const parsed = JSON.parse(raw);
-    return parsed;
+
+    // 3. Fallback to bundled seed data
+    inMemoryCache = JSON.parse(JSON.stringify(initialDatabaseData));
+    return inMemoryCache!;
   } catch (err) {
     console.error('Error reading certipulse DB, falling back to seed:', err);
-    return JSON.parse(JSON.stringify(initialDatabaseData));
+    inMemoryCache = JSON.parse(JSON.stringify(initialDatabaseData));
+    return inMemoryCache!;
   }
 }
 
 // Atomic file writer
 function saveDb(data: DatabaseSchema): void {
+  inMemoryCache = data;
+
+  // Persist to tmp directory (always writable in Vercel & serverless lambdas)
+  try {
+    const tempTmp = `${TMP_DB_FILE}.tmp.${Date.now()}`;
+    fs.writeFileSync(tempTmp, JSON.stringify(data, null, 2), 'utf-8');
+    fs.renameSync(tempTmp, TMP_DB_FILE);
+  } catch (err) {
+    // tmp write fallback
+  }
+
+  // Also attempt local write for local dev server
   try {
     if (!fs.existsSync(DATA_DIR)) {
       fs.mkdirSync(DATA_DIR, { recursive: true });
     }
-    const tempFile = `${DB_FILE}.tmp.${Date.now()}`;
+    const tempFile = `${LOCAL_DB_FILE}.tmp.${Date.now()}`;
     fs.writeFileSync(tempFile, JSON.stringify(data, null, 2), 'utf-8');
-    fs.renameSync(tempFile, DB_FILE);
-  } catch (err) {
-    console.error('Error persisting certipulse DB:', err);
+    fs.renameSync(tempFile, LOCAL_DB_FILE);
+  } catch {
+    // Silently ignore EROFS in read-only serverless environment
   }
 }
 
