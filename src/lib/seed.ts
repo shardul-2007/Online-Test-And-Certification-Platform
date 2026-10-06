@@ -7,7 +7,7 @@ export const initialDatabaseData: DatabaseSchema = {
       "id": "admin-shardul",
       "email": "shardulparihar2007@gmail.com",
       "name": "Shardul Parihar",
-      "password": "Shardul@123",
+      "password": "Shardul@797",
       "role": "SUPERADMIN",
       "createdAt": "2026-10-01T00:00:00.000Z",
       "updatedAt": "2026-10-01T00:00:00.000Z"

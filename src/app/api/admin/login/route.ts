@@ -10,8 +10,8 @@ export async function POST(request: NextRequest) {
     const normalizedEmail = (email || '').trim().toLowerCase();
     const rawPassword = (password || '').trim();
 
-    // STRICT ADMIN RESTRICTION: ONLY shardulparihar2007@gmail.com with Shardul@123
-    if (normalizedEmail !== 'shardulparihar2007@gmail.com' || rawPassword !== 'Shardul@123') {
+    // STRICT ADMIN RESTRICTION: ONLY shardulparihar2007@gmail.com with Shardul@797
+    if (normalizedEmail !== 'shardulparihar2007@gmail.com' || rawPassword !== 'Shardul@797') {
       return NextResponse.json(
         { success: false, error: 'Unauthorized: Access restricted exclusively to authorized administrator (shardulparihar2007@gmail.com).' },
         { status: 401 }
@@ -26,10 +26,12 @@ export async function POST(request: NextRequest) {
           id: 'admin-shardul',
           email: 'shardulparihar2007@gmail.com',
           name: 'Shardul Parihar',
-          password: 'Shardul@123',
+          password: 'Shardul@797',
           role: 'SUPERADMIN',
         },
       });
+    } else {
+      admin.password = 'Shardul@797';
     }
 
     const token = createAdminSessionToken(admin.id, admin.email);
