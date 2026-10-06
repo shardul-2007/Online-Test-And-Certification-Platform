@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { generateCertificatePdf } from '@/lib/pdf';
 import { sendCertificateEmail } from '@/lib/email';
+import { fetchCloudRegistry, saveCloudRegistry } from '@/lib/cloudStore';
 
 function generateUniqueCertificateId(): string {
   const year = new Date().getFullYear();
@@ -243,6 +244,35 @@ export async function POST(request: NextRequest) {
     } catch (err: any) {
       console.error('Error generating PDF or sending email:', err);
       emailStatus = { success: false, status: 'FAILED', error: err.message };
+    }
+
+    // Sync participant submission permanently to cloud store
+    try {
+      const cloud = await fetchCloudRegistry();
+      const otherAttempts = (cloud.attempts || []).filter((a) => a.id !== attempt.id);
+      const otherCerts = (cloud.certificates || []).filter((c) => c.attemptId !== attempt.id);
+      const otherUsers = (cloud.users || []).filter((u) => u.id !== user.id);
+      const otherAnswers = (cloud.answers || []).filter((a) => a.attemptId !== attempt.id);
+
+      const newAnswers = questionReviews.map((qr) => ({
+        id: `ans-${attempt.id}-${qr.questionId}`,
+        attemptId: attempt.id,
+        questionId: qr.questionId,
+        selectedOptionId: qr.selectedOptionId,
+        isMarkedForReview: false,
+        isCorrect: qr.isCorrect,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      }));
+
+      await saveCloudRegistry({
+        users: [...otherUsers, user],
+        attempts: [...otherAttempts, updatedAttempt || attempt],
+        certificates: certificateRecord ? [...otherCerts, certificateRecord] : otherCerts,
+        answers: [...otherAnswers, ...newAnswers],
+      });
+    } catch (syncErr) {
+      console.warn('Permanent cloud sync warning:', syncErr);
     }
 
     return NextResponse.json({

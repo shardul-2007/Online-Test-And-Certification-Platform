@@ -55,6 +55,10 @@ export default function AdminDashboardPage() {
   const [certSearch, setCertSearch] = useState('');
   const [actionLoading, setActionLoading] = useState<string | null>(null);
 
+  // Participant selection & deletion state
+  const [selectedAttemptIds, setSelectedAttemptIds] = useState<string[]>([]);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+
   // Create Test Modal
   const [showCreateTest, setShowCreateTest] = useState(false);
   const [newTestTitle, setNewTestTitle] = useState('');
@@ -194,6 +198,69 @@ export default function AdminDashboardPage() {
       alert(err.message || 'Error fetching candidate response audit');
     } finally {
       setLoadingAudit(false);
+    }
+  };
+
+  const toggleSelectAll = () => {
+    if (selectedAttemptIds.length === participants.length) {
+      setSelectedAttemptIds([]);
+    } else {
+      setSelectedAttemptIds(participants.map((p) => p.id));
+    }
+  };
+
+  const toggleSelectOne = (id: string) => {
+    if (selectedAttemptIds.includes(id)) {
+      setSelectedAttemptIds(selectedAttemptIds.filter((item) => item !== id));
+    } else {
+      setSelectedAttemptIds([...selectedAttemptIds, id]);
+    }
+  };
+
+  const handleDeleteSingle = async (attemptId: string, name?: string) => {
+    if (!confirm(`Are you sure you want to permanently delete participant "${name || 'Candidate'}" and their certificate records?`)) return;
+    try {
+      setDeleteLoading(true);
+      const res = await fetch('/api/admin/participants', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ attemptId }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSelectedAttemptIds(selectedAttemptIds.filter((id) => id !== attemptId));
+        loadAllData();
+      } else {
+        alert(data.error || 'Failed to delete participant');
+      }
+    } catch (err: any) {
+      alert(err.message || 'Error deleting participant');
+    } finally {
+      setDeleteLoading(false);
+    }
+  };
+
+  const handleDeleteSelected = async () => {
+    if (selectedAttemptIds.length === 0) return;
+    if (!confirm(`Are you sure you want to permanently delete all ${selectedAttemptIds.length} selected participant(s) and their certificate records?`)) return;
+    try {
+      setDeleteLoading(true);
+      const res = await fetch('/api/admin/participants', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ attemptIds: selectedAttemptIds }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSelectedAttemptIds([]);
+        loadAllData();
+      } else {
+        alert(data.error || 'Failed to delete selected participants');
+      }
+    } catch (err: any) {
+      alert(err.message || 'Error deleting selected participants');
+    } finally {
+      setDeleteLoading(false);
     }
   };
 
@@ -818,12 +885,38 @@ export default function AdminDashboardPage() {
               </div>
             </div>
 
+            {/* Selection & Bulk Actions Banner */}
+            {selectedAttemptIds.length > 0 && (
+              <div className="flex items-center justify-between p-3.5 rounded-xl bg-rose-950/50 border border-rose-800 text-xs shadow-lg animate-fade-in">
+                <span className="text-rose-200 font-semibold">
+                  Selected <strong className="text-white font-mono">{selectedAttemptIds.length}</strong> of {participants.length} participant(s)
+                </span>
+                <button
+                  onClick={handleDeleteSelected}
+                  disabled={deleteLoading}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold transition shadow-md disabled:opacity-50"
+                >
+                  <Trash2 className="w-4 h-4" />
+                  <span>{deleteLoading ? 'Deleting...' : `Delete Selected (${selectedAttemptIds.length})`}</span>
+                </button>
+              </div>
+            )}
+
             {/* Records Table */}
             <div className="rounded-2xl border border-slate-800 bg-[#090E1A] overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs text-slate-300">
                   <thead className="bg-slate-900/80 text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-800">
                     <tr>
+                      <th className="py-3 px-3 w-10 text-center">
+                        <input
+                          type="checkbox"
+                          checked={participants.length > 0 && selectedAttemptIds.length === participants.length}
+                          onChange={toggleSelectAll}
+                          className="rounded border-slate-700 bg-slate-900 text-cyan-400 focus:ring-0 cursor-pointer w-4 h-4"
+                          title="Select All Participants"
+                        />
+                      </th>
                       <th className="py-3 px-4">Candidate</th>
                       <th className="py-3 px-4">Organization</th>
                       <th className="py-3 px-4">Assessment</th>
@@ -831,12 +924,20 @@ export default function AdminDashboardPage() {
                       <th className="py-3 px-4">Outcome</th>
                       <th className="py-3 px-4">Certificate</th>
                       <th className="py-3 px-4">Date</th>
-                      <th className="py-3 px-4 text-right">Responses Audit</th>
+                      <th className="py-3 px-4 text-right">Actions & Audit</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-800/60">
                     {participants.map((att) => (
-                      <tr key={att.id} className="hover:bg-slate-900/40 transition">
+                      <tr key={att.id} className={`hover:bg-slate-900/40 transition ${selectedAttemptIds.includes(att.id) ? 'bg-cyan-950/20' : ''}`}>
+                        <td className="py-3 px-3 text-center">
+                          <input
+                            type="checkbox"
+                            checked={selectedAttemptIds.includes(att.id)}
+                            onChange={() => toggleSelectOne(att.id)}
+                            className="rounded border-slate-700 bg-slate-900 text-cyan-400 focus:ring-0 cursor-pointer w-4 h-4"
+                          />
+                        </td>
                         <td className="py-3 px-4">
                           <div className="font-semibold text-white">{att.user?.name}</div>
                           <div className="text-[11px] text-slate-500">{att.user?.email}</div>
@@ -885,7 +986,7 @@ export default function AdminDashboardPage() {
                         <td className="py-3 px-4 text-slate-500 whitespace-nowrap">
                           {att.submittedAt ? new Date(att.submittedAt).toLocaleDateString() : 'In Progress'}
                         </td>
-                        <td className="py-3 px-4 text-right whitespace-nowrap">
+                        <td className="py-3 px-4 text-right whitespace-nowrap space-x-2">
                           <button
                             onClick={() => handleViewResponses(att.id)}
                             disabled={loadingAudit}
@@ -893,6 +994,14 @@ export default function AdminDashboardPage() {
                           >
                             <FileCheck className="w-3.5 h-3.5 text-cyan-400" />
                             <span>View Responses</span>
+                          </button>
+                          <button
+                            onClick={() => handleDeleteSingle(att.id, att.user?.name)}
+                            disabled={deleteLoading}
+                            title="Delete Participant"
+                            className="inline-flex items-center justify-center p-1.5 rounded-lg bg-rose-950/60 hover:bg-rose-900/80 border border-rose-800 text-rose-300 transition"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
                           </button>
                         </td>
                       </tr>

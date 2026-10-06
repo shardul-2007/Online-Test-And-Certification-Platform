@@ -399,6 +399,19 @@ export const db = {
       saveDb(state);
       return state.attempts[idx];
     },
+    delete({ where }: { where: { id: string } }): boolean {
+      const state = ensureDataStore();
+      state.attempts = state.attempts.filter((a) => a.id !== where.id);
+      saveDb(state);
+      return true;
+    },
+    deleteMany({ where }: { where: { ids: string[] } }): number {
+      const state = ensureDataStore();
+      const before = state.attempts.length;
+      state.attempts = state.attempts.filter((a) => !where.ids.includes(a.id));
+      saveDb(state);
+      return before - state.attempts.length;
+    },
   },
 
   // ANSWERS (FOR SAVING PROGRESS & REVIEWS)
@@ -406,6 +419,13 @@ export const db = {
     findMany({ where }: { where: { attemptId: string } }): Answer[] {
       const state = ensureDataStore();
       return state.answers.filter((a) => a.attemptId === where.attemptId);
+    },
+    deleteMany({ where }: { where: { attemptIds: string[] } }): number {
+      const state = ensureDataStore();
+      const before = state.answers.length;
+      state.answers = state.answers.filter((a) => !where.attemptIds.includes(a.attemptId));
+      saveDb(state);
+      return before - state.answers.length;
     },
     upsert({
       where,
@@ -495,6 +515,23 @@ export const db = {
       };
       saveDb(state);
       return state.certificates[idx];
+    },
+    delete({ where }: { where: { certificateId?: string; attemptId?: string } }): boolean {
+      const state = ensureDataStore();
+      state.certificates = state.certificates.filter((c) => {
+        if (where.certificateId && c.certificateId === where.certificateId) return false;
+        if (where.attemptId && c.attemptId === where.attemptId) return false;
+        return true;
+      });
+      saveDb(state);
+      return true;
+    },
+    deleteMany({ where }: { where: { attemptIds: string[] } }): number {
+      const state = ensureDataStore();
+      const before = state.certificates.length;
+      state.certificates = state.certificates.filter((c) => !where.attemptIds.includes(c.attemptId));
+      saveDb(state);
+      return before - state.certificates.length;
     },
   },
 
