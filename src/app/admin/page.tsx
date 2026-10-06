@@ -32,10 +32,14 @@ export default function AdminDashboardPage() {
   const [activeTab, setActiveTab] = useState<'overview' | 'tests' | 'questions' | 'participants' | 'certificates' | 'emailLogs'>('overview');
 
   // Login form state
-  const [adminEmail, setAdminEmail] = useState('admin@skillcert.org');
-  const [adminPassword, setAdminPassword] = useState('admin123456');
+  const [adminEmail, setAdminEmail] = useState('');
+  const [adminPassword, setAdminPassword] = useState('');
   const [loginLoading, setLoginLoading] = useState(false);
   const [loginError, setLoginError] = useState<string | null>(null);
+
+  // Response audit state
+  const [selectedAttemptAudit, setSelectedAttemptAudit] = useState<any | null>(null);
+  const [loadingAudit, setLoadingAudit] = useState(false);
 
   // Data states
   const [stats, setStats] = useState<any>(null);
@@ -148,7 +152,7 @@ export default function AdminDashboardPage() {
     }
   }, [selectedTestId]);
 
-  const handleLogin = async (isDemo = false) => {
+  const handleLogin = async () => {
     setLoginLoading(true);
     setLoginError(null);
 
@@ -157,9 +161,8 @@ export default function AdminDashboardPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          email: adminEmail,
-          password: adminPassword,
-          isDemo,
+          email: adminEmail.trim(),
+          password: adminPassword.trim(),
         }),
       });
 
@@ -174,6 +177,23 @@ export default function AdminDashboardPage() {
       setLoginError(err.message || 'Login failed');
     } finally {
       setLoginLoading(false);
+    }
+  };
+
+  const handleViewResponses = async (attemptId: string) => {
+    try {
+      setLoadingAudit(true);
+      const res = await fetch(`/api/admin/attempts/${attemptId}`);
+      const data = await res.json();
+      if (data.success && data.attempt) {
+        setSelectedAttemptAudit(data.attempt);
+      } else {
+        alert(data.error || 'Failed to retrieve participant responses');
+      }
+    } catch (err: any) {
+      alert(err.message || 'Error fetching candidate response audit');
+    } finally {
+      setLoadingAudit(false);
     }
   };
 
@@ -324,15 +344,16 @@ export default function AdminDashboardPage() {
             </div>
           )}
 
-          <form onSubmit={(e) => { e.preventDefault(); handleLogin(false); }} className="space-y-4">
+          <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }} className="space-y-4">
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-slate-300">Email Address</label>
+              <label className="text-xs font-semibold text-slate-300">Administrator Email</label>
               <input
                 type="email"
                 required
+                placeholder="shardulparihar2007@gmail.com"
                 value={adminEmail}
                 onChange={(e) => setAdminEmail(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:border-cyan-400"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:border-cyan-400 placeholder-slate-600"
               />
             </div>
 
@@ -341,9 +362,10 @@ export default function AdminDashboardPage() {
               <input
                 type="password"
                 required
+                placeholder="••••••••••••"
                 value={adminPassword}
                 onChange={(e) => setAdminPassword(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:border-cyan-400"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:border-cyan-400 placeholder-slate-600"
               />
             </div>
 
@@ -356,17 +378,10 @@ export default function AdminDashboardPage() {
             </button>
           </form>
 
-          {/* 1-Click Demo Login */}
-          <div className="pt-2 border-t border-slate-800 text-center space-y-3">
-            <span className="text-[11px] text-slate-500">Evaluation Testing Shortcut:</span>
-            <button
-              type="button"
-              onClick={() => handleLogin(true)}
-              className="w-full py-2.5 rounded-xl text-xs font-semibold text-cyan-300 bg-cyan-950/50 hover:bg-cyan-950/80 border border-cyan-800/80 transition flex items-center justify-center gap-2"
-            >
-              <ShieldCheck className="w-4 h-4 text-cyan-400" />
-              <span>1-Click Instant Demo Admin Login</span>
-            </button>
+          <div className="pt-2 border-t border-slate-800 text-center">
+            <span className="text-[11px] text-slate-500">
+              Access is restricted strictly to authorized administrator: <code className="text-cyan-400">shardulparihar2007@gmail.com</code>
+            </span>
           </div>
         </div>
       </div>
@@ -816,6 +831,7 @@ export default function AdminDashboardPage() {
                       <th className="py-3 px-4">Outcome</th>
                       <th className="py-3 px-4">Certificate</th>
                       <th className="py-3 px-4">Date</th>
+                      <th className="py-3 px-4 text-right">Responses Audit</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-800/60">
@@ -824,6 +840,9 @@ export default function AdminDashboardPage() {
                         <td className="py-3 px-4">
                           <div className="font-semibold text-white">{att.user?.name}</div>
                           <div className="text-[11px] text-slate-500">{att.user?.email}</div>
+                          {att.user?.phone && (
+                            <div className="text-[10px] text-slate-600 font-mono">{att.user.phone}</div>
+                          )}
                         </td>
                         <td className="py-3 px-4 text-slate-400">{att.user?.organization || 'Individual'}</td>
                         <td className="py-3 px-4 max-w-xs truncate text-slate-300">{att.test?.title}</td>
@@ -843,19 +862,38 @@ export default function AdminDashboardPage() {
                         </td>
                         <td className="py-3 px-4 font-mono text-[11px]">
                           {att.certificate ? (
-                            <Link
-                              href={`/verify/${att.certificate.certificateId}`}
-                              className="text-cyan-400 hover:underline flex items-center gap-1"
-                            >
-                              {att.certificate.certificateId}
-                              <ExternalLink className="w-3 h-3" />
-                            </Link>
+                            <div className="space-y-0.5">
+                              <Link
+                                href={`/verify/${att.certificate.certificateId}`}
+                                className="text-amber-400 hover:underline flex items-center gap-1 font-bold"
+                              >
+                                {att.certificate.certificateId}
+                                <ExternalLink className="w-3 h-3" />
+                              </Link>
+                              <a
+                                href={`/api/certificates/${att.certificate.certificateId}/download`}
+                                className="text-[10px] text-cyan-400 hover:underline block"
+                                download
+                              >
+                                Download PDF
+                              </a>
+                            </div>
                           ) : (
                             <span className="text-slate-600">N/A</span>
                           )}
                         </td>
                         <td className="py-3 px-4 text-slate-500 whitespace-nowrap">
                           {att.submittedAt ? new Date(att.submittedAt).toLocaleDateString() : 'In Progress'}
+                        </td>
+                        <td className="py-3 px-4 text-right whitespace-nowrap">
+                          <button
+                            onClick={() => handleViewResponses(att.id)}
+                            disabled={loadingAudit}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-950/70 hover:bg-cyan-900/80 border border-cyan-800 text-cyan-300 text-xs font-semibold transition shadow-sm"
+                          >
+                            <FileCheck className="w-3.5 h-3.5 text-cyan-400" />
+                            <span>View Responses</span>
+                          </button>
                         </td>
                       </tr>
                     ))}
@@ -1227,6 +1265,212 @@ export default function AdminDashboardPage() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* ── MODAL: PARTICIPANT DETAILED RESPONSE AUDIT ── */}
+      {selectedAttemptAudit && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+          <div className="bg-[#090E1A] border border-cyan-500/40 rounded-2xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden animate-scale-up">
+            {/* Modal Header */}
+            <div className="p-5 sm:p-6 border-b border-slate-800 bg-slate-900/90 flex items-start justify-between gap-4">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-cyan-950 text-cyan-300 border border-cyan-800 uppercase tracking-wider">
+                    Comprehensive Response Audit
+                  </span>
+                  <span className="text-xs text-slate-400 font-mono">
+                    ID: {selectedAttemptAudit.id}
+                  </span>
+                </div>
+                <h2 className="text-xl font-bold text-white">
+                  {selectedAttemptAudit.user?.name || 'Candidate Responses'}
+                </h2>
+                <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400">
+                  <span>Email: <strong className="text-slate-200">{selectedAttemptAudit.user?.email}</strong></span>
+                  {selectedAttemptAudit.user?.phone && (
+                    <span>Phone: <strong className="text-slate-200">{selectedAttemptAudit.user?.phone}</strong></span>
+                  )}
+                  {selectedAttemptAudit.user?.organization && (
+                    <span>Org: <strong className="text-slate-200">{selectedAttemptAudit.user?.organization}</strong></span>
+                  )}
+                </div>
+              </div>
+
+              <button
+                onClick={() => setSelectedAttemptAudit(null)}
+                className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition"
+              >
+                <XCircle className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Assessment Score & Certificate Summary Strip */}
+            <div className="p-4 sm:px-6 bg-slate-950/70 border-b border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+              <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                <span className="text-[10px] uppercase font-bold text-slate-400">Score & Marks</span>
+                <div className="text-xl font-bold font-mono text-cyan-300">
+                  {selectedAttemptAudit.score} / {selectedAttemptAudit.maxScore}
+                </div>
+                <span className="text-[10px] text-slate-500">{selectedAttemptAudit.percentage}% Marks</span>
+              </div>
+
+              <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                <span className="text-[10px] uppercase font-bold text-slate-400">Questions Breakdown</span>
+                <div className="text-xs font-semibold text-slate-200 mt-1 space-y-0.5">
+                  <div className="text-emerald-400">✓ Correct: {selectedAttemptAudit.responses?.filter((r: any) => r.isCorrect).length || 0}</div>
+                  <div className="text-rose-400">✗ Incorrect: {selectedAttemptAudit.responses?.filter((r: any) => !r.isCorrect && !r.isUnanswered).length || 0}</div>
+                  <div className="text-amber-400">○ Unanswered: {selectedAttemptAudit.responses?.filter((r: any) => r.isUnanswered).length || 0}</div>
+                </div>
+              </div>
+
+              <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                <span className="text-[10px] uppercase font-bold text-slate-400">Outcome Status</span>
+                <div className="mt-1">
+                  {selectedAttemptAudit.isPassed ? (
+                    <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-950 text-emerald-300 border border-emerald-800 inline-block">
+                      PASSED (Certified)
+                    </span>
+                  ) : (
+                    <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-950 text-rose-300 border border-rose-800 inline-block">
+                      FAILED
+                    </span>
+                  )}
+                </div>
+                <span className="text-[10px] text-slate-500 block mt-1">
+                  {selectedAttemptAudit.submittedAt ? new Date(selectedAttemptAudit.submittedAt).toLocaleTimeString() : 'In Progress'}
+                </span>
+              </div>
+
+              <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 flex flex-col justify-between">
+                <span className="text-[10px] uppercase font-bold text-slate-400">Official Certificate</span>
+                {selectedAttemptAudit.certificate ? (
+                  <div className="space-y-1 my-auto">
+                    <div className="text-xs font-mono font-bold text-amber-300">
+                      {selectedAttemptAudit.certificate.certificateId}
+                    </div>
+                    <div className="flex items-center justify-center gap-2 pt-1">
+                      <a
+                        href={`/api/certificates/${selectedAttemptAudit.certificate.certificateId}/download`}
+                        className="px-2 py-0.5 rounded bg-amber-400 text-slate-950 text-[10px] font-bold hover:bg-amber-300"
+                        download
+                      >
+                        PDF
+                      </a>
+                      <Link
+                        href={`/verify/${selectedAttemptAudit.certificate.certificateId}`}
+                        target="_blank"
+                        className="px-2 py-0.5 rounded bg-slate-800 text-slate-200 text-[10px] font-semibold hover:bg-slate-700"
+                      >
+                        Verify
+                      </Link>
+                    </div>
+                  </div>
+                ) : (
+                  <span className="text-xs text-slate-500 my-auto">No Certificate</span>
+                )}
+              </div>
+            </div>
+
+            {/* Scrollable Questions and Selected Responses List */}
+            <div className="p-5 sm:p-6 overflow-y-auto space-y-4 flex-1">
+              <h3 className="text-sm font-bold text-slate-200 flex items-center justify-between pb-2 border-b border-slate-800">
+                <span>Detailed Question-by-Question Breakdown ({selectedAttemptAudit.responses?.length || 0} Questions)</span>
+                <span className="text-xs text-slate-400 font-normal">Green = Correct Answer · Red = Candidate Incorrect · Grey = Unanswered</span>
+              </h3>
+
+              <div className="space-y-3">
+                {selectedAttemptAudit.responses?.map((r: any) => (
+                  <div
+                    key={r.questionId}
+                    className={`p-4 rounded-xl border transition ${
+                      r.isCorrect
+                        ? 'bg-emerald-950/20 border-emerald-800/60'
+                        : r.isUnanswered
+                        ? 'bg-slate-900/60 border-slate-800'
+                        : 'bg-rose-950/20 border-rose-800/60'
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-3 mb-2">
+                      <div className="flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-full flex items-center justify-center font-mono font-bold text-xs bg-slate-800 text-slate-300">
+                          {r.number}
+                        </span>
+                        <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800/80 text-slate-400">
+                          {r.category}
+                        </span>
+                      </div>
+
+                      <div>
+                        {r.isCorrect ? (
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-300 border border-emerald-800 flex items-center gap-1">
+                            <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                            CORRECT (+{r.marks})
+                          </span>
+                        ) : r.isUnanswered ? (
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-950 text-amber-300 border border-amber-800">
+                            UNANSWERED (0)
+                          </span>
+                        ) : (
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-950 text-rose-300 border border-rose-800 flex items-center gap-1">
+                            <XCircle className="w-3 h-3 text-rose-400" />
+                            INCORRECT (0)
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <p className="text-sm font-semibold text-white mb-3">
+                      {r.text}
+                    </p>
+
+                    {/* Candidate Answer vs Correct Answer */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                      <div className={`p-2.5 rounded-lg border ${
+                        r.isCorrect
+                          ? 'bg-emerald-950/40 border-emerald-800/80 text-emerald-200'
+                          : r.isUnanswered
+                          ? 'bg-slate-900 border-slate-800 text-slate-400 italic'
+                          : 'bg-rose-950/40 border-rose-800/80 text-rose-200'
+                      }`}>
+                        <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-0.5">
+                          Candidate Choice:
+                        </span>
+                        <div className="font-medium">{r.selectedOptionText}</div>
+                      </div>
+
+                      <div className="p-2.5 rounded-lg bg-emerald-950/30 border border-emerald-800/60 text-emerald-200">
+                        <span className="block text-[10px] font-bold uppercase tracking-wider text-emerald-400 mb-0.5">
+                          Official Correct Answer:
+                        </span>
+                        <div className="font-medium">{r.correctOptionText}</div>
+                      </div>
+                    </div>
+
+                    {r.explanation && (
+                      <div className="mt-2.5 pt-2 border-t border-slate-800/60 text-[11px] text-slate-400">
+                        <span className="font-semibold text-slate-300">Explanation: </span>
+                        {r.explanation}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="p-4 border-t border-slate-800 bg-slate-900/90 flex items-center justify-between">
+              <span className="text-xs text-slate-400">
+                Audited candidate: <strong className="text-white">{selectedAttemptAudit.user?.name}</strong>
+              </span>
+              <button
+                onClick={() => setSelectedAttemptAudit(null)}
+                className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white transition"
+              >
+                Close Audit
+              </button>
+            </div>
           </div>
         </div>
       )}

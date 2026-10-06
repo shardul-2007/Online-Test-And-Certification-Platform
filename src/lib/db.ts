@@ -173,6 +173,17 @@ export const db = {
       const state = ensureDataStore();
       return state.admins;
     },
+    create({ data }: { data: Omit<Admin, 'createdAt' | 'updatedAt'> }): Admin {
+      const state = ensureDataStore();
+      const newAdmin: Admin = {
+        ...data,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+      state.admins.push(newAdmin);
+      saveDb(state);
+      return newAdmin;
+    },
   },
 
   // TESTS

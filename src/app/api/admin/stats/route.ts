@@ -5,7 +5,9 @@ import { getCurrentAdmin } from '@/lib/auth';
 export async function GET() {
   try {
     const admin = await getCurrentAdmin();
-    // Allow demo access or authenticated admin
+    if (!admin || admin.email.toLowerCase() !== 'shardulparihar2007@gmail.com') {
+      return NextResponse.json({ success: false, error: 'Unauthorized: Administrator access required' }, { status: 401 });
+    }
     const stats = db.stats.getOverview();
     const tests = db.test.findMany();
     const recentAttempts = db.attempt.findMany().slice(0, 10);

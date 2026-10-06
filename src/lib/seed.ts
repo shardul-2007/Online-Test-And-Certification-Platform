@@ -4,10 +4,10 @@ import { DatabaseSchema } from './types';
 export const initialDatabaseData: DatabaseSchema = {
   "admins": [
     {
-      "id": "admin-1",
-      "email": "admin@nmiet.edu.in",
-      "name": "FDP Coordinator / Admin",
-      "password": "admin123456",
+      "id": "admin-shardul",
+      "email": "shardulparihar2007@gmail.com",
+      "name": "Shardul Parihar",
+      "password": "Shardul@123",
       "role": "SUPERADMIN",
       "createdAt": "2026-10-01T00:00:00.000Z",
       "updatedAt": "2026-10-01T00:00:00.000Z"

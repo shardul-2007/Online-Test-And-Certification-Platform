@@ -1,8 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { getCurrentAdmin } from '@/lib/auth';
 
 export async function GET(request: NextRequest) {
   try {
+    const admin = await getCurrentAdmin();
+    if (!admin || admin.email.toLowerCase() !== 'shardulparihar2007@gmail.com') {
+      return NextResponse.json({ success: false, error: 'Unauthorized: Administrator access required' }, { status: 401 });
+    }
+
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search')?.toLowerCase() || '';
     const format = searchParams.get('format');
@@ -16,7 +22,8 @@ export async function GET(request: NextRequest) {
           a.user?.name.toLowerCase().includes(search) ||
           a.user?.email.toLowerCase().includes(search) ||
           a.user?.organization?.toLowerCase().includes(search) ||
-          a.test?.title.toLowerCase().includes(search)
+          a.test?.title.toLowerCase().includes(search) ||
+          a.certificate?.certificateId.toLowerCase().includes(search)
       );
     }
 
@@ -26,38 +33,48 @@ export async function GET(request: NextRequest) {
       attempts = attempts.filter((a) => a.status === 'COMPLETED' && !a.isPassed);
     }
 
-    // CSV EXPORT SUPPORT
+    // CSV EXPORT SUPPORT WITH COMPLETE CANDIDATE & CERTIFICATE TRACKING
     if (format === 'csv') {
       const headers = [
         'Attempt ID',
         'Participant Name',
-        'Email',
-        'Organization',
-        'Test Title',
-        'Score',
-        'Max Score',
+        'Email Address',
+        'Phone Number',
+        'College / Organization',
+        'Assessment Title',
+        'Score Obtained',
+        'Max Marks',
         'Percentage',
-        'Status',
-        'Passed',
+        'Correct Answers',
+        'Incorrect Answers',
+        'Unanswered Questions',
+        'Outcome Status',
         'Certificate ID',
-        'Tab Switches',
-        'Date Completed',
+        'Certificate Verification URL',
+        'Email Sent Status',
+        'Time Spent (Sec)',
+        'Date & Time Completed',
       ];
 
       const rows = attempts.map((a) => [
         `"${a.id}"`,
         `"${a.user?.name || ''}"`,
         `"${a.user?.email || ''}"`,
+        `"${a.user?.phone || 'N/A'}"`,
         `"${a.user?.organization || 'N/A'}"`,
         `"${a.test?.title || ''}"`,
         a.score,
         a.maxScore,
-        `${a.percentage}%`,
+        `"${a.percentage}%"`,
+        a.correctAnswers || 0,
+        a.incorrectAnswers || 0,
+        a.unanswered || 0,
         `"${a.status}"`,
-        a.isPassed ? 'YES' : 'NO',
         `"${a.certificate?.certificateId || 'N/A'}"`,
-        a.tabSwitchCount || 0,
-        `"${a.submittedAt ? new Date(a.submittedAt).toISOString() : 'In Progress'}"`,
+        `"${a.certificate?.verificationUrl || ''}"`,
+        `"${a.certificate?.emailSent ? 'Delivered' : 'Pending/Not Sent'}"`,
+        a.timeSpentSeconds || 0,
+        `"${a.submittedAt ? new Date(a.submittedAt).toLocaleString() : 'In Progress'}"`,
       ]);
 
       const csvContent = [headers.join(','), ...rows.map((r) => r.join(','))].join('\n');

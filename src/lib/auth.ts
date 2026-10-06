@@ -33,7 +33,13 @@ export async function getCurrentAdmin() {
   const session = parseAdminSessionToken(token);
   if (!session) return null;
 
-  const admin = db.admin.findUnique({ where: { id: session.adminId } });
+  // STRICT REQUIREMENT: Only shardulparihar2007@gmail.com is permitted administrator access
+  if (session.email.toLowerCase() !== 'shardulparihar2007@gmail.com') {
+    return null;
+  }
+
+  const admin = db.admin.findUnique({ where: { id: session.adminId } }) ||
+    db.admin.findUnique({ where: { email: 'shardulparihar2007@gmail.com' } });
   if (!admin) return null;
 
   return {

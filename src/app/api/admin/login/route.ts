@@ -7,28 +7,29 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { email, password, isDemo } = body;
 
-    let admin = null;
+    const normalizedEmail = (email || '').trim().toLowerCase();
+    const rawPassword = (password || '').trim();
 
-    if (isDemo) {
-      // 1-Click Demo Login for effortless evaluation
-      admin = db.admin.findUnique({ where: { email: 'admin@skillcert.org' } });
-      if (!admin) {
-        const allAdmins = db.admin.findMany();
-        admin = allAdmins[0] || null;
-      }
-    } else {
-      if (!email || !password) {
-        return NextResponse.json({ success: false, error: 'Email and password required' }, { status: 400 });
-      }
-
-      admin = db.admin.findUnique({ where: { email } });
-      if (!admin || admin.password !== password) {
-        return NextResponse.json({ success: false, error: 'Invalid admin credentials' }, { status: 401 });
-      }
+    // STRICT ADMIN RESTRICTION: ONLY shardulparihar2007@gmail.com with Shardul@123
+    if (normalizedEmail !== 'shardulparihar2007@gmail.com' || rawPassword !== 'Shardul@123') {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized: Access restricted exclusively to authorized administrator (shardulparihar2007@gmail.com).' },
+        { status: 401 }
+      );
     }
 
+    let admin = db.admin.findUnique({ where: { email: 'shardulparihar2007@gmail.com' } });
+
     if (!admin) {
-      return NextResponse.json({ success: false, error: 'Admin account not found' }, { status: 404 });
+      admin = db.admin.create({
+        data: {
+          id: 'admin-shardul',
+          email: 'shardulparihar2007@gmail.com',
+          name: 'Shardul Parihar',
+          password: 'Shardul@123',
+          role: 'SUPERADMIN',
+        },
+      });
     }
 
     const token = createAdminSessionToken(admin.id, admin.email);
