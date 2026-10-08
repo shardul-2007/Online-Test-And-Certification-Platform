@@ -43,6 +43,11 @@ export default function TestRegisterModal({ test, isOpen, onClose }: TestRegiste
       return;
     }
 
+    if (!organization.trim() || organization.trim().length < 2) {
+      setError('Please enter your College or Institute name (minimum 2 characters).');
+      return;
+    }
+
     setStep('rules');
   };
 
@@ -182,16 +187,17 @@ export default function TestRegisterModal({ test, isOpen, onClose }: TestRegiste
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                    <Building className="w-3.5 h-3.5 text-slate-400" /> College / Institute Name <span className="text-slate-500 font-normal">(Recommended)</span>
+                    <Building className="w-3.5 h-3.5 text-cyan-400" /> College / Institute Name <span className="text-red-400">*</span>
                   </label>
                   <input
                     type="text"
+                    required
                     placeholder="e.g. NMIET, Talegaon / Pune University"
                     value={organization}
                     onChange={(e) => setOrganization(e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition"
                   />
-                  <p className="text-[10px] text-slate-500">Printed after &quot;FROM&quot; on the certificate.</p>
+                  <p className="text-[10px] text-slate-400">Printed after &quot;FROM&quot; on the certificate.</p>
                 </div>
 
                 <div className="space-y-1.5">
