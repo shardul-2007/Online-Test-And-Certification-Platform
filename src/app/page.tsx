@@ -48,6 +48,16 @@ export default function LandingPage() {
     setIsRegisterOpen(true);
   };
 
+  // Listen for start test event from navbar
+  useEffect(() => {
+    const handleStartTestEvent = () => {
+      setIsRegisterOpen(true);
+    };
+    
+    window.addEventListener('start-test-modal', handleStartTestEvent);
+    return () => window.removeEventListener('start-test-modal', handleStartTestEvent);
+  }, []);
+
   const handleQuickVerify = (e: React.FormEvent) => {
     e.preventDefault();
     if (verifyIdInput.trim()) {
@@ -92,61 +102,6 @@ export default function LandingPage() {
     <div className="min-h-screen bg-[#06080F] text-slate-100 selection:bg-amber-400 selection:text-slate-950">
       {/* Subtle Background Grid Accent */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293d12_1px,transparent_1px),linear-gradient(to_bottom,#1f293d12_1px,transparent_1px)] bg-[size:3rem_3rem] pointer-events-none" />
-
-      {/* ── TOP INSTITUTION BANNER ── */}
-      <div className="bg-[#080C18] border-b border-slate-800/80 py-2.5 px-4 text-center">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-xs">
-          <div className="flex items-center gap-2 text-slate-400 font-medium">
-            <span className="text-amber-400 font-bold uppercase tracking-wider text-[11px]">NMVPM &amp; PCET</span>
-            <span>·</span>
-            <span>Nutan Maharashtra Institute of Engineering &amp; Technology (NMIET), Talegaon, Pune</span>
-          </div>
-          <div className="flex items-center gap-2 text-slate-400">
-            <span className="px-2 py-0.5 rounded bg-amber-400/10 text-amber-300 font-semibold border border-amber-400/20 text-[10px]">
-              In Association with ISTE
-            </span>
-            <span className="text-[11px] text-slate-500">5th to 9th Oct, 2026</span>
-          </div>
-        </div>
-      </div>
-
-      {/* ── NAVIGATION HEADER ── */}
-      <header className="sticky top-0 z-40 bg-[#06080F]/90 backdrop-blur-md border-b border-slate-800/80 px-4 sm:px-6 py-3.5">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shadow-md">
-              <Award className="w-5 h-5" />
-            </div>
-            <div className="min-w-0">
-              <div className="text-xs sm:text-sm font-bold text-white tracking-tight truncate max-w-[150px] xs:max-w-[200px] sm:max-w-none">
-                Dept. of Information Technology
-              </div>
-              <div className="text-[10px] sm:text-[11px] text-slate-400 truncate max-w-[150px] xs:max-w-[200px] sm:max-w-none">
-                NMIET &amp; ISTE FDP 2026
-              </div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <Link
-              href="/verify"
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 hover:border-slate-700 transition"
-            >
-              <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-              <span>Verify Certificate</span>
-            </Link>
-
-            <button
-              onClick={handleStartTest}
-              className="flex items-center gap-1.5 px-3.5 sm:px-5 py-2 rounded-xl font-bold text-xs text-slate-950 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-yellow-300 shadow-md shadow-amber-500/20 transition cursor-pointer"
-            >
-              <span className="hidden sm:inline">Start FDP Assessment</span>
-              <span className="sm:hidden">Start Test</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </div>
-      </header>
 
       {/* ── HERO SECTION ── */}
       <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden">
@@ -387,84 +342,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── HOW IT WORKS IN 4 STEPS ── */}
-      <section className="py-16 bg-[#080C18] border-t border-slate-800/80">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 space-y-10">
-          <div className="text-center space-y-2">
-            <span className="text-xs font-mono text-amber-400 uppercase tracking-wider">Simple Process</span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">How It Works</h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="p-5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
-              <div className="text-xs font-mono text-amber-400 font-bold">STEP 01</div>
-              <h4 className="font-bold text-white text-sm">Register</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Enter your Full Name, Email, and College/Organization Name.
-              </p>
-            </div>
-
-            <div className="p-5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
-              <div className="text-xs font-mono text-amber-400 font-bold">STEP 02</div>
-              <h4 className="font-bold text-white text-sm">Take Test</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Complete the 50 compulsory questions across the 4 sections in 60 minutes.
-              </p>
-            </div>
-
-            <div className="p-5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
-              <div className="text-xs font-mono text-amber-400 font-bold">STEP 03</div>
-              <h4 className="font-bold text-white text-sm">Submit</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Confirm your submission. Our server securely records and scores your answers.
-              </p>
-            </div>
-
-            <div className="p-5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
-              <div className="text-xs font-mono text-amber-400 font-bold">STEP 04</div>
-              <h4 className="font-bold text-white text-sm">Get Certificate</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Your Certificate of Participation is generated, emailed to you, and ready for instant download!
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── FAQ ACCORDION ── */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-8">
-          <div className="text-center space-y-2">
-            <span className="text-xs font-mono text-amber-400 uppercase tracking-wider">FAQ</span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Frequently Asked Questions</h2>
-          </div>
-
-          <div className="space-y-3">
-            {faqs.map((faq, i) => (
-              <div
-                key={i}
-                className="rounded-xl border border-slate-800 bg-slate-900/60 overflow-hidden transition"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex items-center justify-between p-4 text-left text-sm font-semibold text-white hover:text-amber-300 transition"
-                >
-                  <span>{faq.q}</span>
-                  <ChevronDown
-                    className={`w-4 h-4 text-slate-400 transition-transform ${openFaq === i ? 'rotate-180' : ''}`}
-                  />
-                </button>
-                {openFaq === i && (
-                  <div className="px-4 pb-4 pt-1 text-xs text-slate-300 leading-relaxed border-t border-slate-800/80">
-                    {faq.a}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── QUICK VERIFY FOOTER SEARCH ── */}
       <section className="py-12 bg-[#080C18] border-t border-slate-800/80">
         <div className="max-w-xl mx-auto px-4 text-center space-y-4">
@@ -489,16 +366,6 @@ export default function LandingPage() {
           </form>
         </div>
       </section>
-
-      {/* ── FOOTER ── */}
-      <footer className="py-8 bg-[#06080F] border-t border-slate-800 text-center text-xs text-slate-500 space-y-2">
-        <p>
-          © 2026 Department of Information Technology, Nutan Maharashtra Institute of Engineering and Technology (NMIET).
-        </p>
-        <p className="text-[11px] text-slate-600">
-          Under administrative support of PCET · In association with Indian Society for Technical Education (ISTE) · Talegaon, Pune 410507
-        </p>
-      </footer>
 
       {/* Registration & Exam Launch Modal */}
       <TestRegisterModal
