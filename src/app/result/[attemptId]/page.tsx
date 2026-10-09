@@ -288,7 +288,7 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
               </h1>
 
               <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
-                You have successfully completed the 50 compulsory questions for the Faculty Development Programme on{' '}
+                You have successfully completed the {result.totalQuestions || 25} compulsory questions for the Faculty Development Programme on{' '}
                 <strong className="text-white">“Recent advances in cyber security and blockchain for secure digital transformation”</strong>.
                 Your official Certificate of Participation is generated below and has been sent to your email.
               </p>
@@ -482,10 +482,10 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
             <div>
               <h3 className="text-base font-bold text-white flex items-center gap-2">
                 <Layers className="w-4 h-4 text-amber-400" />
-                Comprehensive 50 Questions Review &amp; Explanations
+                Comprehensive {result.totalQuestions || 25} Questions Review &amp; Explanations
               </h3>
               <p className="text-xs text-slate-400">
-                Detailed authoritative explanations for all 50 questions across Cyber Security, Blockchain, &amp; Digital Transformation.
+                Detailed authoritative explanations for all {result.totalQuestions || 25} questions across Cyber Security &amp; Blockchain.
               </p>
             </div>
             <button
@@ -558,7 +558,7 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
                 ))
               ) : (
                 <p className="text-xs text-slate-400">
-                  All 50 questions evaluated server-side. Click above or check your email for the detailed summary.
+                  All {result.totalQuestions || 25} questions evaluated server-side. Click above or check your email for the detailed summary.
                 </p>
               )}
             </div>

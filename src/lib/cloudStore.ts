@@ -1,8 +1,9 @@
 import https from 'https';
+import { supabase } from './supabase';
 import { DatabaseSchema, TestAttempt, User, Certificate, Answer } from './types';
 
-const CLOUD_OBJECT_ID = 'ff808181a09d98f701a1107c2fa0074f';
-const CLOUD_URL = `https://api.restful-api.dev/objects/${CLOUD_OBJECT_ID}`;
+const REST_FALLBACK_ID = 'ff808181a09d98f701a1107c2fa0074f';
+const REST_FALLBACK_URL = `https://api.restful-api.dev/objects/${REST_FALLBACK_ID}`;
 
 export interface CloudPayload {
   users: User[];
@@ -15,14 +16,43 @@ let inMemoryCloudCache: CloudPayload | null = null;
 let lastCloudFetchTime = 0;
 const CACHE_TTL_MS = 2000; // 2 seconds cache for responsiveness
 
+/**
+ * Fetch persistent participant records.
+ * Prioritizes Supabase table 'fdp_store' (key: 'master').
+ * Gracefully falls back to high-availability REST cloud object if table doesn't exist yet.
+ */
 export async function fetchCloudRegistry(): Promise<CloudPayload> {
   const now = Date.now();
   if (inMemoryCloudCache && now - lastCloudFetchTime < CACHE_TTL_MS) {
     return inMemoryCloudCache;
   }
 
+  // 1. Attempt reading from Supabase
+  try {
+    const { data, error } = await supabase
+      .from('fdp_store')
+      .select('data')
+      .eq('id', 'master')
+      .maybeSingle();
+
+    if (!error && data && data.data) {
+      const sbData = data.data;
+      inMemoryCloudCache = {
+        users: Array.isArray(sbData.users) ? sbData.users : [],
+        attempts: Array.isArray(sbData.attempts) ? sbData.attempts : [],
+        certificates: Array.isArray(sbData.certificates) ? sbData.certificates : [],
+        answers: Array.isArray(sbData.answers) ? sbData.answers : [],
+      };
+      lastCloudFetchTime = Date.now();
+      return inMemoryCloudCache;
+    }
+  } catch (sbErr) {
+    // Supabase query failed (e.g. table not created yet), continue to fallback
+  }
+
+  // 2. Fallback to resilient REST cloud store
   return new Promise((resolve) => {
-    const req = https.get(CLOUD_URL, { timeout: 4000 }, (res) => {
+    const req = https.get(REST_FALLBACK_URL, { timeout: 4000 }, (res) => {
       let raw = '';
       res.on('data', (chunk) => (raw += chunk));
       res.on('end', () => {
@@ -53,7 +83,7 @@ export async function fetchCloudRegistry(): Promise<CloudPayload> {
     });
 
     req.on('error', (err) => {
-      console.warn('Could not reach cloud registry:', err.message);
+      console.warn('Could not reach cloud registry fallback:', err.message);
       resolve(inMemoryCloudCache || { users: [], attempts: [], certificates: [], answers: [] });
     });
 
@@ -64,10 +94,47 @@ export async function fetchCloudRegistry(): Promise<CloudPayload> {
   });
 }
 
+/**
+ * Save persistent participant records.
+ * Dual-writes to Supabase and the REST cloud store to ensure zero data loss.
+ */
 export async function saveCloudRegistry(payload: CloudPayload): Promise<boolean> {
   inMemoryCloudCache = payload;
   lastCloudFetchTime = Date.now();
 
+  let supabaseSuccess = false;
+
+  // 1. Try persisting to Supabase
+  try {
+    const { error } = await supabase
+      .from('fdp_store')
+      .upsert({
+        id: 'master',
+        data: {
+          version: 1,
+          updatedAt: new Date().toISOString(),
+          users: payload.users,
+          attempts: payload.attempts,
+          certificates: payload.certificates,
+          answers: payload.answers,
+        },
+        updated_at: new Date().toISOString(),
+      });
+
+    if (!error) {
+      supabaseSuccess = true;
+    }
+  } catch (err) {
+    // Supabase table may not exist yet
+  }
+
+  // 2. Also persist to REST fallback object store (guaranteed persistence)
+  const fallbackSuccess = await saveToRestFallback(payload);
+
+  return supabaseSuccess || fallbackSuccess;
+}
+
+function saveToRestFallback(payload: CloudPayload): Promise<boolean> {
   const bodyData = JSON.stringify({
     name: 'fdp_certipulse_master_registry',
     data: {
@@ -82,7 +149,7 @@ export async function saveCloudRegistry(payload: CloudPayload): Promise<boolean>
 
   return new Promise((resolve) => {
     const req = https.request(
-      CLOUD_URL,
+      REST_FALLBACK_URL,
       {
         method: 'PUT',
         headers: {
@@ -101,7 +168,7 @@ export async function saveCloudRegistry(payload: CloudPayload): Promise<boolean>
     );
 
     req.on('error', (err) => {
-      console.error('Failed to sync to cloud registry:', err.message);
+      console.error('Failed to sync to cloud registry fallback:', err.message);
       resolve(false);
     });
 

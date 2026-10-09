@@ -59,6 +59,10 @@ export default function AdminDashboardPage() {
   const [selectedAttemptIds, setSelectedAttemptIds] = useState<string[]>([]);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
+  // Supabase cloud persistence status
+  const [supabaseStatus, setSupabaseStatus] = useState<any>(null);
+  const [copiedSql, setCopiedSql] = useState(false);
+
   // Create Test Modal
   const [showCreateTest, setShowCreateTest] = useState(false);
   const [newTestTitle, setNewTestTitle] = useState('');
@@ -95,6 +99,14 @@ export default function AdminDashboardPage() {
       .catch(() => setIsAuthenticated(false));
   }, []);
 
+  const checkSupabaseStatus = async () => {
+    try {
+      const res = await fetch('/api/admin/supabase-status');
+      const data = await res.json();
+      if (data.success) setSupabaseStatus(data);
+    } catch {}
+  };
+
   const loadAllData = async () => {
     try {
       const statsRes = await fetch('/api/admin/stats');
@@ -110,6 +122,7 @@ export default function AdminDashboardPage() {
       loadParticipants();
       loadCertificates();
       loadEmailLogs();
+      checkSupabaseStatus();
     } catch (err) {
       console.error(err);
     }
@@ -530,6 +543,80 @@ export default function AdminDashboardPage() {
         {/* TAB 1: OVERVIEW & CHARTS */}
         {activeTab === 'overview' && stats && (
           <div className="space-y-8 animate-fade-in">
+            {/* Supabase Database Persistence Status Banner */}
+            {supabaseStatus && (
+              <div
+                className={`p-4 rounded-2xl border ${
+                  supabaseStatus.tableExists
+                    ? 'bg-emerald-950/25 border-emerald-800/70'
+                    : 'bg-amber-950/30 border-amber-800/80'
+                }`}
+              >
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-3.5">
+                  <div className="flex items-start gap-3">
+                    <div
+                      className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
+                        supabaseStatus.tableExists
+                          ? 'bg-emerald-500/20 text-emerald-400'
+                          : 'bg-amber-500/20 text-amber-400'
+                      }`}
+                    >
+                      <ShieldCheck className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-sm font-bold text-white">
+                          Supabase PostgreSQL Database
+                        </span>
+                        <span
+                          className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                            supabaseStatus.tableExists
+                              ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                              : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                          }`}
+                        >
+                          {supabaseStatus.tableExists
+                            ? '● Connected & Active'
+                            : '● Action Required in Supabase'}
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-400 mt-1">
+                        {supabaseStatus.tableExists
+                          ? 'All participant submissions, scores, and certificates are permanently saved in PostgreSQL and will never be lost on refresh.'
+                          : 'Connected to oktfhfhtcklnknahfyla.supabase.co! Run the 4-line SQL in your Supabase SQL Editor so tables are created.'}
+                      </p>
+                    </div>
+                  </div>
+
+                  {!supabaseStatus.tableExists && (
+                    <div className="flex items-center gap-2 self-start md:self-center shrink-0">
+                      <button
+                        onClick={() => {
+                          if (supabaseStatus.sql) {
+                            navigator.clipboard.writeText(supabaseStatus.sql);
+                            setCopiedSql(true);
+                            setTimeout(() => setCopiedSql(false), 3000);
+                          }
+                        }}
+                        className="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition shadow-md"
+                      >
+                        {copiedSql ? '✓ SQL Copied!' : 'Copy SQL Script'}
+                      </button>
+                      <a
+                        href="https://supabase.com/dashboard/project/oktfhfhtcklnknahfyla/sql/new"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold transition border border-slate-700 inline-flex items-center gap-1.5"
+                      >
+                        <span>Open SQL Editor</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
             {/* Top Stat Cards */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
               <div className="p-4 rounded-xl bg-[#090E1A] border border-slate-800">
@@ -858,6 +945,17 @@ export default function AdminDashboardPage() {
               </div>
 
               <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    loadParticipants(participantSearch);
+                    checkSupabaseStatus();
+                  }}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 transition"
+                  title="Force reload all participants from cloud database"
+                >
+                  <RotateCw className="w-3.5 h-3.5" />
+                  <span>Sync & Refresh</span>
+                </button>
                 <button
                   onClick={handleExportCsv}
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 shadow-md transition"

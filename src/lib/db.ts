@@ -101,9 +101,11 @@ export const db = {
       const state = ensureDataStore();
       return state.users;
     },
-    create({ data }: { data: Omit<User, 'id' | 'createdAt' | 'updatedAt'> }): User {
+    create({ data }: { data: Omit<User, 'id' | 'createdAt' | 'updatedAt'> & { id?: string; createdAt?: string } }): User {
       const state = ensureDataStore();
-      const existing = state.users.find((u) => u.email.toLowerCase() === data.email.toLowerCase());
+      const existing = state.users.find(
+        (u) => (data.id && u.id === data.id) || u.email.toLowerCase() === data.email.toLowerCase()
+      );
       if (existing) {
         existing.name = data.name;
         if (data.phone) existing.phone = data.phone;
@@ -113,12 +115,12 @@ export const db = {
         return existing;
       }
       const newUser: User = {
-        id: `user-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+        id: data.id || `user-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
         name: data.name,
         email: data.email,
         phone: data.phone || null,
         organization: data.organization || null,
-        createdAt: new Date().toISOString(),
+        createdAt: data.createdAt || new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       };
       state.users.push(newUser);
@@ -345,12 +347,38 @@ export const db = {
           if (where?.status && a.status !== where.status) return false;
           return true;
         })
-        .map((attempt) => ({
-          ...attempt,
-          user: state.users.find((u) => u.id === attempt.userId),
-          test: state.tests.find((t) => t.id === attempt.testId),
-          certificate: state.certificates.find((c) => c.attemptId === attempt.id) || null,
-        }))
+        .map((attempt) => {
+          let user = state.users.find((u) => u.id === attempt.userId);
+          const cert = state.certificates.find((c) => c.attemptId === attempt.id) || null;
+          if (!user && (attempt as any).user) {
+            user = (attempt as any).user;
+          }
+          if (!user && cert) {
+            user = {
+              id: attempt.userId,
+              name: cert.participantName,
+              email: cert.participantEmail,
+              phone: null,
+              organization: (cert as any).participantOrganization || null,
+              createdAt: attempt.startedAt,
+              updatedAt: attempt.startedAt,
+            };
+          }
+          return {
+            ...attempt,
+            user: user || {
+              id: attempt.userId,
+              name: 'FDP Participant',
+              email: 'participant@nmiet.edu.in',
+              phone: null,
+              organization: 'NMIET, Pune',
+              createdAt: attempt.startedAt,
+              updatedAt: attempt.startedAt,
+            },
+            test: state.tests.find((t) => t.id === attempt.testId),
+            certificate: cert,
+          };
+        })
         .sort((a, b) => new Date(b.startedAt).getTime() - new Date(a.startedAt).getTime());
     },
     create({

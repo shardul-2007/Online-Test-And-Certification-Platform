@@ -47,11 +47,9 @@ interface TestData {
 }
 
 const SECTIONS = [
-  { id: 'ALL', name: 'All Questions', range: '1 - 50', start: 0, end: 50 },
+  { id: 'ALL', name: 'All Questions', range: '1 - 25', start: 0, end: 25 },
   { id: 'SEC_A', name: 'Sec A: Cyber Security', range: 'Q1 - Q20', start: 0, end: 20 },
-  { id: 'SEC_B', name: 'Sec B: Blockchain', range: 'Q21 - Q35', start: 20, end: 35 },
-  { id: 'SEC_C', name: 'Sec C: Digital Transformation', range: 'Q36 - Q45', start: 35, end: 45 },
-  { id: 'SEC_D', name: 'Sec D: Integrated', range: 'Q46 - Q50', start: 45, end: 50 },
+  { id: 'SEC_B', name: 'Sec B: Blockchain', range: 'Q21 - Q25', start: 20, end: 25 },
 ];
 
 export default function ExamPage({ params }: { params: { attemptId: string } }) {
@@ -471,7 +469,7 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
                   NMIET &amp; ISTE FDP Assessment
                 </span>
                 <span className="hidden md:inline-flex px-2 py-0.5 rounded-full text-[10px] font-mono font-medium bg-amber-400/10 text-amber-300 border border-amber-400/20">
-                  50 MCQs · 1 Mark Each
+                  {questions.length || 25} MCQs · 1 Mark Each
                 </span>
               </div>
               <div className="text-[11px] text-slate-400 flex items-center gap-2">
@@ -598,7 +596,7 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
                     className="lg:hidden flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-amber-300 hover:text-white transition cursor-pointer"
                   >
                     <LayoutGrid className="w-3.5 h-3.5 text-amber-400" />
-                    <span>Palette ({answeredCount}/50)</span>
+                    <span>Palette ({answeredCount}/{questions.length})</span>
                   </button>
 
                   <button
@@ -707,7 +705,7 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
             {/* Palette Header */}
             <div className="flex items-center justify-between pb-3 border-b border-slate-800">
               <h3 className="text-sm font-bold text-white tracking-tight">Question Palette</h3>
-              <span className="text-[11px] font-mono text-amber-400">{answeredCount}/50 Completed</span>
+              <span className="text-[11px] font-mono text-amber-400">{answeredCount}/{questions.length} Completed</span>
             </div>
 
             {/* Status Legend */}
@@ -767,7 +765,7 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
                 Certificate of Participation
               </div>
               <p>
-                All 50 questions are compulsory. Upon final submission, your personalized certificate will be generated and dispatched directly to your email address.
+                All {questions.length} questions are compulsory. Upon final submission, your personalized certificate will be generated and dispatched directly to your email address.
               </p>
             </div>
           </div>
@@ -796,11 +794,11 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
               <p className="text-xs text-slate-300">
                 {unansweredCount > 0 ? (
                   <span className="text-amber-300">
-                    Notice: All 50 questions are compulsory. You have {unansweredCount} unanswered question{unansweredCount > 1 ? 's' : ''}.
+                    Notice: All {questions.length} questions are compulsory. You have {unansweredCount} unanswered question{unansweredCount > 1 ? 's' : ''}.
                   </span>
                 ) : (
                   <span>
-                    All 50 questions have been completed! Your official Certificate of Participation will be generated and dispatched to your email.
+                    All {questions.length} questions have been completed! Your official Certificate of Participation will be generated and dispatched to your email.
                   </span>
                 )}
               </p>

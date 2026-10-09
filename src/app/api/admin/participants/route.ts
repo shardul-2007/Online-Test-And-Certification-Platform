@@ -20,9 +20,7 @@ export async function GET(request: NextRequest) {
       const cloud = await fetchCloudRegistry();
       if (cloud && cloud.attempts && cloud.attempts.length > 0) {
         for (const u of cloud.users || []) {
-          if (!db.user.findUnique({ where: { id: u.id } })) {
-            db.user.create({ data: u });
-          }
+          db.user.create({ data: u });
         }
         for (const c of cloud.certificates || []) {
           if (!db.certificate.findUnique({ where: { certificateId: c.certificateId } })) {
@@ -41,21 +39,21 @@ export async function GET(request: NextRequest) {
                 maxScore: att.maxScore || 50,
               },
             });
-            db.attempt.update({
-              where: { id: att.id },
-              data: {
-                status: att.status,
-                submittedAt: att.submittedAt,
-                score: att.score,
-                percentage: att.percentage,
-                isPassed: att.isPassed,
-                correctAnswers: att.correctAnswers,
-                incorrectAnswers: att.incorrectAnswers,
-                unanswered: att.unanswered,
-                timeSpentSeconds: att.timeSpentSeconds,
-              },
-            });
           }
+          db.attempt.update({
+            where: { id: att.id },
+            data: {
+              status: att.status,
+              submittedAt: att.submittedAt,
+              score: att.score,
+              percentage: att.percentage,
+              isPassed: att.isPassed,
+              correctAnswers: att.correctAnswers,
+              incorrectAnswers: att.incorrectAnswers,
+              unanswered: att.unanswered,
+              timeSpentSeconds: att.timeSpentSeconds,
+            },
+          });
         }
         for (const ans of cloud.answers || []) {
           db.answer.upsert({
@@ -63,6 +61,31 @@ export async function GET(request: NextRequest) {
             data: ans,
           });
         }
+      }
+
+      // 2. Also ensure any local completed attempts get backed up to cloud
+      const cloudAttemptIds = new Set((cloud?.attempts || []).map((a) => a.id));
+      const localAttempts = db.attempt.findMany({ where: { status: 'COMPLETED' } });
+      const missingInCloud = localAttempts.filter((a) => !cloudAttemptIds.has(a.id));
+      if (missingInCloud.length > 0) {
+        const mergedUsers = [...(cloud?.users || [])];
+        for (const la of missingInCloud) {
+          if (la.user && !mergedUsers.find((u) => u.id === la.user?.id)) {
+            mergedUsers.push(la.user);
+          }
+        }
+        const mergedCerts = [...(cloud?.certificates || [])];
+        for (const la of missingInCloud) {
+          if (la.certificate && !mergedCerts.find((c) => c.certificateId === la.certificate?.certificateId)) {
+            mergedCerts.push(la.certificate);
+          }
+        }
+        await saveCloudRegistry({
+          users: mergedUsers,
+          attempts: [...(cloud?.attempts || []), ...missingInCloud],
+          certificates: mergedCerts,
+          answers: cloud?.answers || [],
+        });
       }
     } catch (syncErr) {
       console.warn('Sync from cloud store note:', syncErr);

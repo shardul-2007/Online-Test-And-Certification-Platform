@@ -114,13 +114,15 @@ Department of Information Technology, NMIET (in association with ISTE)
 
   const apiKey = process.env.RESEND_API_KEY;
   const smtpHost = process.env.SMTP_HOST;
-  const smtpUser = process.env.SMTP_USER || process.env.GMAIL_USER;
-  const smtpPass = process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD;
+  const rawSmtpUser = process.env.SMTP_USER || process.env.GMAIL_USER || 'rutvikkale2006@gmail.com';
+  const rawSmtpPass = process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || 'pwlg lvgl nejd lnir';
+  const smtpUser = rawSmtpUser.trim();
+  const smtpPass = rawSmtpPass.replace(/\s+/g, '');
 
   // 1. Send via SMTP / Gmail App Password if configured
   if (smtpUser && smtpPass) {
     try {
-      const isGmail = !smtpHost || smtpHost.includes('gmail') || !!process.env.GMAIL_USER;
+      const isGmail = !smtpHost || smtpHost.includes('gmail') || smtpUser.includes('gmail.com') || !!process.env.GMAIL_USER;
       const transporter = isGmail
         ? nodemailer.createTransport({
             service: 'gmail',

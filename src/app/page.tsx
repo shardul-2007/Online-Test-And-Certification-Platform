@@ -58,9 +58,9 @@ export default function LandingPage() {
   const fdpTest = test || {
     id: 'test-fdp-2026',
     title: 'Faculty Development Programme (FDP) Assessment',
-    durationMinutes: 60,
+    durationMinutes: 45,
     passingPercentage: 0,
-    questionCount: 50,
+    questionCount: 25,
     description:
       'Official Assessment for Faculty Development Programme on "Recent advances in cyber security and blockchain for secure digital transformation" organized by Department of Information Technology, Nutan Maharashtra Institute of Engineering & Technology (NMIET) in association with ISTE held on 5th to 9th Oct, 2026.',
   };
@@ -68,15 +68,15 @@ export default function LandingPage() {
   const faqs = [
     {
       q: 'Who receives the Certificate of Participation?',
-      a: 'Every participant who completes and submits the 50 compulsory questions will receive the official accredited Certificate of Participation. The certificate is not restricted by pass/fail criteria—participation in the assessment qualifies every attendee for certification.',
+      a: 'Every participant who completes and submits the 25 compulsory questions will receive the official accredited Certificate of Participation. The certificate is not restricted by pass/fail criteria—participation in the assessment qualifies every attendee for certification.',
     },
     {
       q: 'How does the automatic certificate generation and email delivery work?',
       a: 'Upon submitting your assessment, the system immediately binds your full legal name and college/organization onto the high-resolution official NMIET & ISTE certificate template. The cryptographically signed PDF certificate is automatically generated, made available for 1-click download, and dispatched directly to your registered email address.',
     },
     {
-      q: 'Are all 50 questions compulsory?',
-      a: 'Yes. All 50 questions across Section A (Cyber Security), Section B (Blockchain), Section C (Digital Transformation), and Section D (Integrated) are compulsory. Each question carries 1 mark (Total 50 marks).',
+      q: 'Are all 25 questions compulsory?',
+      a: 'Yes. All 25 questions across Section A (Cyber Security, Q1-Q20) and Section B (Blockchain, Q21-Q25) are compulsory. Each question carries 1 mark (Total 25 marks).',
     },
     {
       q: 'How can academic institutions or employers verify my certificate?',
@@ -175,10 +175,10 @@ export default function LandingPage() {
           {/* Highlights Banner */}
           <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 max-w-2xl mx-auto flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-slate-300">
             <span className="flex items-center gap-1.5 text-white font-medium">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" /> 50 Questions (All Compulsory)
+              <CheckCircle2 className="w-4 h-4 text-emerald-400" /> 25 Questions (All Compulsory)
             </span>
             <span className="flex items-center gap-1.5 text-white font-medium">
-              <Clock className="w-4 h-4 text-amber-400" /> 60 Minutes Duration
+              <Clock className="w-4 h-4 text-amber-400" /> 45 Minutes Duration
             </span>
             <span className="flex items-center gap-1.5 text-white font-medium">
               <Award className="w-4 h-4 text-amber-400" /> Certificate of Participation for All
@@ -217,7 +217,7 @@ export default function LandingPage() {
               Official Certificate of Participation
             </h2>
             <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto">
-              Every participant who completes the 50 compulsory questions will automatically receive this personalized certificate delivered directly to their email address.
+              Every participant who completes the 25 compulsory questions will automatically receive this personalized certificate delivered directly to their email address.
             </p>
           </div>
 
@@ -320,14 +320,14 @@ export default function LandingPage() {
           <div className="text-center space-y-2">
             <span className="text-xs font-mono text-amber-400 uppercase tracking-wider">Assessment Syllabus</span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              50 Compulsory MCQs across 4 Domains
+              25 Compulsory MCQs across 2 Core Domains
             </h2>
             <p className="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto">
-              Every section carries 1 mark per question. Complete all 50 questions to trigger your Certificate of Participation.
+              Every section carries 1 mark per question. Complete all 25 questions to trigger your Certificate of Participation.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3 hover:border-slate-700 transition">
               <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
                 <Lock className="w-5 h-5" />
@@ -351,36 +351,8 @@ export default function LandingPage() {
                 <h3 className="text-lg font-bold text-white">Blockchain</h3>
               </div>
               <div className="text-xs text-slate-400 space-y-1">
-                <p><strong>15 Questions (Q21 - Q35)</strong></p>
-                <p>Covers Distributed Ledgers, Cryptographic Hashes, PoW vs PoS, Smart Contracts, Wallets, and Immutability.</p>
-              </div>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3 hover:border-slate-700 transition">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-                <Cpu className="w-5 h-5" />
-              </div>
-              <div className="space-y-1">
-                <span className="text-[11px] font-mono text-emerald-400 font-bold uppercase tracking-wider">Section C</span>
-                <h3 className="text-lg font-bold text-white">Digital Transformation</h3>
-              </div>
-              <div className="text-xs text-slate-400 space-y-1">
-                <p><strong>10 Questions (Q36 - Q45)</strong></p>
-                <p>Covers Cloud Computing (IaaS/SaaS), IoT Security Challenges, Big Data Analytics, AI, and Digital Twins.</p>
-              </div>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3 hover:border-slate-700 transition">
-              <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
-                <Sparkles className="w-5 h-5" />
-              </div>
-              <div className="space-y-1">
-                <span className="text-[11px] font-mono text-purple-400 font-bold uppercase tracking-wider">Section D</span>
-                <h3 className="text-lg font-bold text-white">Integrated Domain</h3>
-              </div>
-              <div className="text-xs text-slate-400 space-y-1">
-                <p><strong>5 Questions (Q46 - Q50)</strong></p>
-                <p>Covers Privacy vs Blockchain Immutability, IoT Oracles, Deepfakes, and Multi-layered Governance.</p>
+                <p><strong>5 Questions (Q21 - Q25)</strong></p>
+                <p>Covers Distributed Ledgers, Cryptographic Hashes, Proof of Work consensus, and Blockchain immutability.</p>
               </div>
             </div>
           </div>
@@ -408,7 +380,7 @@ export default function LandingPage() {
               <div className="text-xs font-mono text-amber-400 font-bold">STEP 02</div>
               <h4 className="font-bold text-white text-sm">Take Test</h4>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Complete the 50 compulsory questions across the 4 sections in 60 minutes.
+                Complete the 25 compulsory questions across the 2 sections in 45 minutes.
               </p>
             </div>
 
