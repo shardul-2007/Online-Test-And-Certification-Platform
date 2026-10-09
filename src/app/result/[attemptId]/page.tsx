@@ -18,6 +18,11 @@ import {
   Building,
   Layers,
   ChevronDown,
+  MessageSquare,
+  Sparkles,
+  HelpCircle,
+  Send,
+  User,
 } from 'lucide-react';
 
 interface ResultData {
@@ -61,6 +66,8 @@ interface ResultData {
   }>;
 }
 
+const RATING_OPTIONS = ['Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+
 export default function ResultPage({ params }: { params: { attemptId: string } }) {
   const attemptId = params.attemptId;
   const [loading, setLoading] = useState(true);
@@ -69,10 +76,24 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
   const [showReview, setShowReview] = useState(false);
   const [downloading, setDownloading] = useState(false);
 
+  // Email state
   const [customEmail, setCustomEmail] = useState('');
   const [emailSending, setEmailSending] = useState(false);
   const [emailSentSuccess, setEmailSentSuccess] = useState<string | null>(null);
   const [emailSentError, setEmailSentError] = useState<string | null>(null);
+
+  // Feedback gating states
+  const [hasSubmittedFeedback, setHasSubmittedFeedback] = useState<boolean>(false);
+  const [feedbackSubmitting, setFeedbackSubmitting] = useState<boolean>(false);
+  const [feedbackError, setFeedbackError] = useState<string | null>(null);
+
+  // 5 Mandatory Feedback Question States
+  const [relevance, setRelevance] = useState('');
+  const [explanationClarity, setExplanationClarity] = useState('');
+  const [usefulnessOfExamples, setUsefulnessOfExamples] = useState('');
+  const [suggestions, setSuggestions] = useState('');
+  const [futureTopics, setFutureTopics] = useState('');
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     async function loadResult() {
@@ -154,13 +175,36 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
         setResult(resData);
         setCustomEmail(resData.participantEmail || candidateLocal?.email || '');
 
-        // Trigger celebratory confetti for Certificate of Participation
-        confetti({
-          particleCount: 110,
-          spread: 80,
-          origin: { y: 0.6 },
-          colors: ['#F5D061', '#EAB308', '#00F5C8', '#FFFFFF', '#38BDF8'],
-        });
+        // Check if feedback was already submitted for this attempt
+        let feedbackAlreadyDone = false;
+        try {
+          if (typeof window !== 'undefined') {
+            const localFb = localStorage.getItem(`certipulse_feedback_${attemptId}`);
+            if (localFb === 'true') {
+              feedbackAlreadyDone = true;
+            }
+          }
+        } catch {}
+
+        try {
+          const fbRes = await fetch(`/api/feedback?attemptId=${attemptId}`);
+          const fbData = await fbRes.json();
+          if (fbData.success && fbData.hasFeedback) {
+            feedbackAlreadyDone = true;
+          }
+        } catch {}
+
+        setHasSubmittedFeedback(feedbackAlreadyDone);
+
+        // Only fire confetti if certificate is already unlocked!
+        if (feedbackAlreadyDone) {
+          confetti({
+            particleCount: 110,
+            spread: 80,
+            origin: { y: 0.6 },
+            colors: ['#F5D061', '#EAB308', '#00F5C8', '#FFFFFF', '#38BDF8'],
+          });
+        }
       } catch (err: any) {
         console.error('Error loading result:', err);
         setError(err.message || 'Failed to load results');
@@ -171,6 +215,80 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
 
     loadResult();
   }, [attemptId]);
+
+  const handleFeedbackSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFeedbackError(null);
+
+    // Validate All 5 Mandatory Questions
+    const errors: Record<string, string> = {};
+    if (!relevance) {
+      errors.relevance = "Please rate today's session relevance to your academic/professional requirements.";
+    }
+    if (!explanationClarity) {
+      errors.explanationClarity = 'Please rate how clearly the resource person explained the concepts.';
+    }
+    if (!usefulnessOfExamples) {
+      errors.usefulnessOfExamples = 'Please rate the usefulness of examples, demonstrations, and case studies.';
+    }
+    if (!suggestions.trim()) {
+      errors.suggestions = 'Please provide your suggestions for improving future Faculty Development Programs.';
+    }
+    if (!futureTopics.trim()) {
+      errors.futureTopics = 'Please specify topics or activities you would like to learn in the future.';
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      return;
+    }
+
+    setValidationErrors({});
+    setFeedbackSubmitting(true);
+
+    try {
+      const res = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          attemptId,
+          relevance,
+          explanationClarity,
+          usefulnessOfExamples,
+          suggestions: suggestions.trim(),
+          futureTopics: futureTopics.trim(),
+          participantName: result?.participantName,
+          participantEmail: result?.participantEmail,
+          participantOrganization: result?.participantOrganization,
+        }),
+      });
+
+      const data = await res.json();
+      if (!data.success) {
+        throw new Error(data.error || 'Failed to submit feedback');
+      }
+
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(`certipulse_feedback_${attemptId}`, 'true');
+      }
+
+      setHasSubmittedFeedback(true);
+
+      // Trigger celebratory confetti upon unlocking certificate!
+      confetti({
+        particleCount: 120,
+        spread: 85,
+        origin: { y: 0.6 },
+        colors: ['#F5D061', '#EAB308', '#00F5C8', '#FFFFFF', '#38BDF8'],
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err: any) {
+      setFeedbackError(err.message || 'Error recording feedback. Please check your connection and retry.');
+    } finally {
+      setFeedbackSubmitting(false);
+    }
+  };
 
   const handleSendEmail = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -243,7 +361,7 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
       <div className="min-h-screen bg-[#060810] flex flex-col items-center justify-center text-white space-y-4">
         <Loader2 className="w-8 h-8 text-amber-400 animate-spin" />
         <p className="text-sm font-medium text-slate-300">
-          Evaluating FDP responses &amp; generating your official Certificate of Participation...
+          Evaluating FDP responses &amp; processing session records...
         </p>
       </div>
     );
@@ -267,6 +385,294 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
     );
   }
 
+  // ───────────────────────────────────────────────────────────────────────────
+  // VIEW A: MANDATORY FEEDBACK FORM (Shown until feedback is submitted!)
+  // ───────────────────────────────────────────────────────────────────────────
+  if (!hasSubmittedFeedback) {
+    return (
+      <div className="min-h-screen bg-[#06080F] text-slate-100 py-10 md:py-16">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-8">
+          {/* Header Banner */}
+          <div className="p-6 sm:p-8 rounded-2xl border border-amber-500/40 bg-gradient-to-r from-amber-950/40 via-yellow-950/20 to-slate-900/90 backdrop-blur-md shadow-2xl relative overflow-hidden">
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="px-3 py-1 rounded-full text-xs font-bold font-mono bg-amber-400/20 text-amber-300 border border-amber-400/40 flex items-center gap-1.5">
+                  <MessageSquare className="w-3.5 h-3.5 text-amber-400" /> MANDATORY FEEDBACK REQUIRED
+                </span>
+                <span className="text-xs text-slate-400">Step 2 of 2 · Certificate Access</span>
+              </div>
+
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                Faculty Development Programme Feedback
+              </h1>
+
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Thank you, <strong className="text-white">{result.participantName}</strong>! Your 50 assessment questions have been successfully evaluated.
+                Please complete the mandatory 5 feedback questions below regarding the FDP on{' '}
+                <strong className="text-white">“Recent advances in cyber security and blockchain for secure digital transformation”</strong>.
+                Your official <strong className="text-amber-300">Certificate of Participation</strong> will be unlocked immediately upon submitting this feedback.
+              </p>
+            </div>
+
+            {/* Candidate & Assessment Mini-Summary Chip */}
+            <div className="mt-5 pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3 text-xs">
+              <div className="flex items-center gap-2 text-slate-300">
+                <User className="w-4 h-4 text-amber-400" />
+                <span className="font-semibold text-white">{result.participantName}</span>
+                {result.participantOrganization && (
+                  <span className="text-slate-400">({result.participantOrganization})</span>
+                )}
+              </div>
+              <div className="px-3 py-1 rounded-lg bg-slate-900/80 border border-slate-800 text-amber-300 font-mono text-xs font-semibold">
+                Score: {result.score} / {result.maxScore} ({result.percentage}%)
+              </div>
+            </div>
+          </div>
+
+          {/* Certificate Gated Notice */}
+          <div className="p-4 rounded-xl bg-amber-950/20 border border-amber-500/30 flex items-start gap-3 text-xs text-amber-200">
+            <Award className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+            <p className="leading-relaxed">
+              <strong>Certificate of Participation Locked:</strong> Your official certificate credential has been prepared with ID{' '}
+              <span className="font-mono font-bold text-amber-300">{result.certificate?.certificateId || 'CERT-NMIET-2026'}</span>.
+              Completing this feedback is compulsory for issuing the certificate and will unlock high-resolution PDF download and email delivery.
+            </p>
+          </div>
+
+          {/* Feedback Form Card */}
+          <form onSubmit={handleFeedbackSubmit} className="p-6 sm:p-8 rounded-2xl bg-[#0D1528] border border-slate-800 shadow-2xl space-y-7">
+            {feedbackError && (
+              <div className="p-3.5 rounded-xl bg-rose-950/40 border border-rose-800 text-xs text-rose-300 flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+                <span>{feedbackError}</span>
+              </div>
+            )}
+
+            {/* Question 1 */}
+            <div className="space-y-3 p-5 rounded-xl bg-slate-950/60 border border-slate-800/80">
+              <label className="block text-sm font-bold text-white">
+                1. How relevant was today&apos;s session to your academic/professional requirements?{' '}
+                <span className="text-amber-400 font-extrabold">*</span>
+              </label>
+
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 pt-1">
+                {RATING_OPTIONS.map((opt) => {
+                  const isSelected = relevance === opt;
+                  return (
+                    <button
+                      key={opt}
+                      type="button"
+                      onClick={() => {
+                        setRelevance(opt);
+                        if (validationErrors.relevance) {
+                          setValidationErrors((prev) => ({ ...prev, relevance: '' }));
+                        }
+                      }}
+                      className={`py-3 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-2 transition cursor-pointer ${
+                        isSelected
+                          ? 'bg-amber-400 text-slate-950 border-amber-300 font-bold shadow-md shadow-amber-500/20'
+                          : 'bg-slate-900 border-slate-700/80 text-slate-300 hover:border-slate-500 hover:text-white'
+                      }`}
+                    >
+                      <span className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${isSelected ? 'border-slate-950 bg-slate-950' : 'border-slate-500'}`}>
+                        {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />}
+                      </span>
+                      <span>{opt}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {validationErrors.relevance && (
+                <p className="text-xs text-rose-400 font-medium flex items-center gap-1.5 pt-1">
+                  <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                  {validationErrors.relevance}
+                </p>
+              )}
+            </div>
+
+            {/* Question 2 */}
+            <div className="space-y-3 p-5 rounded-xl bg-slate-950/60 border border-slate-800/80">
+              <label className="block text-sm font-bold text-white">
+                2. How clearly did the resource person explain the concepts covered during the session?{' '}
+                <span className="text-amber-400 font-extrabold">*</span>
+              </label>
+
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 pt-1">
+                {RATING_OPTIONS.map((opt) => {
+                  const isSelected = explanationClarity === opt;
+                  return (
+                    <button
+                      key={opt}
+                      type="button"
+                      onClick={() => {
+                        setExplanationClarity(opt);
+                        if (validationErrors.explanationClarity) {
+                          setValidationErrors((prev) => ({ ...prev, explanationClarity: '' }));
+                        }
+                      }}
+                      className={`py-3 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-2 transition cursor-pointer ${
+                        isSelected
+                          ? 'bg-amber-400 text-slate-950 border-amber-300 font-bold shadow-md shadow-amber-500/20'
+                          : 'bg-slate-900 border-slate-700/80 text-slate-300 hover:border-slate-500 hover:text-white'
+                      }`}
+                    >
+                      <span className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${isSelected ? 'border-slate-950 bg-slate-950' : 'border-slate-500'}`}>
+                        {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />}
+                      </span>
+                      <span>{opt}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {validationErrors.explanationClarity && (
+                <p className="text-xs text-rose-400 font-medium flex items-center gap-1.5 pt-1">
+                  <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                  {validationErrors.explanationClarity}
+                </p>
+              )}
+            </div>
+
+            {/* Question 3 */}
+            <div className="space-y-3 p-5 rounded-xl bg-slate-950/60 border border-slate-800/80">
+              <label className="block text-sm font-bold text-white">
+                3. How useful were the examples, demonstrations, activities, or case studies presented during the session?{' '}
+                <span className="text-amber-400 font-extrabold">*</span>
+              </label>
+
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 pt-1">
+                {RATING_OPTIONS.map((opt) => {
+                  const isSelected = usefulnessOfExamples === opt;
+                  return (
+                    <button
+                      key={opt}
+                      type="button"
+                      onClick={() => {
+                        setUsefulnessOfExamples(opt);
+                        if (validationErrors.usefulnessOfExamples) {
+                          setValidationErrors((prev) => ({ ...prev, usefulnessOfExamples: '' }));
+                        }
+                      }}
+                      className={`py-3 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-2 transition cursor-pointer ${
+                        isSelected
+                          ? 'bg-amber-400 text-slate-950 border-amber-300 font-bold shadow-md shadow-amber-500/20'
+                          : 'bg-slate-900 border-slate-700/80 text-slate-300 hover:border-slate-500 hover:text-white'
+                      }`}
+                    >
+                      <span className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${isSelected ? 'border-slate-950 bg-slate-950' : 'border-slate-500'}`}>
+                        {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />}
+                      </span>
+                      <span>{opt}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {validationErrors.usefulnessOfExamples && (
+                <p className="text-xs text-rose-400 font-medium flex items-center gap-1.5 pt-1">
+                  <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                  {validationErrors.usefulnessOfExamples}
+                </p>
+              )}
+            </div>
+
+            {/* Question 4 */}
+            <div className="space-y-2 p-5 rounded-xl bg-slate-950/60 border border-slate-800/80">
+              <label className="block text-sm font-bold text-white">
+                4. What suggestions do you have for improving future Faculty Development Program?{' '}
+                <span className="text-amber-400 font-extrabold">*</span>
+              </label>
+
+              <textarea
+                rows={3}
+                required
+                value={suggestions}
+                onChange={(e) => {
+                  setSuggestions(e.target.value);
+                  if (validationErrors.suggestions) {
+                    setValidationErrors((prev) => ({ ...prev, suggestions: '' }));
+                  }
+                }}
+                placeholder="Share your suggestions, recommendations, or feedback to improve upcoming FDP sessions..."
+                className={`w-full p-3.5 rounded-xl bg-slate-900 border text-xs text-white placeholder-slate-500 focus:outline-none transition ${
+                  validationErrors.suggestions ? 'border-rose-500 focus:border-rose-400' : 'border-slate-700 focus:border-amber-400'
+                }`}
+              />
+
+              {validationErrors.suggestions && (
+                <p className="text-xs text-rose-400 font-medium flex items-center gap-1.5">
+                  <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                  {validationErrors.suggestions}
+                </p>
+              )}
+            </div>
+
+            {/* Question 5 */}
+            <div className="space-y-2 p-5 rounded-xl bg-slate-950/60 border border-slate-800/80">
+              <label className="block text-sm font-bold text-white">
+                5. What topics or activities would you like to learn in the future?{' '}
+                <span className="text-amber-400 font-extrabold">*</span>
+              </label>
+
+              <textarea
+                rows={3}
+                required
+                value={futureTopics}
+                onChange={(e) => {
+                  setFutureTopics(e.target.value);
+                  if (validationErrors.futureTopics) {
+                    setValidationErrors((prev) => ({ ...prev, futureTopics: '' }));
+                  }
+                }}
+                placeholder="List any topics, technologies, tools, or hands-on activities you would like covered in future programs..."
+                className={`w-full p-3.5 rounded-xl bg-slate-900 border text-xs text-white placeholder-slate-500 focus:outline-none transition ${
+                  validationErrors.futureTopics ? 'border-rose-500 focus:border-rose-400' : 'border-slate-700 focus:border-amber-400'
+                }`}
+              />
+
+              {validationErrors.futureTopics && (
+                <p className="text-xs text-rose-400 font-medium flex items-center gap-1.5">
+                  <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                  {validationErrors.futureTopics}
+                </p>
+              )}
+            </div>
+
+            {/* Compulsory Requirement Disclaimer & Submit Button */}
+            <div className="pt-2 space-y-3">
+              <p className="text-[11px] text-slate-400 flex items-center gap-1.5">
+                <span className="text-amber-400 font-bold">*</span> All 5 feedback questions are compulsory to unlock and receive your Certificate of Participation.
+              </p>
+
+              <button
+                type="submit"
+                disabled={feedbackSubmitting}
+                className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-xl font-bold text-sm text-slate-950 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-yellow-300 shadow-xl shadow-amber-500/25 transition cursor-pointer disabled:opacity-60"
+              >
+                {feedbackSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Saving Feedback &amp; Unlocking Certificate...</span>
+                  </>
+                ) : (
+                  <>
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>Submit Feedback &amp; Unlock Official Certificate</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </>
+                )}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // VIEW B: UNLOCKED CERTIFICATE & ASSESSMENT EVALUATION
+  // ───────────────────────────────────────────────────────────────────────────
   const cert = result.certificate;
 
   return (
@@ -280,6 +686,9 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
                 <span className="px-3 py-1 rounded-full text-xs font-bold font-mono bg-amber-400/20 text-amber-300 border border-amber-400/40 flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" /> CERTIFICATE OF PARTICIPATION ISSUED
                 </span>
+                <span className="px-3 py-1 rounded-full text-xs font-medium bg-emerald-950/60 border border-emerald-800 text-emerald-300 flex items-center gap-1">
+                  ✓ Feedback Recorded
+                </span>
                 <span className="text-xs text-slate-400">NMIET &amp; ISTE FDP (5th - 9th Oct, 2026)</span>
               </div>
 
@@ -289,8 +698,8 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
 
               <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
                 You have successfully completed the 50 compulsory questions for the Faculty Development Programme on{' '}
-                <strong className="text-white">“Recent advances in cyber security and blockchain for secure digital transformation”</strong>.
-                Your official Certificate of Participation is generated below and has been sent to your email.
+                <strong className="text-white">“Recent advances in cyber security and blockchain for secure digital transformation”</strong>{' '}
+                and submitted your session feedback. Your official Certificate of Participation is generated below and has been sent to your email.
               </p>
             </div>
 
@@ -384,15 +793,13 @@ export default function ResultPage({ params }: { params: { attemptId: string } }
                   {result.participantName}
                 </div>
 
-                {/* Overlaid organization name right after FROM */}
+                {/* Overlaid organization name in center, matching name field font & size */}
                 {result.participantOrganization && (
                   <div
-                    className="absolute font-sans font-semibold text-slate-900 select-none line-clamp-1"
+                    className="absolute inset-x-0 flex items-center justify-center font-serif font-bold text-slate-900 tracking-wide select-none px-20 text-center line-clamp-1"
                     style={{
-                      top: '55.2%',
-                      left: '20%',
-                      right: '12%',
-                      fontSize: 'clamp(9px, 1.3vw, 13px)',
+                      top: '52.0%',
+                      fontSize: 'clamp(14px, 2.5vw, 24px)',
                     }}
                   >
                     {result.participantOrganization}

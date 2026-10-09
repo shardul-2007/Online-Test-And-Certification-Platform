@@ -25,11 +25,12 @@ import {
   AlertTriangle,
   KeyRound,
   FileSpreadsheet,
+  MessageSquare,
 } from 'lucide-react';
 
 export default function AdminDashboardPage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-  const [activeTab, setActiveTab] = useState<'overview' | 'tests' | 'questions' | 'participants' | 'certificates' | 'emailLogs'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'tests' | 'questions' | 'participants' | 'certificates' | 'emailLogs' | 'feedbacks'>('overview');
 
   // Login form state
   const [adminEmail, setAdminEmail] = useState('');
@@ -49,10 +50,12 @@ export default function AdminDashboardPage() {
   const [participants, setParticipants] = useState<any[]>([]);
   const [certificates, setCertificates] = useState<any[]>([]);
   const [emailLogs, setEmailLogs] = useState<any[]>([]);
+  const [feedbacks, setFeedbacks] = useState<any[]>([]);
 
   // Search & Filter
   const [participantSearch, setParticipantSearch] = useState('');
   const [certSearch, setCertSearch] = useState('');
+  const [feedbackSearch, setFeedbackSearch] = useState('');
   const [actionLoading, setActionLoading] = useState<string | null>(null);
 
   // Participant selection & deletion state
@@ -110,6 +113,17 @@ export default function AdminDashboardPage() {
       loadParticipants();
       loadCertificates();
       loadEmailLogs();
+      loadFeedbacks();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const loadFeedbacks = async (search = '') => {
+    try {
+      const res = await fetch(`/api/admin/feedbacks?search=${encodeURIComponent(search)}`);
+      const data = await res.json();
+      if (data.success) setFeedbacks(data.feedbacks);
     } catch (err) {
       console.error(err);
     }
@@ -362,7 +376,6 @@ export default function AdminDashboardPage() {
   };
 
   const handleDeleteQuestion = async (qId: string) => {
-    if (!confirm('Delete this question?')) return;
     await fetch(`/api/admin/questions?id=${qId}`, { method: 'DELETE' });
     const qRes = await fetch(`/api/admin/questions?testId=${selectedTestId}`);
     const qData = await qRes.json();

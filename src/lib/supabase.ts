@@ -99,9 +99,89 @@ export async function getAllCertificateRecipients() {
   }
 }
 
+export interface SupabaseFeedback {
+  id?: string;
+  attempt_id: string;
+  participant_name: string;
+  participant_email: string;
+  participant_organization?: string | null;
+  relevance: string;
+  explanation_clarity: string;
+  usefulness_of_examples: string;
+  suggestions: string;
+  future_topics: string;
+  created_at?: string;
+}
+
+/**
+ * Save participant feedback to Supabase feedbacks table
+ */
+export async function saveFeedbackToSupabase(data: SupabaseFeedback) {
+  try {
+    if (!isSupabaseConfigured()) {
+      return { success: false, error: 'Supabase is not configured' };
+    }
+
+    const { data: result, error } = await supabase
+      .from('feedbacks')
+      .insert([
+        {
+          attempt_id: data.attempt_id,
+          participant_name: data.participant_name,
+          participant_email: data.participant_email,
+          participant_organization: data.participant_organization || null,
+          relevance: data.relevance,
+          explanation_clarity: data.explanation_clarity,
+          usefulness_of_examples: data.usefulness_of_examples,
+          suggestions: data.suggestions,
+          future_topics: data.future_topics,
+        },
+      ])
+      .select()
+      .single();
+
+    if (error) {
+      console.warn('Supabase feedback insert warning:', error);
+      return { success: false, error: error.message };
+    }
+
+    return { success: true, data: result };
+  } catch (err: any) {
+    console.warn('Failed to save feedback to Supabase:', err);
+    return { success: false, error: err.message };
+  }
+}
+
+/**
+ * Get all feedbacks from Supabase
+ */
+export async function getAllFeedbacksFromSupabase() {
+  try {
+    if (!isSupabaseConfigured()) {
+      return { success: false, error: 'Supabase is not configured' };
+    }
+
+    const { data, error } = await supabase
+      .from('feedbacks')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Supabase feedback query error:', error);
+      return { success: false, error: error.message };
+    }
+
+    return { success: true, data };
+  } catch (err: any) {
+    console.error('Failed to fetch feedbacks from Supabase:', err);
+    return { success: false, error: err.message };
+  }
+}
+
 /**
  * Check if Supabase is configured
  */
 export function isSupabaseConfigured(): boolean {
   return !!(supabaseUrl && supabaseAnonKey && supabaseUrl !== '' && supabaseAnonKey !== '');
 }
+

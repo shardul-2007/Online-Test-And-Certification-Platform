@@ -201,12 +201,10 @@ export default function LandingPage() {
 
                 {/* Dynamic Demo Institute Stamp */}
                 <div
-                  className="absolute font-sans font-semibold text-slate-900 select-none line-clamp-1"
+                  className="absolute inset-x-0 flex items-center justify-center font-serif font-bold text-slate-900 tracking-wide select-none px-20 text-center line-clamp-1"
                   style={{
-                    top: '55.2%',
-                    left: '20%',
-                    right: '12%',
-                    fontSize: 'clamp(9px, 1.2vw, 13px)',
+                    top: '52.0%',
+                    fontSize: 'clamp(14px, 2.2vw, 22px)',
                   }}
                 >
                   YOUR INSTITUTE / COLLEGE NAME

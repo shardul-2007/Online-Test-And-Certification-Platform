@@ -8,6 +8,7 @@ import {
   Certificate,
   DatabaseSchema,
   EmailLog,
+  Feedback,
   Question,
   QuestionOption,
   Test,
@@ -554,6 +555,50 @@ export const db = {
     },
   },
 
+  // FEEDBACKS
+  feedback: {
+    findUnique({ where }: { where: { attemptId?: string; id?: string } }): Feedback | null {
+      const state = ensureDataStore();
+      if (!state.feedbacks) state.feedbacks = [];
+      if (where.attemptId) {
+        return state.feedbacks.find((f) => f.attemptId === where.attemptId) || null;
+      }
+      if (where.id) {
+        return state.feedbacks.find((f) => f.id === where.id) || null;
+      }
+      return null;
+    },
+    findMany({ where }: { where?: { attemptId?: string } } = {}): Feedback[] {
+      const state = ensureDataStore();
+      if (!state.feedbacks) state.feedbacks = [];
+      if (where?.attemptId) {
+        return state.feedbacks.filter((f) => f.attemptId === where.attemptId);
+      }
+      return state.feedbacks.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    },
+    create({ data }: { data: Omit<Feedback, 'id' | 'createdAt'> & { id?: string; createdAt?: string } }): Feedback {
+      const state = ensureDataStore();
+      if (!state.feedbacks) state.feedbacks = [];
+      const newFeedback: Feedback = {
+        id: data.id || `fb-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+        attemptId: data.attemptId,
+        userId: data.userId,
+        participantName: data.participantName,
+        participantEmail: data.participantEmail,
+        participantOrganization: data.participantOrganization || null,
+        relevance: data.relevance,
+        explanationClarity: data.explanationClarity,
+        usefulnessOfExamples: data.usefulnessOfExamples,
+        suggestions: data.suggestions,
+        futureTopics: data.futureTopics,
+        createdAt: data.createdAt || new Date().toISOString(),
+      };
+      state.feedbacks.push(newFeedback);
+      saveDb(state);
+      return newFeedback;
+    },
+  },
+
   // STATS FOR ADMIN
   stats: {
     getOverview() {
@@ -564,6 +609,7 @@ export const db = {
       const completedAttempts = state.attempts.filter((a) => a.status === 'COMPLETED');
       const passedAttempts = completedAttempts.filter((a) => a.isPassed);
       const certificatesIssued = state.certificates.length;
+      const totalFeedbacks = (state.feedbacks || []).length;
       const passRate =
         completedAttempts.length > 0
           ? Math.round((passedAttempts.length / completedAttempts.length) * 100)
@@ -583,6 +629,7 @@ export const db = {
         totalAttempts,
         testsCompleted: completedAttempts.length,
         certificatesIssued,
+        totalFeedbacks,
         passRate,
         distribution,
       };

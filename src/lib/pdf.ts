@@ -89,30 +89,34 @@ export async function generateCertificatePdf(data: CertificateData): Promise<Uin
       page.drawRectangle({
         x: 175,
         y: 314,
-        width: 715,
-        height: 24,
+        width: 749,
+        height: 38,
         color: rgb(1, 1, 1),
       });
 
       page.drawLine({
         start: { x: 175, y: 314 },
-        end: { x: 890, y: 314 },
-        thickness: 1,
-        color: rgb(0.25, 0.3, 0.42),
+        end: { x: 924, y: 314 },
+        thickness: 1.5,
+        color: rgb(0.12, 0.16, 0.28),
       });
 
       if (orgName) {
-        let orgSize = 13;
-        let orgWidth = helveticaBold.widthOfTextAtSize(orgName, orgSize);
-        if (orgWidth > 680) {
-          orgSize = Math.max(10, (680 / orgWidth) * orgSize);
+        let orgSize = 25;
+        let calculatedOrgWidth = timesBold.widthOfTextAtSize(orgName, orgSize);
+        const maxAvailableOrgWidth = 660;
+        if (calculatedOrgWidth > maxAvailableOrgWidth) {
+          orgSize = Math.max(14, (maxAvailableOrgWidth / calculatedOrgWidth) * orgSize);
+          calculatedOrgWidth = timesBold.widthOfTextAtSize(orgName, orgSize);
         }
+        const orgX = Math.max(180, (width - calculatedOrgWidth) / 2);
+
         page.drawText(orgName, {
-          x: 185,
-          y: 320,
+          x: orgX,
+          y: 322,
           size: orgSize,
-          font: helveticaBold,
-          color: rgb(0.12, 0.16, 0.28),
+          font: timesBold,
+          color: rgb(0.08, 0.12, 0.25),
         });
       }
 
@@ -214,6 +218,23 @@ export async function generateCertificatePdf(data: CertificateData): Promise<Uin
     font: timesRomanBold,
     color: rgb(0.1, 0.15, 0.3),
   });
+
+  const fallbackOrgName = (data.participantOrganization || '').trim();
+  if (fallbackOrgName) {
+    let orgSize = 24;
+    let orgWidth = timesRomanBold.widthOfTextAtSize(fallbackOrgName, orgSize);
+    if (orgWidth > 700) {
+      orgSize = Math.max(14, (700 / orgWidth) * orgSize);
+      orgWidth = timesRomanBold.widthOfTextAtSize(fallbackOrgName, orgSize);
+    }
+    page.drawText(fallbackOrgName, {
+      x: (width - orgWidth) / 2,
+      y: height - 275,
+      size: orgSize,
+      font: timesRomanBold,
+      color: rgb(0.1, 0.15, 0.3),
+    });
+  }
 
   page.drawText('Certificate ID: ' + data.certificateId, {
     x: 40,

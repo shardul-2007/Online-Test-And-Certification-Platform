@@ -5448,5 +5448,6 @@ export const initialDatabaseData: DatabaseSchema = {
   "attempts": [],
   "answers": [],
   "certificates": [],
-  "emailLogs": []
+  "emailLogs": [],
+  "feedbacks": []
 };

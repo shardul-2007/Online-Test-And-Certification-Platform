@@ -45,7 +45,16 @@
       "phone": null,
       "organization": "NMIET Talegaon",
       "createdAt": "2026-10-08T13:19:19.501Z",
-      "updatedAt": "2026-10-08T14:57:32.877Z"
+      "updatedAt": "2026-10-09T08:04:05.304Z"
+    },
+    {
+      "id": "user-1791529803300-bkaew",
+      "name": "Rutvik kale",
+      "email": "gjoritron@gmail.com",
+      "phone": null,
+      "organization": "Nmiet talegaon",
+      "createdAt": "2026-10-09T07:10:03.300Z",
+      "updatedAt": "2026-10-09T07:10:03.300Z"
     }
   ],
   "tests": [
@@ -2865,1206 +2874,6 @@
           "order": 4
         }
       ]
-    },
-    {
-      "id": "q-fdp-21",
-      "testId": "test-fdp-2026",
-      "text": "A blockchain is best described as:",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 21,
-      "category": "Blockchain",
-      "explanation": "A blockchain is a decentralized distributed ledger that synchronizes replicated transaction states across peer-to-peer network nodes.",
-      "options": [
-        {
-          "id": "q-fdp-21-opt-A",
-          "questionId": "q-fdp-21",
-          "text": "A centralized database",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-21-opt-B",
-          "questionId": "q-fdp-21",
-          "text": "A distributed ledger maintained across participating nodes",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-21-opt-C",
-          "questionId": "q-fdp-21",
-          "text": "A password-management system",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-21-opt-D",
-          "questionId": "q-fdp-21",
-          "text": "A type of firewall",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-22",
-      "testId": "test-fdp-2026",
-      "text": "The primary purpose of a cryptographic hash in blockchain is to:",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 22,
-      "category": "Blockchain",
-      "explanation": "Cryptographic hashing generates deterministic fixed-length digests that detect any subsequent manipulation of underlying block payloads.",
-      "options": [
-        {
-          "id": "q-fdp-22-opt-A",
-          "questionId": "q-fdp-22",
-          "text": "Increase file size",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-22-opt-B",
-          "questionId": "q-fdp-22",
-          "text": "Provide a fixed-size representation and help detect data modification",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-22-opt-C",
-          "questionId": "q-fdp-22",
-          "text": "Hide the blockchain completely",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-22-opt-D",
-          "questionId": "q-fdp-22",
-          "text": "Replace consensus mechanisms",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-23",
-      "testId": "test-fdp-2026",
-      "text": "In a blockchain, changing data in a previous block generally requires modification of:",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 23,
-      "category": "Blockchain",
-      "explanation": "Because each block embeds the hash of its predecessor, modifying historical blocks invalidates all successive blocks and requires re-mining against network consensus.",
-      "options": [
-        {
-          "id": "q-fdp-23-opt-A",
-          "questionId": "q-fdp-23",
-          "text": "Only that block with no further effect",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-23-opt-B",
-          "questionId": "q-fdp-23",
-          "text": "Subsequent linked blocks and overcoming network consensus",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-23-opt-C",
-          "questionId": "q-fdp-23",
-          "text": "Only the user's password",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-23-opt-D",
-          "questionId": "q-fdp-23",
-          "text": "The internet connection",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-24",
-      "testId": "test-fdp-2026",
-      "text": "Which property means that blockchain records are difficult to alter after confirmation?",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 24,
-      "category": "Blockchain",
-      "explanation": "Immutability ensures that once confirmed by network consensus, recorded transactions cannot be altered or retroactively erased.",
-      "options": [
-        {
-          "id": "q-fdp-24-opt-A",
-          "questionId": "q-fdp-24",
-          "text": "Immutability",
-          "isCorrect": true,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-24-opt-B",
-          "questionId": "q-fdp-24",
-          "text": "Centralization",
-          "isCorrect": false,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-24-opt-C",
-          "questionId": "q-fdp-24",
-          "text": "Compression",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-24-opt-D",
-          "questionId": "q-fdp-24",
-          "text": "Virtualization",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-25",
-      "testId": "test-fdp-2026",
-      "text": "Bitcoin primarily uses which consensus mechanism?",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 25,
-      "category": "Blockchain",
-      "explanation": "Bitcoin secures distributed consensus using Proof of Work (PoW) via SHA-256 mining calculations.",
-      "options": [
-        {
-          "id": "q-fdp-25-opt-A",
-          "questionId": "q-fdp-25",
-          "text": "Proof of Stake",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-25-opt-B",
-          "questionId": "q-fdp-25",
-          "text": "Proof of Work",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-25-opt-C",
-          "questionId": "q-fdp-25",
-          "text": "Proof of Authority",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-25-opt-D",
-          "questionId": "q-fdp-25",
-          "text": "Proof of Identity",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-26",
-      "testId": "test-fdp-2026",
-      "text": "In Proof of Work, miners primarily compete to:",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 26,
-      "category": "Blockchain",
-      "explanation": "Miners iterate through candidate nonces to solve computationally demanding cryptographic hashing puzzles to earn block publishing rights.",
-      "options": [
-        {
-          "id": "q-fdp-26-opt-A",
-          "questionId": "q-fdp-26",
-          "text": "Store passwords",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-26-opt-B",
-          "questionId": "q-fdp-26",
-          "text": "Solve a computationally difficult puzzle",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-26-opt-C",
-          "questionId": "q-fdp-26",
-          "text": "Encrypt all internet traffic",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-26-opt-D",
-          "questionId": "q-fdp-26",
-          "text": "Approve usernames",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-27",
-      "testId": "test-fdp-2026",
-      "text": "Which blockchain consensus mechanism selects validators partly according to the amount of cryptocurrency they have staked?",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 27,
-      "category": "Blockchain",
-      "explanation": "Proof of Stake (PoS) allocates block validation responsibilities based on the proportion of native tokens bonded or staked as security collateral.",
-      "options": [
-        {
-          "id": "q-fdp-27-opt-A",
-          "questionId": "q-fdp-27",
-          "text": "Proof of Work",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-27-opt-B",
-          "questionId": "q-fdp-27",
-          "text": "Proof of Stake",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-27-opt-C",
-          "questionId": "q-fdp-27",
-          "text": "Proof of Download",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-27-opt-D",
-          "questionId": "q-fdp-27",
-          "text": "Proof of Encryption",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-28",
-      "testId": "test-fdp-2026",
-      "text": "A smart contract is best described as:",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 28,
-      "category": "Blockchain",
-      "explanation": "Smart contracts are immutable self-executing software programs deployed directly to blockchain state machines.",
-      "options": [
-        {
-          "id": "q-fdp-28-opt-A",
-          "questionId": "q-fdp-28",
-          "text": "A legal contract stored only on paper",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-28-opt-B",
-          "questionId": "q-fdp-28",
-          "text": "Self-executing code deployed on a blockchain",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-28-opt-C",
-          "questionId": "q-fdp-28",
-          "text": "A blockchain password",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-28-opt-D",
-          "questionId": "q-fdp-28",
-          "text": "An antivirus program",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-29",
-      "testId": "test-fdp-2026",
-      "text": "A blockchain wallet primarily manages:",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 29,
-      "category": "Blockchain",
-      "explanation": "Wallets do not physically store tokens; they manage private and public cryptographic key pairs that grant transactional authority over ledger accounts.",
-      "options": [
-        {
-          "id": "q-fdp-29-opt-A",
-          "questionId": "q-fdp-29",
-          "text": "Cryptocurrency itself as a physical file",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-29-opt-B",
-          "questionId": "q-fdp-29",
-          "text": "Cryptographic keys used to access blockchain assets",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-29-opt-C",
-          "questionId": "q-fdp-29",
-          "text": "Internet bandwidth",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-29-opt-D",
-          "questionId": "q-fdp-29",
-          "text": "Blockchain servers",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-30",
-      "testId": "test-fdp-2026",
-      "text": "Which key must generally remain secret to authorize transactions from a blockchain account?",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 30,
-      "category": "Blockchain",
-      "explanation": "The private key generates digital signatures required to authorize and spend assets from corresponding blockchain addresses.",
-      "options": [
-        {
-          "id": "q-fdp-30-opt-A",
-          "questionId": "q-fdp-30",
-          "text": "Public key",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-30-opt-B",
-          "questionId": "q-fdp-30",
-          "text": "Private key",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-30-opt-C",
-          "questionId": "q-fdp-30",
-          "text": "Hash value",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-30-opt-D",
-          "questionId": "q-fdp-30",
-          "text": "Block number",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-31",
-      "testId": "test-fdp-2026",
-      "text": "If a private key is lost, the most immediate concern is:",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 31,
-      "category": "Blockchain",
-      "explanation": "Without the private key, cryptographic signatures cannot be generated, permanently locking control over associated assets on the ledger.",
-      "options": [
-        {
-          "id": "q-fdp-31-opt-A",
-          "questionId": "q-fdp-31",
-          "text": "Blockchain becomes centralized",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-31-opt-B",
-          "questionId": "q-fdp-31",
-          "text": "Loss of access/control over associated assets",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-31-opt-C",
-          "questionId": "q-fdp-31",
-          "text": "All blockchain blocks disappear",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-31-opt-D",
-          "questionId": "q-fdp-31",
-          "text": "The internet stops working",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-32",
-      "testId": "test-fdp-2026",
-      "text": "Which feature makes blockchain particularly useful for tracking a product's movement through multiple organizations?",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 32,
-      "category": "Blockchain",
-      "explanation": "A shared, immutable, tamper-evident ledger creates verifiable transparency and provenance auditing across disparate supply-chain participants.",
-      "options": [
-        {
-          "id": "q-fdp-32-opt-A",
-          "questionId": "q-fdp-32",
-          "text": "Shared and tamper-evident ledger",
-          "isCorrect": true,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-32-opt-B",
-          "questionId": "q-fdp-32",
-          "text": "Centralized password storage",
-          "isCorrect": false,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-32-opt-C",
-          "questionId": "q-fdp-32",
-          "text": "Unlimited storage",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-32-opt-D",
-          "questionId": "q-fdp-32",
-          "text": "Anonymous email",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-33",
-      "testId": "test-fdp-2026",
-      "text": "In blockchain terminology, a \"block\" generally contains:",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 33,
-      "category": "Blockchain",
-      "explanation": "Blocks bundle batches of validated transactions along with timestamps, nonces, and the cryptographic hash of the immediate prior block.",
-      "options": [
-        {
-          "id": "q-fdp-33-opt-A",
-          "questionId": "q-fdp-33",
-          "text": "Only a password",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-33-opt-B",
-          "questionId": "q-fdp-33",
-          "text": "Transactions and information linking it to the previous block",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-33-opt-C",
-          "questionId": "q-fdp-33",
-          "text": "Only user photographs",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-33-opt-D",
-          "questionId": "q-fdp-33",
-          "text": "Only cryptocurrency prices",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-34",
-      "testId": "test-fdp-2026",
-      "text": "Which statement about blockchain immutability is the most accurate?",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 34,
-      "category": "Blockchain",
-      "explanation": "Confirmed blocks achieve practical immutability because altering historical data requires recalculating cryptographic links and overpowering majority network consensus.",
-      "options": [
-        {
-          "id": "q-fdp-34-opt-A",
-          "questionId": "q-fdp-34",
-          "text": "Blockchain data can never be changed under any circumstances",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-34-opt-B",
-          "questionId": "q-fdp-34",
-          "text": "Confirmed data is difficult to alter because of cryptographic linking and consensus",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-34-opt-C",
-          "questionId": "q-fdp-34",
-          "text": "Blockchain data is always encrypted",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-34-opt-D",
-          "questionId": "q-fdp-34",
-          "text": "Blockchain eliminates all cyberattacks",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-35",
-      "testId": "test-fdp-2026",
-      "text": "A permissioned blockchain differs from a permissionless blockchain mainly because:",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 35,
-      "category": "Blockchain",
-      "explanation": "Permissioned blockchains implement access-control layers where participation, transaction submission, and block validation require explicit authorization.",
-      "options": [
-        {
-          "id": "q-fdp-35-opt-A",
-          "questionId": "q-fdp-35",
-          "text": "It does not use cryptography",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-35-opt-B",
-          "questionId": "q-fdp-35",
-          "text": "Participation and access can be restricted",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-35-opt-C",
-          "questionId": "q-fdp-35",
-          "text": "It cannot store transactions",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-35-opt-D",
-          "questionId": "q-fdp-35",
-          "text": "It cannot use consensus",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-36",
-      "testId": "test-fdp-2026",
-      "text": "Digital transformation primarily refers to:",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 36,
-      "category": "Digital Transformation",
-      "explanation": "Digital transformation integrates modern digital technologies across all enterprise areas to fundamentally reshape operations, deliver value, and redefine models.",
-      "options": [
-        {
-          "id": "q-fdp-36-opt-A",
-          "questionId": "q-fdp-36",
-          "text": "Converting paper documents into PDFs only",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-36-opt-B",
-          "questionId": "q-fdp-36",
-          "text": "Using digital technologies to fundamentally improve processes, services and business models",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-36-opt-C",
-          "questionId": "q-fdp-36",
-          "text": "Purchasing more computers",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-36-opt-D",
-          "questionId": "q-fdp-36",
-          "text": "Installing antivirus software",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-37",
-      "testId": "test-fdp-2026",
-      "text": "Which technology enables computing resources to be delivered over the internet on demand?",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 37,
-      "category": "Digital Transformation",
-      "explanation": "Cloud computing delivers on-demand computing services—including servers, storage, databases, and networking—over the internet with pay-as-you-go pricing.",
-      "options": [
-        {
-          "id": "q-fdp-37-opt-A",
-          "questionId": "q-fdp-37",
-          "text": "Cloud computing",
-          "isCorrect": true,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-37-opt-B",
-          "questionId": "q-fdp-37",
-          "text": "Blockchain",
-          "isCorrect": false,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-37-opt-C",
-          "questionId": "q-fdp-37",
-          "text": "Firewall",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-37-opt-D",
-          "questionId": "q-fdp-37",
-          "text": "BIOS",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-38",
-      "testId": "test-fdp-2026",
-      "text": "Which is an example of digital transformation rather than simple digitization?",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 38,
-      "category": "Digital Transformation",
-      "explanation": "While digitization simply converts analog formats to digital, transformation restructures workflows and operating models around digital capabilities.",
-      "options": [
-        {
-          "id": "q-fdp-38-opt-A",
-          "questionId": "q-fdp-38",
-          "text": "Scanning a paper form",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-38-opt-B",
-          "questionId": "q-fdp-38",
-          "text": "Converting a paper report to PDF",
-          "isCorrect": false,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-38-opt-C",
-          "questionId": "q-fdp-38",
-          "text": "Redesigning a service around an automated digital workflow",
-          "isCorrect": true,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-38-opt-D",
-          "questionId": "q-fdp-38",
-          "text": "Printing a digital document",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-39",
-      "testId": "test-fdp-2026",
-      "text": "IoT devices create a cybersecurity challenge mainly because:",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 39,
-      "category": "Digital Transformation",
-      "explanation": "Massive proliferation of internet-connected IoT devices, often with constrained compute and default credentials, drastically broadens the organizational threat attack surface.",
-      "options": [
-        {
-          "id": "q-fdp-39-opt-A",
-          "questionId": "q-fdp-39",
-          "text": "They never communicate over networks",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-39-opt-B",
-          "questionId": "q-fdp-39",
-          "text": "Many connected devices increase the attack surface",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-39-opt-C",
-          "questionId": "q-fdp-39",
-          "text": "They cannot collect data",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-39-opt-D",
-          "questionId": "q-fdp-39",
-          "text": "They always use blockchain",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-40",
-      "testId": "test-fdp-2026",
-      "text": "Which technology is commonly used to analyze very large datasets and identify patterns for decision-making?",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 40,
-      "category": "Digital Transformation",
-      "explanation": "Big Data Analytics employs scalable algorithms to inspect massive, diverse datasets to discover hidden patterns, correlations, and actionable insights.",
-      "options": [
-        {
-          "id": "q-fdp-40-opt-A",
-          "questionId": "q-fdp-40",
-          "text": "Big Data Analytics",
-          "isCorrect": true,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-40-opt-B",
-          "questionId": "q-fdp-40",
-          "text": "HDMI",
-          "isCorrect": false,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-40-opt-C",
-          "questionId": "q-fdp-40",
-          "text": "BIOS",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-40-opt-D",
-          "questionId": "q-fdp-40",
-          "text": "FTP",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-41",
-      "testId": "test-fdp-2026",
-      "text": "AI can strengthen cybersecurity by:",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 41,
-      "category": "Digital Transformation",
-      "explanation": "Artificial Intelligence and machine learning analyze vast volumes of telemetry in real time to pinpoint behavioral anomalies and detect emerging threats.",
-      "options": [
-        {
-          "id": "q-fdp-41-opt-A",
-          "questionId": "q-fdp-41",
-          "text": "Eliminating the need for security professionals",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-41-opt-B",
-          "questionId": "q-fdp-41",
-          "text": "Detecting patterns and anomalies in large volumes of data",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-41-opt-C",
-          "questionId": "q-fdp-41",
-          "text": "Making passwords unnecessary",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-41-opt-D",
-          "questionId": "q-fdp-41",
-          "text": "Preventing every possible cyberattack",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-42",
-      "testId": "test-fdp-2026",
-      "text": "Which cloud service model provides the greatest control over the underlying virtualized infrastructure?",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 42,
-      "category": "Digital Transformation",
-      "explanation": "Infrastructure as a Service (IaaS) provides bare virtualized compute, storage, and networking, leaving OS, middleware, and application administration to the client.",
-      "options": [
-        {
-          "id": "q-fdp-42-opt-A",
-          "questionId": "q-fdp-42",
-          "text": "SaaS",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-42-opt-B",
-          "questionId": "q-fdp-42",
-          "text": "PaaS",
-          "isCorrect": false,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-42-opt-C",
-          "questionId": "q-fdp-42",
-          "text": "IaaS",
-          "isCorrect": true,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-42-opt-D",
-          "questionId": "q-fdp-42",
-          "text": "FaaS",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-43",
-      "testId": "test-fdp-2026",
-      "text": "In SaaS, the customer typically:",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 43,
-      "category": "Digital Transformation",
-      "explanation": "Software as a Service (SaaS) delivers complete applications over the web where the cloud vendor manages infrastructure, maintenance, and patches.",
-      "options": [
-        {
-          "id": "q-fdp-43-opt-A",
-          "questionId": "q-fdp-43",
-          "text": "Manages physical servers",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-43-opt-B",
-          "questionId": "q-fdp-43",
-          "text": "Uses software provided and managed by the service provider",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-43-opt-C",
-          "questionId": "q-fdp-43",
-          "text": "Builds the cloud data center",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-43-opt-D",
-          "questionId": "q-fdp-43",
-          "text": "Controls the underlying hypervisor",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-44",
-      "testId": "test-fdp-2026",
-      "text": "Digital twins are primarily used to:",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 44,
-      "category": "Digital Transformation",
-      "explanation": "A digital twin is a virtual model designed to accurately reflect a physical object or system using real-time sensor streams for simulation and optimization.",
-      "options": [
-        {
-          "id": "q-fdp-44-opt-A",
-          "questionId": "q-fdp-44",
-          "text": "Create duplicate passwords",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-44-opt-B",
-          "questionId": "q-fdp-44",
-          "text": "Create digital representations of physical systems or objects",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-44-opt-C",
-          "questionId": "q-fdp-44",
-          "text": "Replace blockchain consensus",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-44-opt-D",
-          "questionId": "q-fdp-44",
-          "text": "Encrypt emails",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-45",
-      "testId": "test-fdp-2026",
-      "text": "Which technology is particularly useful for providing an auditable history of transactions among multiple organizations?",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 45,
-      "category": "Digital Transformation",
-      "explanation": "Blockchain provides a cryptographically verifiable, shared audit trail that multiple independent organizations can inspect and trust without centralized intermediaries.",
-      "options": [
-        {
-          "id": "q-fdp-45-opt-A",
-          "questionId": "q-fdp-45",
-          "text": "Blockchain",
-          "isCorrect": true,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-45-opt-B",
-          "questionId": "q-fdp-45",
-          "text": "Calculator",
-          "isCorrect": false,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-45-opt-C",
-          "questionId": "q-fdp-45",
-          "text": "Word processor",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-45-opt-D",
-          "questionId": "q-fdp-45",
-          "text": "Image compression",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-46",
-      "testId": "test-fdp-2026",
-      "text": "An organization stores sensitive personal information directly on a public blockchain. What is the main concern?",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 46,
-      "category": "Integrated",
-      "explanation": "Public blockchain immutability means stored data cannot be erased or modified, conflicting with regulatory privacy rights such as the \"Right to be Forgotten\" (GDPR).",
-      "options": [
-        {
-          "id": "q-fdp-46-opt-A",
-          "questionId": "q-fdp-46",
-          "text": "Blockchain cannot store data",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-46-opt-B",
-          "questionId": "q-fdp-46",
-          "text": "Immutability may conflict with privacy and data-erasure requirements",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-46-opt-C",
-          "questionId": "q-fdp-46",
-          "text": "Blockchain automatically deletes old data",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-46-opt-D",
-          "questionId": "q-fdp-46",
-          "text": "Public blockchains have no cryptography",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-47",
-      "testId": "test-fdp-2026",
-      "text": "A smart contract contains a programming bug that allows unauthorized fund transfers. Which statement is most accurate?",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 47,
-      "category": "Integrated",
-      "explanation": "Once deployed, smart contract bytecode is immutable, making hot-patching logic bugs difficult without pre-architected upgrade patterns or proxy contracts.",
-      "options": [
-        {
-          "id": "q-fdp-47-opt-A",
-          "questionId": "q-fdp-47",
-          "text": "Blockchain automatically corrects all smart-contract bugs",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-47-opt-B",
-          "questionId": "q-fdp-47",
-          "text": "Immutability can make correcting deployed contract logic difficult",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-47-opt-C",
-          "questionId": "q-fdp-47",
-          "text": "Hashing prevents all programming errors",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-47-opt-D",
-          "questionId": "q-fdp-47",
-          "text": "Consensus guarantees bug-free code",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-48",
-      "testId": "test-fdp-2026",
-      "text": "An IoT-based smart factory uses blockchain to record sensor data. What problem does blockchain not automatically solve?",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 48,
-      "category": "Integrated",
-      "explanation": "The oracle/input problem: Blockchain guarantees tamper-evidence once data is committed, but cannot inherently verify if the input sensor was faulty or physically compromised.",
-      "options": [
-        {
-          "id": "q-fdp-48-opt-A",
-          "questionId": "q-fdp-48",
-          "text": "Maintaining a tamper-evident ledger",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-48-opt-B",
-          "questionId": "q-fdp-48",
-          "text": "Whether the original sensor supplied false or manipulated data",
-          "isCorrect": true,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-48-opt-C",
-          "questionId": "q-fdp-48",
-          "text": "Sharing records among participants",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-48-opt-D",
-          "questionId": "q-fdp-48",
-          "text": "Recording transactions",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-49",
-      "testId": "test-fdp-2026",
-      "text": "An employee receives a legitimate-looking AI-generated voice message from a senior executive requesting an urgent money transfer. This is an example of the growing risk of:",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 49,
-      "category": "Integrated",
-      "explanation": "Generative AI audio cloning enables hyper-realistic synthetic deepfake voice phishing (vishing) used in executive impersonation attacks.",
-      "options": [
-        {
-          "id": "q-fdp-49-opt-A",
-          "questionId": "q-fdp-49",
-          "text": "Deepfake-enabled social engineering",
-          "isCorrect": true,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-49-opt-B",
-          "questionId": "q-fdp-49",
-          "text": "Data normalization",
-          "isCorrect": false,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-49-opt-C",
-          "questionId": "q-fdp-49",
-          "text": "Blockchain mining",
-          "isCorrect": false,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-49-opt-D",
-          "questionId": "q-fdp-49",
-          "text": "Load balancing",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
-    },
-    {
-      "id": "q-fdp-50",
-      "testId": "test-fdp-2026",
-      "text": "Which combination provides the most comprehensive approach to secure digital transformation?",
-      "type": "MULTIPLE_CHOICE",
-      "marks": 1,
-      "order": 50,
-      "category": "Integrated",
-      "explanation": "Robust security during digital transformation requires multi-layered defense: technical architecture, privacy safeguards, threat intelligence, continuous human awareness, and executive governance.",
-      "options": [
-        {
-          "id": "q-fdp-50-opt-A",
-          "questionId": "q-fdp-50",
-          "text": "Blockchain alone",
-          "isCorrect": false,
-          "order": 1
-        },
-        {
-          "id": "q-fdp-50-opt-B",
-          "questionId": "q-fdp-50",
-          "text": "Antivirus alone",
-          "isCorrect": false,
-          "order": 2
-        },
-        {
-          "id": "q-fdp-50-opt-C",
-          "questionId": "q-fdp-50",
-          "text": "Cybersecurity + privacy + secure technology design + user awareness + governance",
-          "isCorrect": true,
-          "order": 3
-        },
-        {
-          "id": "q-fdp-50-opt-D",
-          "questionId": "q-fdp-50",
-          "text": "Cloud computing alone",
-          "isCorrect": false,
-          "order": 4
-        }
-      ]
     }
   ],
   "options": [
@@ -4627,846 +3436,6 @@
       "text": "DNS caching",
       "isCorrect": false,
       "order": 4
-    },
-    {
-      "id": "q-fdp-21-opt-A",
-      "questionId": "q-fdp-21",
-      "text": "A centralized database",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-21-opt-B",
-      "questionId": "q-fdp-21",
-      "text": "A distributed ledger maintained across participating nodes",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-21-opt-C",
-      "questionId": "q-fdp-21",
-      "text": "A password-management system",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-21-opt-D",
-      "questionId": "q-fdp-21",
-      "text": "A type of firewall",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-22-opt-A",
-      "questionId": "q-fdp-22",
-      "text": "Increase file size",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-22-opt-B",
-      "questionId": "q-fdp-22",
-      "text": "Provide a fixed-size representation and help detect data modification",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-22-opt-C",
-      "questionId": "q-fdp-22",
-      "text": "Hide the blockchain completely",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-22-opt-D",
-      "questionId": "q-fdp-22",
-      "text": "Replace consensus mechanisms",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-23-opt-A",
-      "questionId": "q-fdp-23",
-      "text": "Only that block with no further effect",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-23-opt-B",
-      "questionId": "q-fdp-23",
-      "text": "Subsequent linked blocks and overcoming network consensus",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-23-opt-C",
-      "questionId": "q-fdp-23",
-      "text": "Only the user's password",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-23-opt-D",
-      "questionId": "q-fdp-23",
-      "text": "The internet connection",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-24-opt-A",
-      "questionId": "q-fdp-24",
-      "text": "Immutability",
-      "isCorrect": true,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-24-opt-B",
-      "questionId": "q-fdp-24",
-      "text": "Centralization",
-      "isCorrect": false,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-24-opt-C",
-      "questionId": "q-fdp-24",
-      "text": "Compression",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-24-opt-D",
-      "questionId": "q-fdp-24",
-      "text": "Virtualization",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-25-opt-A",
-      "questionId": "q-fdp-25",
-      "text": "Proof of Stake",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-25-opt-B",
-      "questionId": "q-fdp-25",
-      "text": "Proof of Work",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-25-opt-C",
-      "questionId": "q-fdp-25",
-      "text": "Proof of Authority",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-25-opt-D",
-      "questionId": "q-fdp-25",
-      "text": "Proof of Identity",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-26-opt-A",
-      "questionId": "q-fdp-26",
-      "text": "Store passwords",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-26-opt-B",
-      "questionId": "q-fdp-26",
-      "text": "Solve a computationally difficult puzzle",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-26-opt-C",
-      "questionId": "q-fdp-26",
-      "text": "Encrypt all internet traffic",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-26-opt-D",
-      "questionId": "q-fdp-26",
-      "text": "Approve usernames",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-27-opt-A",
-      "questionId": "q-fdp-27",
-      "text": "Proof of Work",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-27-opt-B",
-      "questionId": "q-fdp-27",
-      "text": "Proof of Stake",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-27-opt-C",
-      "questionId": "q-fdp-27",
-      "text": "Proof of Download",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-27-opt-D",
-      "questionId": "q-fdp-27",
-      "text": "Proof of Encryption",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-28-opt-A",
-      "questionId": "q-fdp-28",
-      "text": "A legal contract stored only on paper",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-28-opt-B",
-      "questionId": "q-fdp-28",
-      "text": "Self-executing code deployed on a blockchain",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-28-opt-C",
-      "questionId": "q-fdp-28",
-      "text": "A blockchain password",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-28-opt-D",
-      "questionId": "q-fdp-28",
-      "text": "An antivirus program",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-29-opt-A",
-      "questionId": "q-fdp-29",
-      "text": "Cryptocurrency itself as a physical file",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-29-opt-B",
-      "questionId": "q-fdp-29",
-      "text": "Cryptographic keys used to access blockchain assets",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-29-opt-C",
-      "questionId": "q-fdp-29",
-      "text": "Internet bandwidth",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-29-opt-D",
-      "questionId": "q-fdp-29",
-      "text": "Blockchain servers",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-30-opt-A",
-      "questionId": "q-fdp-30",
-      "text": "Public key",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-30-opt-B",
-      "questionId": "q-fdp-30",
-      "text": "Private key",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-30-opt-C",
-      "questionId": "q-fdp-30",
-      "text": "Hash value",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-30-opt-D",
-      "questionId": "q-fdp-30",
-      "text": "Block number",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-31-opt-A",
-      "questionId": "q-fdp-31",
-      "text": "Blockchain becomes centralized",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-31-opt-B",
-      "questionId": "q-fdp-31",
-      "text": "Loss of access/control over associated assets",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-31-opt-C",
-      "questionId": "q-fdp-31",
-      "text": "All blockchain blocks disappear",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-31-opt-D",
-      "questionId": "q-fdp-31",
-      "text": "The internet stops working",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-32-opt-A",
-      "questionId": "q-fdp-32",
-      "text": "Shared and tamper-evident ledger",
-      "isCorrect": true,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-32-opt-B",
-      "questionId": "q-fdp-32",
-      "text": "Centralized password storage",
-      "isCorrect": false,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-32-opt-C",
-      "questionId": "q-fdp-32",
-      "text": "Unlimited storage",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-32-opt-D",
-      "questionId": "q-fdp-32",
-      "text": "Anonymous email",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-33-opt-A",
-      "questionId": "q-fdp-33",
-      "text": "Only a password",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-33-opt-B",
-      "questionId": "q-fdp-33",
-      "text": "Transactions and information linking it to the previous block",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-33-opt-C",
-      "questionId": "q-fdp-33",
-      "text": "Only user photographs",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-33-opt-D",
-      "questionId": "q-fdp-33",
-      "text": "Only cryptocurrency prices",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-34-opt-A",
-      "questionId": "q-fdp-34",
-      "text": "Blockchain data can never be changed under any circumstances",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-34-opt-B",
-      "questionId": "q-fdp-34",
-      "text": "Confirmed data is difficult to alter because of cryptographic linking and consensus",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-34-opt-C",
-      "questionId": "q-fdp-34",
-      "text": "Blockchain data is always encrypted",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-34-opt-D",
-      "questionId": "q-fdp-34",
-      "text": "Blockchain eliminates all cyberattacks",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-35-opt-A",
-      "questionId": "q-fdp-35",
-      "text": "It does not use cryptography",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-35-opt-B",
-      "questionId": "q-fdp-35",
-      "text": "Participation and access can be restricted",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-35-opt-C",
-      "questionId": "q-fdp-35",
-      "text": "It cannot store transactions",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-35-opt-D",
-      "questionId": "q-fdp-35",
-      "text": "It cannot use consensus",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-36-opt-A",
-      "questionId": "q-fdp-36",
-      "text": "Converting paper documents into PDFs only",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-36-opt-B",
-      "questionId": "q-fdp-36",
-      "text": "Using digital technologies to fundamentally improve processes, services and business models",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-36-opt-C",
-      "questionId": "q-fdp-36",
-      "text": "Purchasing more computers",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-36-opt-D",
-      "questionId": "q-fdp-36",
-      "text": "Installing antivirus software",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-37-opt-A",
-      "questionId": "q-fdp-37",
-      "text": "Cloud computing",
-      "isCorrect": true,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-37-opt-B",
-      "questionId": "q-fdp-37",
-      "text": "Blockchain",
-      "isCorrect": false,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-37-opt-C",
-      "questionId": "q-fdp-37",
-      "text": "Firewall",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-37-opt-D",
-      "questionId": "q-fdp-37",
-      "text": "BIOS",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-38-opt-A",
-      "questionId": "q-fdp-38",
-      "text": "Scanning a paper form",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-38-opt-B",
-      "questionId": "q-fdp-38",
-      "text": "Converting a paper report to PDF",
-      "isCorrect": false,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-38-opt-C",
-      "questionId": "q-fdp-38",
-      "text": "Redesigning a service around an automated digital workflow",
-      "isCorrect": true,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-38-opt-D",
-      "questionId": "q-fdp-38",
-      "text": "Printing a digital document",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-39-opt-A",
-      "questionId": "q-fdp-39",
-      "text": "They never communicate over networks",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-39-opt-B",
-      "questionId": "q-fdp-39",
-      "text": "Many connected devices increase the attack surface",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-39-opt-C",
-      "questionId": "q-fdp-39",
-      "text": "They cannot collect data",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-39-opt-D",
-      "questionId": "q-fdp-39",
-      "text": "They always use blockchain",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-40-opt-A",
-      "questionId": "q-fdp-40",
-      "text": "Big Data Analytics",
-      "isCorrect": true,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-40-opt-B",
-      "questionId": "q-fdp-40",
-      "text": "HDMI",
-      "isCorrect": false,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-40-opt-C",
-      "questionId": "q-fdp-40",
-      "text": "BIOS",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-40-opt-D",
-      "questionId": "q-fdp-40",
-      "text": "FTP",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-41-opt-A",
-      "questionId": "q-fdp-41",
-      "text": "Eliminating the need for security professionals",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-41-opt-B",
-      "questionId": "q-fdp-41",
-      "text": "Detecting patterns and anomalies in large volumes of data",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-41-opt-C",
-      "questionId": "q-fdp-41",
-      "text": "Making passwords unnecessary",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-41-opt-D",
-      "questionId": "q-fdp-41",
-      "text": "Preventing every possible cyberattack",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-42-opt-A",
-      "questionId": "q-fdp-42",
-      "text": "SaaS",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-42-opt-B",
-      "questionId": "q-fdp-42",
-      "text": "PaaS",
-      "isCorrect": false,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-42-opt-C",
-      "questionId": "q-fdp-42",
-      "text": "IaaS",
-      "isCorrect": true,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-42-opt-D",
-      "questionId": "q-fdp-42",
-      "text": "FaaS",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-43-opt-A",
-      "questionId": "q-fdp-43",
-      "text": "Manages physical servers",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-43-opt-B",
-      "questionId": "q-fdp-43",
-      "text": "Uses software provided and managed by the service provider",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-43-opt-C",
-      "questionId": "q-fdp-43",
-      "text": "Builds the cloud data center",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-43-opt-D",
-      "questionId": "q-fdp-43",
-      "text": "Controls the underlying hypervisor",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-44-opt-A",
-      "questionId": "q-fdp-44",
-      "text": "Create duplicate passwords",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-44-opt-B",
-      "questionId": "q-fdp-44",
-      "text": "Create digital representations of physical systems or objects",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-44-opt-C",
-      "questionId": "q-fdp-44",
-      "text": "Replace blockchain consensus",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-44-opt-D",
-      "questionId": "q-fdp-44",
-      "text": "Encrypt emails",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-45-opt-A",
-      "questionId": "q-fdp-45",
-      "text": "Blockchain",
-      "isCorrect": true,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-45-opt-B",
-      "questionId": "q-fdp-45",
-      "text": "Calculator",
-      "isCorrect": false,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-45-opt-C",
-      "questionId": "q-fdp-45",
-      "text": "Word processor",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-45-opt-D",
-      "questionId": "q-fdp-45",
-      "text": "Image compression",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-46-opt-A",
-      "questionId": "q-fdp-46",
-      "text": "Blockchain cannot store data",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-46-opt-B",
-      "questionId": "q-fdp-46",
-      "text": "Immutability may conflict with privacy and data-erasure requirements",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-46-opt-C",
-      "questionId": "q-fdp-46",
-      "text": "Blockchain automatically deletes old data",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-46-opt-D",
-      "questionId": "q-fdp-46",
-      "text": "Public blockchains have no cryptography",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-47-opt-A",
-      "questionId": "q-fdp-47",
-      "text": "Blockchain automatically corrects all smart-contract bugs",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-47-opt-B",
-      "questionId": "q-fdp-47",
-      "text": "Immutability can make correcting deployed contract logic difficult",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-47-opt-C",
-      "questionId": "q-fdp-47",
-      "text": "Hashing prevents all programming errors",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-47-opt-D",
-      "questionId": "q-fdp-47",
-      "text": "Consensus guarantees bug-free code",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-48-opt-A",
-      "questionId": "q-fdp-48",
-      "text": "Maintaining a tamper-evident ledger",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-48-opt-B",
-      "questionId": "q-fdp-48",
-      "text": "Whether the original sensor supplied false or manipulated data",
-      "isCorrect": true,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-48-opt-C",
-      "questionId": "q-fdp-48",
-      "text": "Sharing records among participants",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-48-opt-D",
-      "questionId": "q-fdp-48",
-      "text": "Recording transactions",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-49-opt-A",
-      "questionId": "q-fdp-49",
-      "text": "Deepfake-enabled social engineering",
-      "isCorrect": true,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-49-opt-B",
-      "questionId": "q-fdp-49",
-      "text": "Data normalization",
-      "isCorrect": false,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-49-opt-C",
-      "questionId": "q-fdp-49",
-      "text": "Blockchain mining",
-      "isCorrect": false,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-49-opt-D",
-      "questionId": "q-fdp-49",
-      "text": "Load balancing",
-      "isCorrect": false,
-      "order": 4
-    },
-    {
-      "id": "q-fdp-50-opt-A",
-      "questionId": "q-fdp-50",
-      "text": "Blockchain alone",
-      "isCorrect": false,
-      "order": 1
-    },
-    {
-      "id": "q-fdp-50-opt-B",
-      "questionId": "q-fdp-50",
-      "text": "Antivirus alone",
-      "isCorrect": false,
-      "order": 2
-    },
-    {
-      "id": "q-fdp-50-opt-C",
-      "questionId": "q-fdp-50",
-      "text": "Cybersecurity + privacy + secure technology design + user awareness + governance",
-      "isCorrect": true,
-      "order": 3
-    },
-    {
-      "id": "q-fdp-50-opt-D",
-      "questionId": "q-fdp-50",
-      "text": "Cloud computing alone",
-      "isCorrect": false,
-      "order": 4
     }
   ],
   "attempts": [
@@ -5561,6 +3530,44 @@
       "unanswered": 49,
       "score": 0,
       "maxScore": 50,
+      "percentage": 0,
+      "isPassed": true,
+      "answers": []
+    },
+    {
+      "id": "att-1791529803308-vljfr",
+      "testId": "test-fdp-2026",
+      "userId": "user-1791529803300-bkaew",
+      "status": "COMPLETED",
+      "startedAt": "2026-10-09T07:10:03.308Z",
+      "submittedAt": "2026-10-09T07:10:27.353Z",
+      "timeSpentSeconds": 20,
+      "tabSwitchCount": 0,
+      "totalQuestions": 50,
+      "correctAnswers": 0,
+      "incorrectAnswers": 0,
+      "unanswered": 50,
+      "score": 0,
+      "maxScore": 50,
+      "percentage": 0,
+      "isPassed": true,
+      "answers": []
+    },
+    {
+      "id": "att-1791533045313-42568",
+      "testId": "test-fdp-2026",
+      "userId": "user-1791465559501-l3asq",
+      "status": "COMPLETED",
+      "startedAt": "2026-10-09T08:04:05.313Z",
+      "submittedAt": "2026-10-09T08:04:26.942Z",
+      "timeSpentSeconds": 13,
+      "tabSwitchCount": 0,
+      "totalQuestions": 20,
+      "correctAnswers": 0,
+      "incorrectAnswers": 0,
+      "unanswered": 20,
+      "score": 0,
+      "maxScore": 20,
       "percentage": 0,
       "isPassed": true,
       "answers": []
@@ -7066,26 +5073,744 @@
       "isCorrect": false,
       "createdAt": "2026-10-08T14:57:41.545Z",
       "updatedAt": "2026-10-08T14:57:41.545Z"
+    },
+    {
+      "id": "ans-1791529827067-u2ak",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-1",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.067Z",
+      "updatedAt": "2026-10-09T07:10:27.067Z"
+    },
+    {
+      "id": "ans-1791529827072-gkb7",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-2",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.072Z",
+      "updatedAt": "2026-10-09T07:10:27.072Z"
+    },
+    {
+      "id": "ans-1791529827078-pezg",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-3",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.078Z",
+      "updatedAt": "2026-10-09T07:10:27.078Z"
+    },
+    {
+      "id": "ans-1791529827083-bscq",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-4",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.083Z",
+      "updatedAt": "2026-10-09T07:10:27.083Z"
+    },
+    {
+      "id": "ans-1791529827087-a9e2",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-5",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.088Z",
+      "updatedAt": "2026-10-09T07:10:27.088Z"
+    },
+    {
+      "id": "ans-1791529827093-mo67",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-6",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.093Z",
+      "updatedAt": "2026-10-09T07:10:27.093Z"
+    },
+    {
+      "id": "ans-1791529827099-epjm",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-7",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.099Z",
+      "updatedAt": "2026-10-09T07:10:27.099Z"
+    },
+    {
+      "id": "ans-1791529827103-ibw1",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-8",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.103Z",
+      "updatedAt": "2026-10-09T07:10:27.103Z"
+    },
+    {
+      "id": "ans-1791529827110-rswe",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-9",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.110Z",
+      "updatedAt": "2026-10-09T07:10:27.110Z"
+    },
+    {
+      "id": "ans-1791529827117-zb6w",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-10",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.117Z",
+      "updatedAt": "2026-10-09T07:10:27.117Z"
+    },
+    {
+      "id": "ans-1791529827122-ni2w",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-11",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.122Z",
+      "updatedAt": "2026-10-09T07:10:27.122Z"
+    },
+    {
+      "id": "ans-1791529827129-0525",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-12",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.129Z",
+      "updatedAt": "2026-10-09T07:10:27.129Z"
+    },
+    {
+      "id": "ans-1791529827132-5d6z",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-13",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.132Z",
+      "updatedAt": "2026-10-09T07:10:27.132Z"
+    },
+    {
+      "id": "ans-1791529827135-8pec",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-14",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.135Z",
+      "updatedAt": "2026-10-09T07:10:27.135Z"
+    },
+    {
+      "id": "ans-1791529827139-n3mf",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-15",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.139Z",
+      "updatedAt": "2026-10-09T07:10:27.139Z"
+    },
+    {
+      "id": "ans-1791529827147-2d8g",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-16",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.147Z",
+      "updatedAt": "2026-10-09T07:10:27.147Z"
+    },
+    {
+      "id": "ans-1791529827152-hmxh",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-17",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.152Z",
+      "updatedAt": "2026-10-09T07:10:27.153Z"
+    },
+    {
+      "id": "ans-1791529827157-rmyy",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-18",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.157Z",
+      "updatedAt": "2026-10-09T07:10:27.157Z"
+    },
+    {
+      "id": "ans-1791529827162-0ye0",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-19",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.162Z",
+      "updatedAt": "2026-10-09T07:10:27.162Z"
+    },
+    {
+      "id": "ans-1791529827168-0mpe",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-20",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.168Z",
+      "updatedAt": "2026-10-09T07:10:27.168Z"
+    },
+    {
+      "id": "ans-1791529827174-uqqm",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-21",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.174Z",
+      "updatedAt": "2026-10-09T07:10:27.174Z"
+    },
+    {
+      "id": "ans-1791529827181-ppfh",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-22",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.181Z",
+      "updatedAt": "2026-10-09T07:10:27.181Z"
+    },
+    {
+      "id": "ans-1791529827185-h1u3",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-23",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.185Z",
+      "updatedAt": "2026-10-09T07:10:27.185Z"
+    },
+    {
+      "id": "ans-1791529827192-ct50",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-24",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.192Z",
+      "updatedAt": "2026-10-09T07:10:27.192Z"
+    },
+    {
+      "id": "ans-1791529827197-v59q",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-25",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.197Z",
+      "updatedAt": "2026-10-09T07:10:27.197Z"
+    },
+    {
+      "id": "ans-1791529827201-lyr7",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-26",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.201Z",
+      "updatedAt": "2026-10-09T07:10:27.201Z"
+    },
+    {
+      "id": "ans-1791529827208-dq6s",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-27",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.208Z",
+      "updatedAt": "2026-10-09T07:10:27.208Z"
+    },
+    {
+      "id": "ans-1791529827215-kw0m",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-28",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.215Z",
+      "updatedAt": "2026-10-09T07:10:27.215Z"
+    },
+    {
+      "id": "ans-1791529827219-lald",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-29",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.219Z",
+      "updatedAt": "2026-10-09T07:10:27.219Z"
+    },
+    {
+      "id": "ans-1791529827226-e4f4",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-30",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.226Z",
+      "updatedAt": "2026-10-09T07:10:27.226Z"
+    },
+    {
+      "id": "ans-1791529827232-d96p",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-31",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.232Z",
+      "updatedAt": "2026-10-09T07:10:27.232Z"
+    },
+    {
+      "id": "ans-1791529827237-ug0r",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-32",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.237Z",
+      "updatedAt": "2026-10-09T07:10:27.237Z"
+    },
+    {
+      "id": "ans-1791529827244-bk2t",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-33",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.244Z",
+      "updatedAt": "2026-10-09T07:10:27.244Z"
+    },
+    {
+      "id": "ans-1791529827250-vr7j",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-34",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.250Z",
+      "updatedAt": "2026-10-09T07:10:27.250Z"
+    },
+    {
+      "id": "ans-1791529827256-q2fh",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-35",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.256Z",
+      "updatedAt": "2026-10-09T07:10:27.256Z"
+    },
+    {
+      "id": "ans-1791529827263-rqc6",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-36",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.263Z",
+      "updatedAt": "2026-10-09T07:10:27.263Z"
+    },
+    {
+      "id": "ans-1791529827267-fztb",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-37",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.267Z",
+      "updatedAt": "2026-10-09T07:10:27.267Z"
+    },
+    {
+      "id": "ans-1791529827279-b74c",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-38",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.279Z",
+      "updatedAt": "2026-10-09T07:10:27.279Z"
+    },
+    {
+      "id": "ans-1791529827285-tht8",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-39",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.285Z",
+      "updatedAt": "2026-10-09T07:10:27.285Z"
+    },
+    {
+      "id": "ans-1791529827291-ehh4",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-40",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.291Z",
+      "updatedAt": "2026-10-09T07:10:27.291Z"
+    },
+    {
+      "id": "ans-1791529827297-1yy6",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-41",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.297Z",
+      "updatedAt": "2026-10-09T07:10:27.297Z"
+    },
+    {
+      "id": "ans-1791529827302-cquk",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-42",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.302Z",
+      "updatedAt": "2026-10-09T07:10:27.302Z"
+    },
+    {
+      "id": "ans-1791529827308-pvzd",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-43",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.308Z",
+      "updatedAt": "2026-10-09T07:10:27.308Z"
+    },
+    {
+      "id": "ans-1791529827315-z0zd",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-44",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.315Z",
+      "updatedAt": "2026-10-09T07:10:27.315Z"
+    },
+    {
+      "id": "ans-1791529827320-sj10",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-45",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.320Z",
+      "updatedAt": "2026-10-09T07:10:27.320Z"
+    },
+    {
+      "id": "ans-1791529827326-phfj",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-46",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.326Z",
+      "updatedAt": "2026-10-09T07:10:27.326Z"
+    },
+    {
+      "id": "ans-1791529827331-fxuf",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-47",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.331Z",
+      "updatedAt": "2026-10-09T07:10:27.331Z"
+    },
+    {
+      "id": "ans-1791529827335-dbse",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-48",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.335Z",
+      "updatedAt": "2026-10-09T07:10:27.335Z"
+    },
+    {
+      "id": "ans-1791529827342-4q0o",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-49",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.342Z",
+      "updatedAt": "2026-10-09T07:10:27.342Z"
+    },
+    {
+      "id": "ans-1791529827348-5zgf",
+      "attemptId": "att-1791529803308-vljfr",
+      "questionId": "q-fdp-50",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T07:10:27.348Z",
+      "updatedAt": "2026-10-09T07:10:27.348Z"
+    },
+    {
+      "id": "ans-1791533066645-h4tw",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-1",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.645Z",
+      "updatedAt": "2026-10-09T08:04:26.645Z"
+    },
+    {
+      "id": "ans-1791533066657-0az3",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-2",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.657Z",
+      "updatedAt": "2026-10-09T08:04:26.657Z"
+    },
+    {
+      "id": "ans-1791533066668-e44b",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-3",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.668Z",
+      "updatedAt": "2026-10-09T08:04:26.668Z"
+    },
+    {
+      "id": "ans-1791533066677-sivl",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-4",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.677Z",
+      "updatedAt": "2026-10-09T08:04:26.677Z"
+    },
+    {
+      "id": "ans-1791533066689-q2lv",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-5",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.689Z",
+      "updatedAt": "2026-10-09T08:04:26.689Z"
+    },
+    {
+      "id": "ans-1791533066702-5l2b",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-6",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.702Z",
+      "updatedAt": "2026-10-09T08:04:26.702Z"
+    },
+    {
+      "id": "ans-1791533066715-t465",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-7",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.715Z",
+      "updatedAt": "2026-10-09T08:04:26.715Z"
+    },
+    {
+      "id": "ans-1791533066724-n4q6",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-8",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.724Z",
+      "updatedAt": "2026-10-09T08:04:26.724Z"
+    },
+    {
+      "id": "ans-1791533066735-w4qu",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-9",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.735Z",
+      "updatedAt": "2026-10-09T08:04:26.735Z"
+    },
+    {
+      "id": "ans-1791533066747-6ktm",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-10",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.747Z",
+      "updatedAt": "2026-10-09T08:04:26.747Z"
+    },
+    {
+      "id": "ans-1791533066762-m2ys",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-11",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.762Z",
+      "updatedAt": "2026-10-09T08:04:26.762Z"
+    },
+    {
+      "id": "ans-1791533066781-3pys",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-12",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.781Z",
+      "updatedAt": "2026-10-09T08:04:26.781Z"
+    },
+    {
+      "id": "ans-1791533066801-y2eg",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-13",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.801Z",
+      "updatedAt": "2026-10-09T08:04:26.801Z"
+    },
+    {
+      "id": "ans-1791533066820-yhnw",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-14",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.820Z",
+      "updatedAt": "2026-10-09T08:04:26.820Z"
+    },
+    {
+      "id": "ans-1791533066837-dxt4",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-15",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.837Z",
+      "updatedAt": "2026-10-09T08:04:26.837Z"
+    },
+    {
+      "id": "ans-1791533066856-jqv2",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-16",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.857Z",
+      "updatedAt": "2026-10-09T08:04:26.857Z"
+    },
+    {
+      "id": "ans-1791533066877-4kkt",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-17",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.877Z",
+      "updatedAt": "2026-10-09T08:04:26.877Z"
+    },
+    {
+      "id": "ans-1791533066893-re9o",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-18",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.893Z",
+      "updatedAt": "2026-10-09T08:04:26.893Z"
+    },
+    {
+      "id": "ans-1791533066904-e69e",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-19",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.904Z",
+      "updatedAt": "2026-10-09T08:04:26.904Z"
+    },
+    {
+      "id": "ans-1791533066925-wboz",
+      "attemptId": "att-1791533045313-42568",
+      "questionId": "q-fdp-20",
+      "selectedOptionId": null,
+      "isMarkedForReview": false,
+      "isCorrect": false,
+      "createdAt": "2026-10-09T08:04:26.925Z",
+      "updatedAt": "2026-10-09T08:04:26.925Z"
     }
   ],
   "certificates": [
     {
-      "id": "cert-1791465584213-nmvi",
-      "certificateId": "CERT-2026-UA4CKW",
-      "attemptId": "att-1791465559508-r1wv8",
+      "id": "cert-1791529827360-8v74",
+      "certificateId": "CERT-2026-C8LBQD",
+      "attemptId": "att-1791529803308-vljfr",
+      "userId": "user-1791529803300-bkaew",
+      "testId": "test-fdp-2026",
+      "participantName": "Rutvik kale",
+      "participantEmail": "gjoritron@gmail.com",
+      "participantOrganization": "Nmiet talegaon",
+      "testTitle": "Faculty Development Programme (FDP) Assessment",
+      "score": 0,
+      "percentage": 0,
+      "issueDate": "2026-10-09T07:10:27.360Z",
+      "verificationUrl": "/verify/CERT-2026-C8LBQD",
+      "emailSent": true,
+      "emailSentAt": "2026-10-09T07:10:42.615Z",
+      "createdAt": "2026-10-09T07:10:27.360Z"
+    },
+    {
+      "id": "cert-1791471461558-omwy",
+      "certificateId": "CERT-2026-592A7M",
+      "attemptId": "att-1791471452886-mny0i",
       "userId": "user-1791465559501-l3asq",
       "testId": "test-fdp-2026",
-      "participantName": "Rutvik",
+      "participantName": "Rutvik Kale",
       "participantEmail": "gojoritron@gmail.com",
-      "participantOrganization": null,
+      "participantOrganization": "NMIET Talegaon",
       "testTitle": "Faculty Development Programme (FDP) Assessment",
-      "score": 6,
-      "percentage": 12,
-      "issueDate": "2026-10-08T13:19:44.213Z",
-      "verificationUrl": "/verify/CERT-2026-UA4CKW",
+      "score": 0,
+      "percentage": 0,
+      "issueDate": "2026-10-08T14:57:41.558Z",
+      "verificationUrl": "/verify/CERT-2026-592A7M",
       "emailSent": true,
-      "emailSentAt": "2026-10-08T13:22:12.176Z",
-      "createdAt": "2026-10-08T13:19:44.213Z"
+      "emailSentAt": "2026-10-08T14:57:48.939Z",
+      "createdAt": "2026-10-08T14:57:41.558Z"
     },
     {
       "id": "cert-1791470746946-bi60",
@@ -7106,9 +5831,27 @@
       "createdAt": "2026-10-08T14:45:46.946Z"
     },
     {
-      "id": "cert-1791471461558-omwy",
-      "certificateId": "CERT-2026-592A7M",
-      "attemptId": "att-1791471452886-mny0i",
+      "id": "cert-1791465584213-nmvi",
+      "certificateId": "CERT-2026-UA4CKW",
+      "attemptId": "att-1791465559508-r1wv8",
+      "userId": "user-1791465559501-l3asq",
+      "testId": "test-fdp-2026",
+      "participantName": "Rutvik",
+      "participantEmail": "gojoritron@gmail.com",
+      "participantOrganization": null,
+      "testTitle": "Faculty Development Programme (FDP) Assessment",
+      "score": 6,
+      "percentage": 12,
+      "issueDate": "2026-10-08T13:19:44.213Z",
+      "verificationUrl": "/verify/CERT-2026-UA4CKW",
+      "emailSent": true,
+      "emailSentAt": "2026-10-08T13:22:12.176Z",
+      "createdAt": "2026-10-08T13:19:44.213Z"
+    },
+    {
+      "id": "cert-1791533066975-4fsc",
+      "certificateId": "CERT-2026-LZ354W",
+      "attemptId": "att-1791533045313-42568",
       "userId": "user-1791465559501-l3asq",
       "testId": "test-fdp-2026",
       "participantName": "Rutvik Kale",
@@ -7117,43 +5860,33 @@
       "testTitle": "Faculty Development Programme (FDP) Assessment",
       "score": 0,
       "percentage": 0,
-      "issueDate": "2026-10-08T14:57:41.558Z",
-      "verificationUrl": "/verify/CERT-2026-592A7M",
+      "issueDate": "2026-10-09T08:04:26.975Z",
+      "verificationUrl": "/verify/CERT-2026-LZ354W",
       "emailSent": true,
-      "emailSentAt": "2026-10-08T14:57:48.939Z",
-      "createdAt": "2026-10-08T14:57:41.558Z"
+      "emailSentAt": "2026-10-09T08:04:35.784Z",
+      "createdAt": "2026-10-09T08:04:26.976Z"
     }
   ],
   "emailLogs": [
     {
-      "id": "log-1791465584361-skff",
-      "certificateId": "CERT-2026-UA4CKW",
-      "recipient": "gojoritron@gmail.com",
+      "id": "log-1791529842606-g4vj",
+      "certificateId": "CERT-2026-C8LBQD",
+      "recipient": "gjoritron@gmail.com",
       "emailType": "CERTIFICATE_DELIVERY",
-      "status": "SIMULATED",
-      "providerId": "sim_msg_1791465584361_06wa",
+      "status": "DELIVERED",
+      "providerId": "<98c2271a-dcd2-b300-196e-5a6e6f5d6367@gmail.com>",
       "errorMessage": null,
-      "timestamp": "2026-10-08T13:19:44.361Z"
+      "timestamp": "2026-10-09T07:10:42.607Z"
     },
     {
-      "id": "log-1791465732171-kqqc",
-      "certificateId": "CERT-2026-UA4CKW",
-      "recipient": "gojoritron@gmail.com",
-      "emailType": "CERTIFICATE_DELIVERY",
-      "status": "SIMULATED",
-      "providerId": "sim_msg_1791465732171_q407",
-      "errorMessage": null,
-      "timestamp": "2026-10-08T13:22:12.171Z"
-    },
-    {
-      "id": "log-1791470754489-3x53",
-      "certificateId": "CERT-2026-6XN8WL",
+      "id": "log-1791471468928-d9oy",
+      "certificateId": "CERT-2026-592A7M",
       "recipient": "gojoritron@gmail.com",
       "emailType": "CERTIFICATE_DELIVERY",
       "status": "DELIVERED",
-      "providerId": "<538e9527-2b60-0454-ff15-c2fd87f384c1@gmail.com>",
+      "providerId": "<2685efe6-c27b-fbfd-a9dc-daebd8ab95c1@gmail.com>",
       "errorMessage": null,
-      "timestamp": "2026-10-08T14:45:54.489Z"
+      "timestamp": "2026-10-08T14:57:48.928Z"
     },
     {
       "id": "log-1791470775978-6a5c",
@@ -7166,14 +5899,44 @@
       "timestamp": "2026-10-08T14:46:15.978Z"
     },
     {
-      "id": "log-1791471468928-d9oy",
-      "certificateId": "CERT-2026-592A7M",
+      "id": "log-1791470754489-3x53",
+      "certificateId": "CERT-2026-6XN8WL",
       "recipient": "gojoritron@gmail.com",
       "emailType": "CERTIFICATE_DELIVERY",
       "status": "DELIVERED",
-      "providerId": "<2685efe6-c27b-fbfd-a9dc-daebd8ab95c1@gmail.com>",
+      "providerId": "<538e9527-2b60-0454-ff15-c2fd87f384c1@gmail.com>",
       "errorMessage": null,
-      "timestamp": "2026-10-08T14:57:48.928Z"
+      "timestamp": "2026-10-08T14:45:54.489Z"
+    },
+    {
+      "id": "log-1791465732171-kqqc",
+      "certificateId": "CERT-2026-UA4CKW",
+      "recipient": "gojoritron@gmail.com",
+      "emailType": "CERTIFICATE_DELIVERY",
+      "status": "SIMULATED",
+      "providerId": "sim_msg_1791465732171_q407",
+      "errorMessage": null,
+      "timestamp": "2026-10-08T13:22:12.171Z"
+    },
+    {
+      "id": "log-1791465584361-skff",
+      "certificateId": "CERT-2026-UA4CKW",
+      "recipient": "gojoritron@gmail.com",
+      "emailType": "CERTIFICATE_DELIVERY",
+      "status": "SIMULATED",
+      "providerId": "sim_msg_1791465584361_06wa",
+      "errorMessage": null,
+      "timestamp": "2026-10-08T13:19:44.361Z"
+    },
+    {
+      "id": "log-1791533075766-h72f",
+      "certificateId": "CERT-2026-LZ354W",
+      "recipient": "gojoritron@gmail.com",
+      "emailType": "CERTIFICATE_DELIVERY",
+      "status": "DELIVERED",
+      "providerId": "<3ffa2b5b-3121-d24b-0770-9ef644d344b3@gmail.com>",
+      "errorMessage": null,
+      "timestamp": "2026-10-09T08:04:35.766Z"
     }
   ]
 }

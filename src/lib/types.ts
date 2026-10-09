@@ -120,6 +120,21 @@ export interface EmailLog {
   timestamp: string;
 }
 
+export interface Feedback {
+  id: string;
+  attemptId: string;
+  userId?: string;
+  participantName: string;
+  participantEmail: string;
+  participantOrganization?: string | null;
+  relevance: string; // Poor | Fair | Good | Very Good | Excellent
+  explanationClarity: string; // Poor | Fair | Good | Very Good | Excellent
+  usefulnessOfExamples: string; // Poor | Fair | Good | Very Good | Excellent
+  suggestions: string;
+  futureTopics: string;
+  createdAt: string;
+}
+
 export interface DatabaseSchema {
   admins: Admin[];
   users: User[];
@@ -130,4 +145,5 @@ export interface DatabaseSchema {
   answers: Answer[];
   certificates: Certificate[];
   emailLogs: EmailLog[];
+  feedbacks?: Feedback[];
 }

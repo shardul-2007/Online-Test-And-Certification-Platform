@@ -800,7 +800,7 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
                   </span>
                 ) : (
                   <span>
-                    All 50 questions have been completed! Your official Certificate of Participation will be generated and dispatched to your email.
+                    All 50 questions have been completed! Next, you will complete the mandatory 5-question feedback form to unlock your Certificate of Participation.
                   </span>
                 )}
               </p>
@@ -921,7 +921,7 @@ export default function ExamPage({ params }: { params: { attemptId: string } }) 
                   </>
                 ) : (
                   <>
-                    <span>Confirm &amp; Submit</span>
+                    <span>Proceed to Feedback &rarr;</span>
                   </>
                 )}
               </button>
