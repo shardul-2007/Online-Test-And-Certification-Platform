@@ -4,6 +4,8 @@ import { getCurrentAdmin } from '@/lib/auth';
 import { fetchCloudRegistry, saveCloudRegistry } from '@/lib/cloudStore';
 import { getAllCertificateRecipients, deleteCertificateRecipients, supabase } from '@/lib/supabase';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const admin = await getCurrentAdmin();

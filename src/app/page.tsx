@@ -314,7 +314,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-<<<<<<< HEAD
       {/* ── HOW IT WORKS IN 4 STEPS ── */}
       <section className="py-16 bg-[#080C18] border-t border-slate-800/80">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 space-y-10">
