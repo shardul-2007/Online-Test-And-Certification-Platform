@@ -3,12 +3,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Award, ShieldCheck, Sun, Moon, Menu, X, ArrowRight, LayoutDashboard } from 'lucide-react';
-import { useTheme } from './ThemeProvider';
+import { Award, ShieldCheck, Menu, X, ArrowRight, LayoutDashboard, User } from 'lucide-react';
 
 export default function Navbar() {
   const pathname = usePathname();
-  const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // If in active test taking mode, hide navigation distractions
@@ -17,10 +15,8 @@ export default function Navbar() {
   }
 
   const navLinks = [
-    { label: 'Assessment', href: '/#tests' },
-    { label: 'How It Works', href: '/#how-it-works' },
     { label: 'Verify Certificate', href: '/verify', icon: ShieldCheck },
-    { label: 'Admin Portal', href: '/admin', icon: LayoutDashboard },
+    { label: 'Admin Portal', href: '/admin', icon: User },
   ];
 
   return (
@@ -61,36 +57,22 @@ export default function Navbar() {
               </Link>
             );
           })}
+          
+          {pathname === '/' && (
+            <button
+              onClick={() => {
+                window.dispatchEvent(new Event('start-test-modal'));
+              }}
+              className="ml-2 flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs text-slate-950 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-yellow-300 shadow-md shadow-amber-500/20 transition cursor-pointer"
+            >
+              <span>Start FDP Assessment</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          )}
         </nav>
-
-        {/* Actions */}
-        <div className="hidden md:flex items-center gap-3">
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="p-2 rounded-lg text-slate-400 hover:text-white bg-slate-900/50 hover:bg-slate-800/80 border border-slate-800 transition"
-          >
-            {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-cyan-400" />}
-          </button>
-
-          <Link
-            href="/#tests"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 shadow-md shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all transform hover:-translate-y-0.5"
-          >
-            <span>Start Test</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
 
         {/* Mobile menu button */}
         <div className="flex md:hidden items-center gap-2">
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="p-2 rounded-lg text-slate-400 hover:text-white bg-slate-900 border border-slate-800"
-          >
-            {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-cyan-400" />}
-          </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 rounded-lg text-slate-300 hover:text-white bg-slate-900 border border-slate-800"
@@ -114,16 +96,19 @@ export default function Navbar() {
               <ArrowRight className="w-4 h-4 text-slate-500" />
             </Link>
           ))}
-          <div className="pt-2">
-            <Link
-              href="/#tests"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-emerald-400"
+          
+          {pathname === '/' && (
+            <button
+              onClick={() => {
+                window.dispatchEvent(new Event('start-test-modal'));
+                setMobileMenuOpen(false);
+              }}
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs text-slate-950 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-yellow-300 shadow-md shadow-amber-500/20 transition cursor-pointer"
             >
-              <span>Start Assessment</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+              <span>Start FDP Assessment</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          )}
         </div>
       )}
     </header>

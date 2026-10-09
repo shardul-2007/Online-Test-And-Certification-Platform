@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { getCurrentAdmin } from '@/lib/auth';
 import { fetchCloudRegistry, saveCloudRegistry } from '@/lib/cloudStore';
+import { getAllCertificateRecipients, deleteCertificateRecipients, supabase } from '@/lib/supabase';
 
 export async function GET(request: NextRequest) {
   try {
@@ -15,7 +16,76 @@ export async function GET(request: NextRequest) {
     const format = searchParams.get('format');
     const status = searchParams.get('status');
 
-    // 1. Sync any attempts from persistent cloud store
+    // 1. Direct Sync from Supabase certificate_recipients table (PRIMARY SOURCE OF TRUTH)
+    try {
+      const sbResult = await getAllCertificateRecipients();
+      if (sbResult.success && sbResult.data && sbResult.data.length > 0) {
+        for (const rec of sbResult.data) {
+          const user = db.user.create({
+            data: {
+              name: rec.participant_name,
+              email: rec.participant_email,
+              organization: rec.participant_organization || 'NMIET',
+            },
+          });
+
+          const certId = rec.certificate_id;
+          const attemptId = `att-${certId}`;
+
+          if (!db.certificate.findUnique({ where: { certificateId: certId } })) {
+            db.certificate.create({
+              data: {
+                certificateId: certId,
+                attemptId: attemptId,
+                userId: user.id,
+                testId: 'test-fdp-2026',
+                participantName: rec.participant_name,
+                participantEmail: rec.participant_email,
+                participantOrganization: rec.participant_organization || null,
+                testTitle: rec.test_title || 'Faculty Development Programme (FDP) Assessment',
+                score: rec.score ?? 0,
+                percentage: rec.percentage ?? 0,
+                issueDate: rec.issue_date || rec.created_at || new Date().toISOString(),
+                verificationUrl: `/verify/${certId}`,
+                emailSent: true,
+                emailSentAt: rec.created_at || null,
+              },
+            });
+          }
+
+          if (!db.attempt.findUnique({ where: { id: attemptId } })) {
+            db.attempt.create({
+              data: {
+                id: attemptId,
+                testId: 'test-fdp-2026',
+                userId: user.id,
+                totalQuestions: 25,
+                maxScore: 25,
+              },
+            });
+          }
+
+          db.attempt.update({
+            where: { id: attemptId },
+            data: {
+              status: 'COMPLETED',
+              submittedAt: rec.created_at || rec.issue_date || new Date().toISOString(),
+              score: rec.score ?? 0,
+              percentage: rec.percentage ?? 0,
+              isPassed: true,
+              correctAnswers: rec.score ?? 0,
+              incorrectAnswers: rec.score !== null ? Math.max(0, 25 - rec.score) : 0,
+              unanswered: 0,
+              timeSpentSeconds: 600,
+            },
+          });
+        }
+      }
+    } catch (sbErr) {
+      console.warn('Supabase recipients primary sync warning:', sbErr);
+    }
+
+    // 2. Also sync attempts from backup cloud registry
     try {
       const cloud = await fetchCloudRegistry();
       if (cloud && cloud.attempts && cloud.attempts.length > 0) {
@@ -35,8 +105,8 @@ export async function GET(request: NextRequest) {
                 id: att.id,
                 testId: att.testId,
                 userId: att.userId,
-                totalQuestions: att.totalQuestions || 50,
-                maxScore: att.maxScore || 50,
+                totalQuestions: att.totalQuestions || 25,
+                maxScore: att.maxScore || 25,
               },
             });
           }
@@ -62,33 +132,8 @@ export async function GET(request: NextRequest) {
           });
         }
       }
-
-      // 2. Also ensure any local completed attempts get backed up to cloud
-      const cloudAttemptIds = new Set((cloud?.attempts || []).map((a) => a.id));
-      const localAttempts = db.attempt.findMany({ where: { status: 'COMPLETED' } });
-      const missingInCloud = localAttempts.filter((a) => !cloudAttemptIds.has(a.id));
-      if (missingInCloud.length > 0) {
-        const mergedUsers = [...(cloud?.users || [])];
-        for (const la of missingInCloud) {
-          if (la.user && !mergedUsers.find((u) => u.id === la.user?.id)) {
-            mergedUsers.push(la.user);
-          }
-        }
-        const mergedCerts = [...(cloud?.certificates || [])];
-        for (const la of missingInCloud) {
-          if (la.certificate && !mergedCerts.find((c) => c.certificateId === la.certificate?.certificateId)) {
-            mergedCerts.push(la.certificate);
-          }
-        }
-        await saveCloudRegistry({
-          users: mergedUsers,
-          attempts: [...(cloud?.attempts || []), ...missingInCloud],
-          certificates: mergedCerts,
-          answers: cloud?.answers || [],
-        });
-      }
     } catch (syncErr) {
-      console.warn('Sync from cloud store note:', syncErr);
+      console.warn('Sync from backup cloud store note:', syncErr);
     }
 
     let attempts = db.attempt.findMany();
@@ -188,12 +233,29 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'No participant attempt IDs specified' }, { status: 400 });
     }
 
-    // 1. Delete locally from memory & /tmp
+    // 1. Identify certificates to delete
+    const certsToDelete = db.certificate.findMany().filter((c) => attemptIds.includes(c.attemptId) || attemptIds.includes(c.id));
+    const certIds = new Set(certsToDelete.map((c) => c.certificateId));
+    for (const aId of attemptIds) {
+      if (aId.startsWith('att-')) {
+        certIds.add(aId.replace('att-', ''));
+      }
+    }
+
+    // 2. Delete from Supabase PostgreSQL certificate_recipients table
+    if (certIds.size > 0) {
+      await deleteCertificateRecipients(Array.from(certIds));
+    }
+    try {
+      await supabase.from('certificate_recipients').delete().in('id', attemptIds);
+    } catch {}
+
+    // 3. Delete locally from memory & /tmp
     db.attempt.deleteMany({ where: { ids: attemptIds } });
     db.certificate.deleteMany({ where: { attemptIds } });
     db.answer.deleteMany({ where: { attemptIds } });
 
-    // 2. Delete from cloud persistent store
+    // 4. Delete from backup cloud persistent store
     try {
       const cloud = await fetchCloudRegistry();
       const updatedAttempts = cloud.attempts.filter((a) => !attemptIds.includes(a.id));
@@ -216,7 +278,7 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({
       success: true,
       deletedCount: attemptIds.length,
-      message: `Successfully deleted ${attemptIds.length} participant record(s).`,
+      message: `Successfully deleted ${attemptIds.length} participant record(s) from Supabase and platform records.`,
     });
   } catch (error: any) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });

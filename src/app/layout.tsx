@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'SkillCert | Online Test & Automatic Certificate Platform',
@@ -23,7 +22,6 @@ export default function RootLayout({
         <ThemeProvider>
           <Navbar />
           <main className="flex-1 w-full">{children}</main>
-          <Footer />
         </ThemeProvider>
       </body>
     </html>

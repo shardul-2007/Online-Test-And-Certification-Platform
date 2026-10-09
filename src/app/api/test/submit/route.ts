@@ -3,6 +3,7 @@ import { db } from '@/lib/db';
 import { generateCertificatePdf } from '@/lib/pdf';
 import { sendCertificateEmail } from '@/lib/email';
 import { fetchCloudRegistry, saveCloudRegistry } from '@/lib/cloudStore';
+import { saveCertificateRecipient, isSupabaseConfigured } from '@/lib/supabase';
 
 function generateUniqueCertificateId(): string {
   const year = new Date().getFullYear();
@@ -244,6 +245,30 @@ export async function POST(request: NextRequest) {
     } catch (err: any) {
       console.error('Error generating PDF or sending email:', err);
       emailStatus = { success: false, status: 'FAILED', error: err.message };
+    }
+
+    // 🔥 SAVE TO SUPABASE (Persistent Storage)
+    if (certificateRecord && isSupabaseConfigured()) {
+      try {
+        const supabaseResult = await saveCertificateRecipient({
+          certificate_id: uniqueCertId,
+          participant_name: user.name,
+          participant_email: user.email,
+          participant_organization: user.organization || null,
+          test_title: test.title,
+          score: totalScore,
+          percentage,
+          issue_date: certificateRecord.issueDate,
+        });
+
+        if (supabaseResult.success) {
+          console.log('✅ Certificate saved to Supabase:', uniqueCertId);
+        } else {
+          console.error('❌ Supabase save failed:', supabaseResult.error);
+        }
+      } catch (supabaseErr) {
+        console.error('❌ Supabase error:', supabaseErr);
+      }
     }
 
     // Sync participant submission permanently to cloud store
